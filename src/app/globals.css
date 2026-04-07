@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-navy: #0a1433;
-  --color-navy-light: #0f1d4a;
-  --color-gold: #f5b800;
-  --color-gold-dark: #e0a800;
+  --color-navy: #111111;
+  --color-navy-light: #1a1a1a;
+  --color-gold: #FFD200;
+  --color-gold-dark: #E6BD00;
+  --color-red: #CC0000;
+  --color-red-dark: #AA0000;
   --color-white: #ffffff;
   --color-gray-50: #f8f9fa;
   --color-gray-100: #f1f3f5;
@@ -40,7 +42,7 @@ html {
   left: 0;
   width: 100%;
   height: 8px;
-  background: #f5b800;
+  background: #FFD200;
   z-index: -1;
 }
 

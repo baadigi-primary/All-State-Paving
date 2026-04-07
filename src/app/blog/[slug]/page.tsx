@@ -119,7 +119,7 @@ export default async function BlogPostPage({
                 <div className="flex flex-wrap justify-center gap-4">
                   <a
                     href={`tel:${COMPANY.phoneTel}`}
-                    className="bg-gold hover:bg-gold-dark text-navy font-bold px-8 py-3 rounded transition-colors"
+                    className="bg-red hover:bg-red-dark text-white font-bold px-8 py-3 rounded transition-colors"
                   >
                     CALL {COMPANY.phone}
                   </a>

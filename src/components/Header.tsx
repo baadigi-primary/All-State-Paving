@@ -125,7 +125,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden sm:inline-block bg-gold hover:bg-gold-dark text-navy font-bold px-5 py-2.5 rounded text-sm transition-colors"
+              className="hidden sm:inline-block bg-red hover:bg-red-dark text-white font-bold px-5 py-2.5 rounded text-sm transition-colors"
             >
               GET A QUOTE
             </Link>
@@ -181,7 +181,7 @@ export default function Header() {
             ))}
             <Link
               href="/contact"
-              className="block bg-gold text-navy font-bold px-4 py-2.5 rounded text-center mt-3"
+              className="block bg-red text-white font-bold px-4 py-2.5 rounded text-center mt-3"
               onClick={() => setMobileOpen(false)}
             >
               GET A QUOTE

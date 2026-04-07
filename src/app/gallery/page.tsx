@@ -48,7 +48,7 @@ export default function GalleryPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-gold hover:bg-gold-dark text-navy font-bold px-8 py-3.5 rounded transition-colors"
+            className="inline-block bg-red hover:bg-red-dark text-white font-bold px-8 py-3.5 rounded transition-colors"
           >
             GET A FREE QUOTE
           </Link>

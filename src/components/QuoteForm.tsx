@@ -87,7 +87,7 @@ export default function QuoteForm() {
       </div>
       <button
         type="submit"
-        className="bg-gold hover:bg-gold-dark text-navy font-bold px-8 py-3 rounded text-sm tracking-wide transition-colors"
+        className="bg-red hover:bg-red-dark text-white font-bold px-8 py-3 rounded text-sm tracking-wide transition-colors"
       >
         SEND MESSAGE
       </button>

@@ -89,7 +89,7 @@ export default function HomePage() {
           <div className="flex flex-wrap gap-4">
             <Link
               href="/contact"
-              className="bg-gold hover:bg-gold-dark text-navy font-bold px-8 py-3.5 rounded text-sm tracking-wide transition-colors"
+              className="bg-red hover:bg-red-dark text-white font-bold px-8 py-3.5 rounded text-sm tracking-wide transition-colors"
             >
               GET A FREE QUOTE
             </Link>
@@ -406,7 +406,7 @@ export default function HomePage() {
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href={`tel:${COMPANY.phoneTel}`}
-              className="bg-gold hover:bg-gold-dark text-navy font-bold px-8 py-3.5 rounded text-sm transition-colors"
+              className="bg-red hover:bg-red-dark text-white font-bold px-8 py-3.5 rounded text-sm transition-colors"
             >
               CALL {COMPANY.phone}
             </a>
