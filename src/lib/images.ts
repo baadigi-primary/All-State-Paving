@@ -3,7 +3,7 @@
 
 export const IMG = {
   // Logo
-  logo: "/images/All State Paving logo.png",
+  logo: "/images/All State Paving logo red.png",
 
   // Hero / Banners
   heroMain: "/images/hero-main.jpg",

@@ -78,7 +78,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <img
-              src="/images/All State Paving logo.png"
+              src="/images/All State Paving logo red.png"
               alt="All State Paving"
               className={`w-auto transition-all duration-300 ${scrolled ? "h-16" : "h-32"}`}
             />
