@@ -63,6 +63,11 @@ export default function Header() {
               <PhoneIcon />
               {COMPANY.phone}
             </a>
+            <span className="text-white/40">|</span>
+            <a href={`tel:${COMPANY.phoneAltTel}`} className="flex items-center gap-2 hover:text-gold transition-colors">
+              <PhoneIcon />
+              {COMPANY.phoneAlt}
+            </a>
           </div>
         </div>
       </div>
