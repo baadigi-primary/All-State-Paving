@@ -87,15 +87,18 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                  <svg className="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <p className="text-sm">Delaware, OH 43015</p>
-                </div>
+              {/* Google Map */}
+              <div className="rounded-lg overflow-hidden h-64">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.0!2d-83.068!3d40.2987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88388a4e943c9e3b%3A0x2e3b4a0c8f1d5e7a!2s175+S+Sandusky+St%2C+Delaware%2C+OH+43015!5e0!3m2!1sen!2sus!4v1700000000000"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="All State Paving location"
+                />
               </div>
             </div>
 
