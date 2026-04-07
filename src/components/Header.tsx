@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import { COMPANY, NAV_LINKS } from "@/lib/constants";
 
 function PhoneIcon() {
@@ -30,8 +31,16 @@ function ClockIcon() {
 }
 
 export default function Header() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
@@ -60,13 +69,13 @@ export default function Header() {
 
       {/* Main Nav */}
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? "h-20" : "h-36"}`}>
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <img
-              src="/images/logo.png"
+              src="/images/All State Paving logo.png"
               alt="All State Paving"
-              className="h-14 w-auto"
+              className={`w-auto transition-all duration-300 ${scrolled ? "h-16" : "h-32"}`}
             />
           </Link>
 
@@ -81,7 +90,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className="px-3 py-2 text-gray-700 hover:text-navy font-medium text-sm transition-colors"
+                  className={`px-3 py-2 text-sm transition-colors ${pathname === link.href || pathname.startsWith(link.href + "/") ? "text-navy font-bold" : "text-gray-700 hover:text-navy font-medium"}`}
                 >
                   {link.label}
                   {"children" in link && (
@@ -142,7 +151,7 @@ export default function Header() {
               <div key={link.label}>
                 <Link
                   href={link.href}
-                  className="block px-3 py-2 text-gray-700 hover:text-navy font-medium"
+                  className={`block px-3 py-2 ${pathname === link.href || pathname.startsWith(link.href + "/") ? "text-navy font-bold" : "text-gray-700 hover:text-navy font-medium"}`}
                   onClick={() => {
                     if (!("children" in link)) setMobileOpen(false);
                   }}
