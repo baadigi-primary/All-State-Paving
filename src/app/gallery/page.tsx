@@ -1,75 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import GalleryGrid from "@/components/GalleryGrid";
 
 export const metadata: Metadata = {
   title: "Project Gallery",
   description:
     "Browse our portfolio of completed asphalt paving projects across Central Ohio — driveways, parking lots, commercial paving, and more.",
 };
-
-const galleryItems = [
-  {
-    title: "Commercial Parking Lot — Delaware",
-    category: "Commercial",
-    img: "/images/gallery-IMG_2760.jpg",
-  },
-  {
-    title: "Residential Driveway — Sunbury",
-    category: "Residential",
-    img: "/images/gallery-IMG_2761.jpg",
-  },
-  {
-    title: "Private Road — Marion",
-    category: "Roads",
-    img: "/images/gallery-IMG_2762.jpg",
-  },
-  {
-    title: "Farm Lane — Delaware County",
-    category: "Farm",
-    img: "/images/gallery-IMG_2763.jpg",
-  },
-  {
-    title: "Paving Project — London",
-    category: "Commercial",
-    img: "/images/gallery-IMG_2818.jpg",
-  },
-  {
-    title: "Driveway Project — Powell",
-    category: "Residential",
-    img: "/images/gallery-IMG_2819.jpg",
-  },
-  {
-    title: "Asphalt Work — Columbus",
-    category: "Commercial",
-    img: "/images/gallery-job-1.jpg",
-  },
-  {
-    title: "Road Paving — Westerville",
-    category: "Roads",
-    img: "/images/gallery-job-2.jpg",
-  },
-  {
-    title: "Parking Lot — Marysville",
-    category: "Commercial",
-    img: "/images/gallery-job-3.jpg",
-  },
-  {
-    title: "Lot Striping — Delaware",
-    category: "Commercial",
-    img: "/images/all-state-paving-02.jpg",
-  },
-  {
-    title: "Residential Paving — Sunbury",
-    category: "Residential",
-    img: "/images/all-state-paving-03.jpg",
-  },
-  {
-    title: "Commercial Project — Marion",
-    category: "Commercial",
-    img: "/images/all-state-paving-04.jpg",
-  },
-];
 
 export default function GalleryPage() {
   return (
@@ -95,25 +33,7 @@ export default function GalleryPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryItems.map((item, i) => (
-              <div key={i} className="group relative overflow-hidden rounded-lg shadow-sm">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div>
-                    <span className="bg-gold text-navy text-xs font-bold px-3 py-1 rounded mb-2 inline-block">
-                      {item.category}
-                    </span>
-                    <h3 className="text-white font-bold">{item.title}</h3>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <GalleryGrid />
         </div>
       </section>
 
