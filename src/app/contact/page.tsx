@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { COMPANY } from "@/lib/constants";
+import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
 import QuoteForm from "@/components/QuoteForm";
 
@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Contact All State Paving for a free estimate on your asphalt paving project. Call 1-800-568-9954 or fill out our online form.",
+  alternates: { canonical: `${SITE_URL}/contact` },
 };
 
 export default function ContactPage() {

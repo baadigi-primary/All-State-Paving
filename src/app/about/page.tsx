@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { COMPANY } from "@/lib/constants";
+import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
     "Learn about All State Paving — family-owned and operated since 1979, serving Central Ohio with quality asphalt paving solutions for over 40 years.",
+  alternates: { canonical: `${SITE_URL}/about` },
 };
 
 export default function AboutPage() {

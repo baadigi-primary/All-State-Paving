@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SERVICES } from "@/lib/constants";
+import { SERVICES, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Our Services",
   description:
     "Comprehensive asphalt paving services including commercial paving, residential paving, driveway paving, parking lots, farm lanes, and more in Central Ohio.",
+  alternates: { canonical: `${SITE_URL}/services` },
 };
 
 export default function ServicesPage() {

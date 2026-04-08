@@ -1,3 +1,5 @@
+export const SITE_URL = "https://www.allstatepavingohio.com";
+
 export const COMPANY = {
   name: "All State Paving",
   phone: "1-800-568-9954",

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SERVICES, COMPANY } from "@/lib/constants";
+import { SERVICES, COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
 import QuoteForm from "@/components/QuoteForm";
+import JsonLd from "@/components/JsonLd";
 
 import { SERVICE_IMAGES } from "@/lib/images";
 
@@ -22,6 +23,7 @@ export function generateMetadata({
     return {
       title: `${service.title} Services in Central Ohio`,
       description: service.description,
+      alternates: { canonical: `${SITE_URL}/services/${slug}` },
     };
   });
 }
@@ -37,8 +39,46 @@ export default async function ServicePage({
 
   const otherServices = SERVICES.filter((s) => s.slug !== slug);
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${service.title} Services`,
+    description: service.description,
+    provider: {
+      "@type": "PavingContractor",
+      name: COMPANY.name,
+      url: SITE_URL,
+      telephone: COMPANY.phone,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "175 South Sandusky St, Suite 398",
+        addressLocality: "Delaware",
+        addressRegion: "OH",
+        postalCode: "43015",
+        addressCountry: "US",
+      },
+    },
+    areaServed: {
+      "@type": "State",
+      name: "Ohio",
+    },
+    url: `${SITE_URL}/services/${slug}`,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
+      { "@type": "ListItem", position: 3, name: service.title, item: `${SITE_URL}/services/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <PageHero
         title={service.title}
         breadcrumbs={[

@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 import PageHero from "@/components/PageHero";
+import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Blog",
   description:
     "Tips, guides, and news about asphalt paving, maintenance, and more from All State Paving in Central Ohio.",
+  alternates: { canonical: `${SITE_URL}/blog` },
 };
 
 export default function BlogPage() {

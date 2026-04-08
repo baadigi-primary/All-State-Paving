@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BLOG_POSTS } from "@/lib/blog-posts";
-import { COMPANY } from "@/lib/constants";
+import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
+import JsonLd from "@/components/JsonLd";
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
@@ -20,6 +21,14 @@ export function generateMetadata({
     return {
       title: post.title,
       description: post.excerpt,
+      alternates: { canonical: `${SITE_URL}/blog/${slug}` },
+      openGraph: {
+        type: "article",
+        title: post.title,
+        description: post.excerpt,
+        url: `${SITE_URL}/blog/${slug}`,
+        images: [{ url: post.img, alt: post.title }],
+      },
     };
   });
 }
@@ -74,8 +83,46 @@ export default async function BlogPostPage({
   const currentIndex = BLOG_POSTS.findIndex((p) => p.slug === slug);
   const relatedPosts = BLOG_POSTS.filter((_, i) => i !== currentIndex).slice(0, 3);
 
+  const blogPostSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: `${SITE_URL}${post.img}`,
+    datePublished: new Date(post.date).toISOString(),
+    author: {
+      "@type": "Organization",
+      name: COMPANY.name,
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: COMPANY.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${slug}`,
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${SITE_URL}/blog/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={blogPostSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <PageHero
         title={post.title}
         breadcrumbs={[

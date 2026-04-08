@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import GalleryGrid from "@/components/GalleryGrid";
+import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Project Gallery",
   description:
     "Browse our portfolio of completed asphalt paving projects across Central Ohio — driveways, parking lots, commercial paving, and more.",
+  alternates: { canonical: `${SITE_URL}/gallery` },
 };
 
 export default function GalleryPage() {

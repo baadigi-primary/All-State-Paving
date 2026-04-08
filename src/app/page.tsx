@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { COMPANY, SERVICES } from "@/lib/constants";
+import { COMPANY, SERVICES, SITE_URL } from "@/lib/constants";
 import { IMG } from "@/lib/images";
 import QuoteForm from "@/components/QuoteForm";
+
+export const metadata: Metadata = {
+  alternates: { canonical: SITE_URL },
+};
 
 /* ── Service Icons ────────────────────────────────────── */
 const serviceIcons: Record<string, React.ReactNode> = {

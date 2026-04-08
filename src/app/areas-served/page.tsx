@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { COMPANY } from "@/lib/constants";
+import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Areas Served",
   description:
     "All State Paving serves Delaware, Sunbury, London, Marion, Columbus, and all of Central Ohio with professional asphalt paving services.",
+  alternates: { canonical: `${SITE_URL}/areas-served` },
 };
 
 const areas = [

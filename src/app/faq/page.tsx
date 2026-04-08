@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { COMPANY } from "@/lib/constants";
+import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
 import FAQAccordion from "./FAQAccordion";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
     "Common questions about asphalt paving services, costs, timelines, and maintenance from All State Paving in Central Ohio.",
+  alternates: { canonical: `${SITE_URL}/faq` },
 };
 
 const faqs = [
@@ -54,8 +56,22 @@ const faqs = [
 ];
 
 export default function FAQPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
     <>
+      <JsonLd data={faqSchema} />
       <PageHero
         title="Frequently Asked Questions"
         breadcrumbs={[
