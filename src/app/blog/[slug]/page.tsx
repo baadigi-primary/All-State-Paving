@@ -2,36 +2,40 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BLOG_POSTS } from "@/lib/blog-posts";
+import { getPostBySlug, getPublishedPosts, getAllPostSlugs } from "@/lib/supabase";
 import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/JsonLd";
 
-export function generateStaticParams() {
-  return BLOG_POSTS.map((p) => ({ slug: p.slug }));
+export const revalidate = 300; // Revalidate every 5 minutes
+
+export async function generateStaticParams() {
+  const slugs = await getAllPostSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  return params.then(({ slug }) => {
-    const post = BLOG_POSTS.find((p) => p.slug === slug);
-    if (!post) return { title: "Post Not Found" };
-    return {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  if (!post) return { title: "Post Not Found" };
+  return {
+    title: post.seo_title || post.title,
+    description: post.seo_description || post.excerpt || "",
+    alternates: { canonical: `${SITE_URL}/blog/${slug}` },
+    openGraph: {
+      type: "article",
       title: post.title,
-      description: post.excerpt,
-      alternates: { canonical: `${SITE_URL}/blog/${slug}` },
-      openGraph: {
-        type: "article",
-        title: post.title,
-        description: post.excerpt,
-        url: `${SITE_URL}/blog/${slug}`,
-        images: [{ url: post.img, alt: post.title }],
-      },
-    };
-  });
+      description: post.excerpt || "",
+      url: `${SITE_URL}/blog/${slug}`,
+      images: post.cover_image_url
+        ? [{ url: post.cover_image_url, alt: post.title }]
+        : [],
+    },
+  };
 }
 
 function markdownToHtml(md: string): string {
@@ -53,9 +57,12 @@ function markdownToHtml(md: string): string {
         const items = lines
           .map((l) => {
             const text = l.trimStart().slice(2);
-            // Bold prefix handling
             const boldMatch = text.match(/^\*\*(.+?)\*\*(.*)$/);
-            const linkReplace = (s: string) => s.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-gold hover:text-gold/80 underline">$1</a>');
+            const linkReplace = (s: string) =>
+              s.replace(
+                /\[(.+?)\]\((.+?)\)/g,
+                '<a href="$2" class="text-gold hover:text-gold/80 underline">$1</a>'
+              );
             if (boldMatch) {
               return `<li class="flex items-start gap-2"><span class="text-gold mt-1.5 shrink-0">•</span><span><strong class="text-navy">${boldMatch[1]}</strong>${linkReplace(boldMatch[2])}</span></li>`;
             }
@@ -67,11 +74,22 @@ function markdownToHtml(md: string): string {
       // Regular paragraph — handle inline bold and links
       const html = trimmed
         .replace(/\*\*(.+?)\*\*/g, '<strong class="text-navy">$1</strong>')
-        .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-gold hover:text-gold/80 underline">$1</a>')
+        .replace(
+          /\[(.+?)\]\((.+?)\)/g,
+          '<a href="$2" class="text-gold hover:text-gold/80 underline">$1</a>'
+        )
         .replace(/\n/g, "<br />");
       return `<p class="text-gray-600 leading-relaxed mb-4">${html}</p>`;
     })
     .join("\n");
+}
+
+function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
 export default async function BlogPostPage({
@@ -80,25 +98,32 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = BLOG_POSTS.find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
-  const currentIndex = BLOG_POSTS.findIndex((p) => p.slug === slug);
-  const relatedPosts = BLOG_POSTS.filter((_, i) => i !== currentIndex).slice(0, 3);
+  const allPosts = await getPublishedPosts();
+  const relatedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
   const blogPostSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: `${SITE_URL}${post.img}`,
-    datePublished: new Date(post.date).toISOString(),
-    dateModified: new Date(post.date).toISOString(),
+    image: post.cover_image_url
+      ? `${SITE_URL}${post.cover_image_url}`
+      : undefined,
+    datePublished: post.published_at
+      ? new Date(post.published_at).toISOString()
+      : post.created_at,
+    dateModified: post.published_at
+      ? new Date(post.published_at).toISOString()
+      : post.created_at,
     author: {
       "@type": "Person",
       name: "All State Paving Team",
       url: `${SITE_URL}/about`,
-      description: "The All State Paving team has been serving Central Ohio with professional asphalt paving services since 1979.",
+      description:
+        "The All State Paving team has been serving Central Ohio with professional asphalt paving services since 1979.",
     },
     publisher: {
       "@type": "Organization",
@@ -119,8 +144,18 @@ export default async function BlogPostPage({
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
-      { "@type": "ListItem", position: 3, name: post.title, item: `${SITE_URL}/blog/${slug}` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${SITE_URL}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${SITE_URL}/blog/${slug}`,
+      },
     ],
   };
 
@@ -142,30 +177,45 @@ export default async function BlogPostPage({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <div className="relative h-80 rounded-lg overflow-hidden mb-8">
-                <Image
-                  src={post.img}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 66vw"
-                  className="object-cover"
-                />
-              </div>
+              {post.cover_image_url && (
+                <div className="relative h-80 rounded-lg overflow-hidden mb-8">
+                  <Image
+                    src={post.cover_image_url}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 66vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
 
               <div className="flex items-center gap-4 mb-6 text-sm">
-                <span className="bg-gold text-navy font-bold px-3 py-1 rounded">
-                  {post.category}
-                </span>
-                <time className="text-gray-400">{post.date}</time>
+                {post.category && (
+                  <span className="bg-gold text-navy font-bold px-3 py-1 rounded">
+                    {post.category}
+                  </span>
+                )}
+                {post.published_at && (
+                  <time className="text-gray-400">
+                    {formatDate(post.published_at)}
+                  </time>
+                )}
                 <span className="text-gray-400">|</span>
-                <Link href="/about" className="text-gray-500 hover:text-navy transition-colors">
+                <Link
+                  href="/about"
+                  className="text-gray-500 hover:text-navy transition-colors"
+                >
                   By All State Paving Team
                 </Link>
               </div>
 
-              <div
-                dangerouslySetInnerHTML={{ __html: markdownToHtml(post.content) }}
-              />
+              {post.content && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: markdownToHtml(post.content),
+                  }}
+                />
+              )}
 
               {/* CTA */}
               <div className="bg-navy rounded-lg p-8 text-center mt-12">
@@ -201,7 +251,7 @@ export default async function BlogPostPage({
                   Recent Posts
                 </h3>
                 <ul className="space-y-4">
-                  {BLOG_POSTS.map((p) => (
+                  {allPosts.map((p) => (
                     <li key={p.slug}>
                       <Link
                         href={`/blog/${p.slug}`}
@@ -212,9 +262,11 @@ export default async function BlogPostPage({
                         }`}
                       >
                         <span className="font-medium">{p.title}</span>
-                        <span className="block text-xs text-gray-400 mt-0.5">
-                          {p.date}
-                        </span>
+                        {p.published_at && (
+                          <span className="block text-xs text-gray-400 mt-0.5">
+                            {formatDate(p.published_at)}
+                          </span>
+                        )}
                       </Link>
                     </li>
                   ))}
@@ -227,7 +279,9 @@ export default async function BlogPostPage({
                   Categories
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {["Tips", "Guide", "Maintenance"].map((cat) => (
+                  {Array.from(
+                    new Set(allPosts.map((p) => p.category).filter(Boolean))
+                  ).map((cat) => (
                     <span
                       key={cat}
                       className="bg-white border border-gray-200 text-gray-600 text-sm px-3 py-1.5 rounded"
@@ -248,8 +302,18 @@ export default async function BlogPostPage({
                   href={`tel:${COMPANY.phoneTel}`}
                   className="flex items-center gap-2 text-gold font-bold"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
                   </svg>
                   {COMPANY.phone}
                 </a>
@@ -270,20 +334,28 @@ export default async function BlogPostPage({
                     href={`/blog/${p.slug}`}
                     className="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow"
                   >
-                    <div className="h-44 overflow-hidden relative">
-                      <Image
-                        src={p.img}
-                        alt={p.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <span className="absolute top-3 left-3 bg-gold text-navy text-xs font-bold px-2 py-0.5 rounded">
-                        {p.category}
-                      </span>
-                    </div>
+                    {p.cover_image_url && (
+                      <div className="h-44 overflow-hidden relative">
+                        <Image
+                          src={p.cover_image_url}
+                          alt={p.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        {p.category && (
+                          <span className="absolute top-3 left-3 bg-gold text-navy text-xs font-bold px-2 py-0.5 rounded">
+                            {p.category}
+                          </span>
+                        )}
+                      </div>
+                    )}
                     <div className="p-5">
-                      <time className="text-gray-400 text-xs">{p.date}</time>
+                      {p.published_at && (
+                        <time className="text-gray-400 text-xs">
+                          {formatDate(p.published_at)}
+                        </time>
+                      )}
                       <h3 className="text-sm font-bold text-navy mt-1 group-hover:text-gold transition-colors">
                         {p.title}
                       </h3>

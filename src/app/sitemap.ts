@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SERVICES, SITE_URL } from "@/lib/constants";
-import { BLOG_POSTS } from "@/lib/blog-posts";
 import { AREAS } from "@/lib/areas-data";
+import { getPublishedPosts } from "@/lib/supabase";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteLastModified = new Date("2026-04-08");
 
   const staticPages = [
@@ -24,9 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const blogPages = BLOG_POSTS.map((post) => ({
+  const posts = await getPublishedPosts();
+  const blogPages = posts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: post.published_at ? new Date(post.published_at) : siteLastModified,
     changeFrequency: "yearly" as const,
     priority: 0.6,
   }));
