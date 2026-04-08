@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SERVICES, COMPANY, SITE_URL } from "@/lib/constants";
+import { SERVICE_CONTENT } from "@/lib/service-content";
 import PageHero from "@/components/PageHero";
 import QuoteForm from "@/components/QuoteForm";
 import JsonLd from "@/components/JsonLd";
@@ -38,13 +39,14 @@ export default async function ServicePage({
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) notFound();
 
-  const otherServices = SERVICES.filter((s) => s.slug !== slug);
+  const content = SERVICE_CONTENT.find((c) => c.slug === slug);
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `${service.title} Services`,
     description: service.description,
+    serviceType: service.title,
     provider: {
       "@type": "HomeAndConstructionBusiness",
       name: COMPANY.name,
@@ -76,10 +78,24 @@ export default async function ServicePage({
     ],
   };
 
+  // Add FAQ schema if content has FAQs
+  const faqSchema = content?.faq
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: content.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
+
   return (
     <>
       <JsonLd data={serviceSchema} />
       <JsonLd data={breadcrumbSchema} />
+      {faqSchema && <JsonLd data={faqSchema} />}
       <PageHero
         title={service.title}
         breadcrumbs={[
@@ -103,49 +119,112 @@ export default async function ServicePage({
                   className="object-cover"
                 />
               </div>
-              <h2 className="text-3xl font-black text-navy mb-4">
+              <h2 className="text-3xl font-black text-navy mb-6">
                 {service.title} in Central Ohio
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                {service.description}
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                At All State Paving, we bring over 40 years of experience to
-                every {service.title.toLowerCase()} project. Our team of skilled
-                professionals uses state-of-the-art equipment and premium
-                materials to ensure lasting results that exceed your
-                expectations.
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-8">
-                Whether you need new installation, repair, or maintenance, we
-                have the expertise to handle projects of any size. We proudly
-                serve Delaware, Sunbury, London, Marion, and all of Central Ohio.
-              </p>
 
-              <div className="bg-gray-50 rounded-lg p-8 mb-8">
-                <h3 className="text-xl font-bold text-navy mb-4">
-                  Why Choose Our {service.title} Services?
-                </h3>
-                <ul className="space-y-3">
-                  {[
-                    "Over 40 years of industry experience",
-                    "Family-owned and operated since 1979",
-                    "Free, no-obligation estimates",
-                    "Premium materials and state-of-the-art equipment",
-                    "On-time completion and transparent pricing",
-                    "Fully licensed and insured",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-gray-600">
-                      <svg className="w-5 h-5 text-gold shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {/* Expanded hero content */}
+              {content ? (
+                content.heroContent.split("\n\n").map((p, i) => (
+                  <p key={i} className="text-gray-600 leading-relaxed mb-4">
+                    {p}
+                  </p>
+                ))
+              ) : (
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  {service.description}
+                </p>
+              )}
 
-              <div className="bg-navy rounded-lg p-8 text-center">
+              {/* Benefits */}
+              {content && (
+                <div className="mt-12">
+                  <h3 className="text-2xl font-bold text-navy mb-6">
+                    Why Choose Our {service.title} Services?
+                  </h3>
+                  <div className="space-y-4">
+                    {content.benefits.map((benefit) => (
+                      <div
+                        key={benefit.title}
+                        className="bg-gray-50 rounded-lg p-6"
+                      >
+                        <div className="flex items-start gap-3">
+                          <svg
+                            className="w-6 h-6 text-gold shrink-0 mt-0.5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          <div>
+                            <h4 className="font-bold text-navy mb-1">
+                              {benefit.title}
+                            </h4>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              {benefit.description}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Process */}
+              {content && (
+                <div className="mt-12">
+                  <h3 className="text-2xl font-bold text-navy mb-6">
+                    Our {service.title} Process
+                  </h3>
+                  <div className="space-y-6">
+                    {content.process.map((step) => (
+                      <div key={step.step} className="flex gap-4">
+                        <div className="bg-gold text-navy w-10 h-10 rounded-full flex items-center justify-center font-black text-lg shrink-0">
+                          {step.step}
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-navy mb-1">
+                            {step.title}
+                          </h4>
+                          <p className="text-gray-600 text-sm leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* FAQ */}
+              {content && (
+                <div className="mt-12">
+                  <h3 className="text-2xl font-bold text-navy mb-6">
+                    {service.title} FAQ
+                  </h3>
+                  <div className="space-y-4">
+                    {content.faq.map((item) => (
+                      <div
+                        key={item.q}
+                        className="border border-gray-200 rounded-lg p-6"
+                      >
+                        <h4 className="font-bold text-navy mb-2">{item.q}</h4>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          {item.a}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* CTA */}
+              <div className="bg-navy rounded-lg p-8 text-center mt-12">
                 <h3 className="text-2xl font-bold text-white mb-3">
                   Ready to Get Started?
                 </h3>
@@ -153,12 +232,20 @@ export default async function ServicePage({
                   Call us today for a free estimate on your{" "}
                   {service.title.toLowerCase()} project.
                 </p>
-                <a
-                  href={`tel:${COMPANY.phoneTel}`}
-                  className="inline-block bg-red hover:bg-red-dark text-white font-bold px-8 py-3 rounded transition-colors"
-                >
-                  CALL {COMPANY.phone}
-                </a>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <a
+                    href={`tel:${COMPANY.phoneTel}`}
+                    className="bg-red hover:bg-red-dark text-white font-bold px-8 py-3 rounded transition-colors"
+                  >
+                    CALL {COMPANY.phone}
+                  </a>
+                  <Link
+                    href="/contact"
+                    className="border-2 border-white text-white hover:bg-white hover:text-navy font-bold px-8 py-3 rounded transition-colors"
+                  >
+                    GET A QUOTE
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -205,8 +292,18 @@ export default async function ServicePage({
                   href={`tel:${COMPANY.phoneTel}`}
                   className="flex items-center gap-2 text-gold font-bold"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
                   </svg>
                   {COMPANY.phone}
                 </a>

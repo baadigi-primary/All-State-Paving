@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { COMPANY, SITE_URL } from "@/lib/constants";
+import { AREAS } from "@/lib/areas-data";
 import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/JsonLd";
 
@@ -101,20 +102,22 @@ export default function AreasServedPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {areas.map((area) => (
-              <div
+            {AREAS.map((area) => (
+              <Link
                 key={area.name}
-                className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
+                href={`/areas-served/${area.slug}`}
+                className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow group"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <svg className="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <h3 className="text-xl font-bold text-navy">{area.name}, OH</h3>
+                  <h3 className="text-xl font-bold text-navy group-hover:text-gold transition-colors">{area.name}, OH</h3>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed">{area.desc}</p>
-              </div>
+                <p className="text-gray-600 text-sm leading-relaxed mb-3">{area.intro.split("\n\n")[0].slice(0, 150)}...</p>
+                <span className="text-gold font-semibold text-sm">Learn More →</span>
+              </Link>
             ))}
           </div>
         </div>

@@ -18,7 +18,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Tips",
     img: "/images/asphalt-paving-blog.jpg",
     content: `
-When it comes to paving your driveway, parking lot, or private road, asphalt remains one of the most popular and practical choices available. Here at All State Paving, we've been installing and maintaining asphalt surfaces across Central Ohio since 1979 — and there are good reasons why so many property owners continue to choose it.
+When it comes to paving your [driveway paving](/services/driveway-paving-services), [parking lot](/services/parking-lot-paving-services), or [private road](/services/private-roads-paving-services), asphalt remains one of the most popular and practical choices available. Here at All State Paving, we've been installing and maintaining asphalt surfaces across Central Ohio since 1979 — and there are good reasons why so many property owners continue to choose it.
 
 ## 1. Durability That Lasts
 
@@ -26,11 +26,11 @@ A properly installed asphalt surface can last 20–30 years with regular mainten
 
 ## 2. Cost-Effective Investment
 
-Compared to concrete and other paving options, asphalt offers one of the best returns on investment. The initial installation cost is lower, and ongoing maintenance — like sealcoating and crack filling — is affordable and straightforward. Over the lifespan of your pavement, asphalt consistently delivers more value per dollar.
+Compared to concrete and other paving options, asphalt offers one of the best returns on investment. The initial installation cost is lower, and ongoing maintenance — like [sealcoating](/services/sealcoating-services) and crack filling — is affordable and straightforward. Over the lifespan of your pavement, asphalt consistently delivers more value per dollar.
 
 ## 3. Quick Installation and Curing
 
-One of the biggest advantages of asphalt is how quickly it can be installed and used. Most residential driveways can be paved in a single day, and the surface is typically ready for traffic within 24–48 hours. That means less disruption to your daily routine or business operations.
+One of the biggest advantages of asphalt is how quickly it can be installed and used. Most [residential](/services/residential-paving-services) driveways can be paved in a single day, and the surface is typically ready for traffic within 24–48 hours. That means less disruption to your daily routine or business operations.
 
 ## 4. Easy to Maintain and Repair
 
@@ -42,7 +42,7 @@ A smooth, well-maintained asphalt surface dramatically improves the appearance o
 
 ## Ready to Experience These Benefits?
 
-If you're considering asphalt paving for your property in Delaware, Sunbury, London, Marion, or anywhere in Central Ohio, our team is ready to help. Contact All State Paving today for a free, no-obligation estimate.
+If you're considering [asphalt paving](/services/asphalt-paving) for your property in Delaware, Sunbury, London, Marion, or anywhere in Central Ohio, our team is ready to help. [Contact All State Paving today](/contact) for a free, no-obligation estimate.
     `,
   },
   {
@@ -54,7 +54,7 @@ If you're considering asphalt paving for your property in Delaware, Sunbury, Lon
     category: "Guide",
     img: "/images/asphalt-repair-detail.jpg",
     content: `
-Every asphalt surface will eventually show signs of wear. The big question property owners face is whether to repair the existing surface or invest in a full replacement. Making the right call can save you thousands of dollars and years of headaches.
+Every asphalt surface will eventually show signs of wear. The big question property owners face is whether to opt for [asphalt repair](/services/asphalt-repair-services) or invest in a full replacement. Making the right call can save you thousands of dollars and years of headaches.
 
 ## Signs You Can Get Away With Repairs
 
@@ -62,7 +62,7 @@ Minor issues are usually good candidates for repair rather than replacement:
 
 - **Small cracks (less than ½ inch wide):** These can be sealed quickly and affordably to prevent water from penetrating the base layer.
 - **Isolated potholes:** A single pothole or a small cluster in one area can be patched without affecting the rest of the surface.
-- **Surface wear without structural damage:** If the base layer is still solid and the surface just looks worn or faded, sealcoating can restore its appearance and protection.
+- **Surface wear without structural damage:** If the base layer is still solid and the surface just looks worn or faded, [sealcoating](/services/sealcoating-services) can restore its appearance and protection.
 - **Age under 15 years:** If your asphalt is relatively young and the damage is limited, repairs are almost always the better investment.
 
 ## Signs It's Time for a Full Replacement
@@ -71,7 +71,7 @@ Some damage goes beyond what repairs can fix:
 
 - **Alligator cracking:** When your surface develops a pattern of interconnected cracks that resemble alligator skin, it's a sign the base layer has failed. Patching won't solve this.
 - **Large areas of damage:** If more than 30–40% of your surface needs repair, it's often more cost-effective to replace the entire surface.
-- **Drainage problems:** Standing water that pools on your asphalt indicates grading or base issues that require a full tear-out and reinstallation.
+- **Drainage problems:** Standing water that pools on your [asphalt paving](/services/asphalt-paving) indicates grading or base issues that require a full tear-out and reinstallation.
 - **Age over 20 years:** Even well-maintained asphalt has a lifespan. If yours is approaching or past 20 years with significant issues, replacement is the smarter long-term investment.
 - **Multiple previous patches:** If your surface has been patched many times over the years, the patchwork approach eventually becomes less effective and more expensive than starting fresh.
 
@@ -81,7 +81,7 @@ In some cases, you don't need a full replacement but repairs aren't enough. Resu
 
 ## Let Us Help You Decide
 
-At All State Paving, we provide honest assessments. We'll inspect your surface, explain your options, and recommend the most cost-effective solution. We never push for a full replacement when a repair will do the job. Contact us for a free evaluation of your asphalt surface.
+At All State Paving, we provide honest assessments. We'll inspect your surface, explain your options, and recommend the most cost-effective solution — whether that's [driveway paving](/services/driveway-paving-services), [parking lot repair](/services/parking-lot-paving-services), or a simple patch. We never push for a full replacement when a repair will do the job. [Contact us](/contact) for a free evaluation of your asphalt surface.
     `,
   },
   {
@@ -97,7 +97,7 @@ Central Ohio winters bring freezing temperatures, snow, ice, and the dreaded fre
 
 ## Sealcoat Before Winter Hits
 
-The single best thing you can do for your asphalt before winter is to apply a fresh sealcoat in the fall. Sealcoating creates a protective barrier that shields your pavement from water penetration, UV damage, and chemical exposure from road salt and de-icers.
+The single best thing you can do for your asphalt before winter is to apply a fresh sealcoat in the fall. [Sealcoating](/services/sealcoating-services) creates a protective barrier that shields your pavement from water penetration, UV damage, and chemical exposure from road salt and de-icers.
 
 Ideally, sealcoating should be done when temperatures are consistently above 50°F — making late summer through early fall the perfect window in Ohio. If you missed this year's window, plan to schedule it as early as possible next season.
 
@@ -105,7 +105,7 @@ Ideally, sealcoating should be done when temperatures are consistently above 50�
 
 Water is asphalt's worst enemy, and cracks are how it gets in. When water seeps into cracks and freezes, it expands — making the crack bigger. This freeze-thaw cycle repeats all winter, turning small cracks into major damage.
 
-Before the first freeze, have all visible cracks sealed. This is one of the most affordable maintenance steps and has one of the highest returns in terms of preventing expensive damage.
+Before the first freeze, have all visible cracks sealed. This [asphalt repair](/services/asphalt-repair-services) step is one of the most affordable and has one of the highest returns in terms of preventing expensive damage.
 
 ## Keep Your Surface Clean
 
@@ -119,7 +119,7 @@ Remove leaves, debris, and dirt from your asphalt regularly. Organic matter trap
 
 ## Address Drainage Issues
 
-Standing water is a major problem in winter. Make sure your asphalt surface has proper drainage so water doesn't pool and freeze on the surface. If you notice areas where water consistently collects, contact a paving professional to assess and fix the grading.
+Standing water is a major problem in winter. Make sure your [asphalt paving](/services/asphalt-paving) surface has proper drainage so water doesn't pool and freeze on the surface. If you notice areas where water consistently collects, contact a paving professional to assess and fix the grading.
 
 ## Schedule a Spring Inspection
 
@@ -127,7 +127,7 @@ After winter passes, schedule an inspection of your asphalt. Winter damage is ea
 
 ## Protect Your Investment
 
-Your asphalt surface is a significant investment. A little preventive maintenance goes a long way toward extending its life and keeping repair costs down. If you need help preparing your pavement for winter or repairing winter damage, give us a call.
+Your asphalt surface is a significant investment. A little preventive maintenance goes a long way toward extending its life and keeping repair costs down. If you need help preparing your pavement for winter or repairing winter damage, [contact us for a free estimate](/contact).
     `,
   },
   {
@@ -139,7 +139,7 @@ Your asphalt surface is a significant investment. A little preventive maintenanc
     category: "Guide",
     img: "/images/commercial-paving.webp",
     content: `
-A well-paved parking lot or access road is one of the first things customers notice about your business. It affects their first impression, their safety, and even your liability. If you're planning a commercial paving project, here's what you need to know.
+A well-paved [parking lot](/services/parking-lot-paving-services) or access road is one of the first things customers notice about your business. It affects their first impression, their safety, and even your liability. If you're planning a [commercial paving](/services/commercial-paving-services) project, here's what you need to know.
 
 ## Planning Your Project
 
@@ -158,7 +158,7 @@ For most commercial applications in Central Ohio, hot-mix asphalt is the preferr
 
 - **Durability under heavy traffic** — Commercial lots see far more vehicles than residential driveways, including delivery trucks and other heavy vehicles.
 - **Quick installation** — Asphalt can be installed and ready for traffic faster than concrete, reducing business downtime.
-- **Repairability** — When damage occurs, asphalt is easier and cheaper to patch and repair.
+- **Repairability** — When damage occurs, [asphalt repair](/services/asphalt-repair-services) is easier and cheaper than other surfaces.
 - **Cost-effectiveness** — Lower installation and maintenance costs compared to concrete.
 
 ## Key Features of a Quality Commercial Lot
@@ -174,7 +174,7 @@ Professional line striping maximizes your parking capacity, directs traffic flow
 
 ## Maintenance Planning
 
-Don't wait for problems to appear. A maintenance plan that includes regular sealcoating (every 2–3 years), crack sealing, and periodic restriping will dramatically extend the life of your pavement and keep your property looking professional.
+Don't wait for problems to appear. A maintenance plan that includes regular [sealcoating](/services/sealcoating-services) (every 2–3 years), crack sealing, and periodic restriping will dramatically extend the life of your pavement and keep your property looking professional.
 
 ## Choose a Contractor You Can Trust
 
@@ -185,7 +185,7 @@ Look for a contractor with:
 - Transparent pricing with detailed estimates
 - A track record of on-time, on-budget project completion
 
-All State Paving has been serving Central Ohio businesses since 1979. Contact us for a free commercial paving consultation and estimate.
+All State Paving has been serving Central Ohio businesses since 1979. [Contact us for a free estimate](/contact) and consultation.
     `,
   },
   {
@@ -197,7 +197,7 @@ All State Paving has been serving Central Ohio businesses since 1979. Contact us
     category: "Maintenance",
     img: "/images/lot-striping-3.jpg",
     content: `
-If there's one maintenance step that delivers the biggest return on investment for your asphalt surface, it's sealcoating. This relatively simple and affordable process can add years to the life of your pavement — yet many property owners skip it or don't know it exists.
+If there's one maintenance step that delivers the biggest return on investment for your [asphalt paving](/services/asphalt-paving) surface, it's sealcoating. This relatively simple and affordable process can add years to the life of your pavement — yet many property owners skip it or don't know it exists.
 
 ## What is Sealcoating?
 
@@ -217,7 +217,7 @@ Sunlight breaks down the binders that hold asphalt together, causing it to becom
 Oil, gasoline, and de-icing chemicals can soften and dissolve asphalt binders. A sealcoat creates a chemical-resistant barrier that protects against these common exposures.
 
 ### Improved Appearance
-Fresh sealcoating instantly restores the dark, rich appearance of new asphalt. For businesses, this curb appeal matters — a well-maintained lot signals professionalism and attention to detail.
+Fresh sealcoating instantly restores the dark, rich appearance of new asphalt. For businesses, this curb appeal matters — a well-maintained [commercial parking lot](/services/commercial-paving-services) signals professionalism and attention to detail.
 
 ## When to Sealcoat
 
@@ -227,13 +227,13 @@ Fresh sealcoating instantly restores the dark, rich appearance of new asphalt. F
 
 ## The Cost of NOT Sealcoating
 
-Skipping sealcoating doesn't save money — it costs money. Without it, your asphalt deteriorates faster, requiring more frequent and expensive repairs. A surface that could last 25–30 years with regular sealcoating might only last 15 without it. The cost of sealcoating is a fraction of the cost of premature replacement.
+Skipping sealcoating doesn't save money — it costs money. Without it, your asphalt deteriorates faster, requiring more frequent and expensive [repairs](/services/asphalt-repair-services). A surface that could last 25–30 years with regular sealcoating might only last 15 without it. The cost of sealcoating is a fraction of the cost of premature replacement.
 
 ## Professional vs. DIY
 
 While DIY sealcoating products exist, professional application delivers far better results. Professional-grade sealers are higher quality, and experienced applicators ensure even coverage and proper preparation (cleaning, crack filling) before application.
 
-At All State Paving, we include surface preparation, crack sealing, and professional-grade sealcoat application in every job. Contact us to schedule your sealcoating service.
+At All State Paving, we include surface preparation, crack sealing, and professional-grade sealcoat application in every job. [Contact us to schedule your sealcoating service](/contact).
     `,
   },
   {
@@ -249,7 +249,7 @@ Choosing the right paving contractor can be the difference between a surface tha
 
 ## 1. Look for Experience and Track Record
 
-Paving is not something you learn overnight. Look for a contractor with at least 10–15 years of experience. Ask how long they've been in business, how many projects they've completed, and whether they specialize in the type of work you need (residential, commercial, etc.).
+Paving is not something you learn overnight. Look for a contractor with at least 10–15 years of experience. Ask how long they've been in business, how many projects they've completed, and whether they specialize in the type of work you need ([residential](/services/residential-paving-services), [commercial](/services/commercial-paving-services), etc.).
 
 At All State Paving, we've been serving Central Ohio since 1979 — over 40 years of experience across thousands of residential and commercial projects.
 
@@ -272,7 +272,7 @@ Also check online reviews on Google, Facebook, and the Better Business Bureau. L
 
 A professional contractor should provide a detailed written estimate that includes:
 - Scope of work (surface preparation, materials, thickness, etc.)
-- Materials to be used (type and grade of asphalt)
+- Materials to be used (type and grade of [asphalt paving](/services/asphalt-paving) mix)
 - Project timeline
 - Total cost with a breakdown
 - Payment terms and schedule
@@ -305,7 +305,7 @@ Ask what warranty is offered and what it covers. A reputable contractor stands b
 
 Taking the time to vet your paving contractor pays off enormously. A quality job done right the first time saves thousands in future repairs and gives you a surface that performs for decades.
 
-All State Paving is a family-owned company with over 40 years of experience, full licensing and insurance, and a commitment to transparent pricing. Contact us for a free estimate and see the difference experience makes.
+All State Paving is a family-owned company with over 40 years of experience, full licensing and insurance, and a commitment to transparent pricing. [Contact us for a free estimate](/contact) and see the difference experience makes.
     `,
   },
 ];

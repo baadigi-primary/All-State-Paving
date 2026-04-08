@@ -83,4 +83,6 @@ const serviceImages = [
   "/images/private-road.jpg",
   "/images/farm-lane-paving.jpg",
   "/images/parking-lot.jpg",
+  "/images/asphalt-sealing.jpg",
+  "/images/lot-striping-1.jpg",
 ];

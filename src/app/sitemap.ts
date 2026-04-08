@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SERVICES, SITE_URL } from "@/lib/constants";
 import { BLOG_POSTS } from "@/lib/blog-posts";
+import { AREAS } from "@/lib/areas-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteLastModified = new Date("2026-04-08");
@@ -30,5 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...servicePages, ...blogPages];
+  const areaPages = AREAS.map((area) => ({
+    url: `${SITE_URL}/areas-served/${area.slug}`,
+    lastModified: siteLastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...servicePages, ...areaPages, ...blogPages];
 }

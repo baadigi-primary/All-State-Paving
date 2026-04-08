@@ -103,6 +103,24 @@ export const SERVICES = [
     description:
       "Parking lot paving, resurfacing, sealcoating, and striping in Central Ohio. Keep your lot safe and professional. Free estimates available.",
   },
+  {
+    title: "Sealcoating",
+    slug: "sealcoating-services",
+    icon: "shield",
+    shortDesc:
+      "Protect your asphalt with professional sealcoating that extends pavement life by years.",
+    description:
+      "Professional asphalt sealcoating in Central Ohio. Protect against water, UV, and chemicals. Extends pavement life 10+ years. Free estimates.",
+  },
+  {
+    title: "Line Striping",
+    slug: "line-striping-services",
+    icon: "lines",
+    shortDesc:
+      "Crisp, visible parking lot striping for safety, compliance, and a professional look.",
+    description:
+      "Parking lot line striping and pavement marking in Central Ohio. ADA-compliant layouts, traffic flow, and fresh markings. Free estimates.",
+  },
 ] as const;
 
 export const NAV_LINKS = [

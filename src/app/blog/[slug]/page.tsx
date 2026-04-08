@@ -55,17 +55,19 @@ function markdownToHtml(md: string): string {
             const text = l.trimStart().slice(2);
             // Bold prefix handling
             const boldMatch = text.match(/^\*\*(.+?)\*\*(.*)$/);
+            const linkReplace = (s: string) => s.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-gold hover:text-gold/80 underline">$1</a>');
             if (boldMatch) {
-              return `<li class="flex items-start gap-2"><span class="text-gold mt-1.5 shrink-0">•</span><span><strong class="text-navy">${boldMatch[1]}</strong>${boldMatch[2]}</span></li>`;
+              return `<li class="flex items-start gap-2"><span class="text-gold mt-1.5 shrink-0">•</span><span><strong class="text-navy">${boldMatch[1]}</strong>${linkReplace(boldMatch[2])}</span></li>`;
             }
-            return `<li class="flex items-start gap-2"><span class="text-gold mt-1.5 shrink-0">•</span><span>${text}</span></li>`;
+            return `<li class="flex items-start gap-2"><span class="text-gold mt-1.5 shrink-0">•</span><span>${linkReplace(text)}</span></li>`;
           })
           .join("");
         return `<ul class="space-y-2 my-4">${items}</ul>`;
       }
-      // Regular paragraph — handle inline bold
+      // Regular paragraph — handle inline bold and links
       const html = trimmed
         .replace(/\*\*(.+?)\*\*/g, '<strong class="text-navy">$1</strong>')
+        .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-gold hover:text-gold/80 underline">$1</a>')
         .replace(/\n/g, "<br />");
       return `<p class="text-gray-600 leading-relaxed mb-4">${html}</p>`;
     })

@@ -74,4 +74,6 @@ export const SERVICE_IMAGES: Record<string, string> = {
   "private-roads-paving-services": IMG.privateRoad,
   "farm-lane-paving-services": IMG.farmLane,
   "parking-lot-paving-services": IMG.parkingLot,
+  "sealcoating-services": IMG.asphaltSealing,
+  "line-striping-services": IMG.lotStriping1,
 };
