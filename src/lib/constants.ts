@@ -25,7 +25,7 @@ export const COMPANY = {
     "Marysville",
     "Mount Vernon",
   ],
-  facebook: "https://www.facebook.com/allstatepavenow",
+  facebook: "https://www.facebook.com/AllStatePavingOhio",
 } as const;
 
 export const SERVICES = [
