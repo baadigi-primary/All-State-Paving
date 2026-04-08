@@ -3,14 +3,36 @@
 import { useState } from "react";
 
 export default function QuoteForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const data = {
+      full_name: (form.elements.namedItem("full_name") as HTMLInputElement).value,
+      phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      service_type: (form.elements.namedItem("service_type") as HTMLSelectElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error("Failed");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   }
 
-  if (submitted) {
+  if (status === "sent") {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
         <svg className="w-12 h-12 text-green-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -30,6 +52,7 @@ export default function QuoteForm() {
             Your Name <span className="text-red-500">*</span>
           </label>
           <input
+            name="full_name"
             type="text"
             required
             className="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none transition"
@@ -41,6 +64,7 @@ export default function QuoteForm() {
             Phone Number <span className="text-red-500">*</span>
           </label>
           <input
+            name="phone"
             type="tel"
             required
             className="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none transition"
@@ -52,6 +76,7 @@ export default function QuoteForm() {
             Email Address <span className="text-red-500">*</span>
           </label>
           <input
+            name="email"
             type="email"
             required
             className="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none transition"
@@ -62,7 +87,7 @@ export default function QuoteForm() {
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Type of Service
           </label>
-          <select className="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none transition bg-white">
+          <select name="service_type" className="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none transition bg-white">
             <option value="">Select a service...</option>
             <option>Asphalt Paving</option>
             <option>Commercial Paving</option>
@@ -80,16 +105,21 @@ export default function QuoteForm() {
           Project Details
         </label>
         <textarea
+          name="message"
           rows={4}
           className="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none transition resize-none"
           placeholder="Tell us about your project..."
         />
       </div>
+      {status === "error" && (
+        <p className="text-red-600 text-sm">Something went wrong. Please try again or call us directly.</p>
+      )}
       <button
         type="submit"
-        className="bg-red hover:bg-red-dark text-white font-bold px-8 py-3 rounded text-sm tracking-wide transition-colors"
+        disabled={status === "sending"}
+        className="bg-red hover:bg-red-dark text-white font-bold px-8 py-3 rounded text-sm tracking-wide transition-colors disabled:opacity-50"
       >
-        SEND MESSAGE
+        {status === "sending" ? "SENDING..." : "SEND MESSAGE"}
       </button>
     </form>
   );
