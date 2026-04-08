@@ -21,9 +21,32 @@ export default function ContactPage() {
     ],
   };
 
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact All State Paving",
+    description:
+      "Request a free estimate for asphalt paving services in Central Ohio. Call 1-800-568-9954 or submit our online form.",
+    url: `${SITE_URL}/contact`,
+    mainEntity: {
+      "@type": "HomeAndConstructionBusiness",
+      name: COMPANY.name,
+      telephone: COMPANY.phone,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "175 South Sandusky St, Suite 398",
+        addressLocality: "Delaware",
+        addressRegion: "OH",
+        postalCode: "43015",
+        addressCountry: "US",
+      },
+    },
+  };
+
   return (
     <>
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={contactPageSchema} />
       <PageHero
         title="Contact Us"
         breadcrumbs={[

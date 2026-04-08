@@ -67,8 +67,14 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: COMPANY.name,
+  alternateName: [
+    "All State Paving Ohio",
+    "Allstate Paving Delaware Ohio",
+    "All State Paving Central Ohio",
+  ],
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
+  foundingDate: "1979",
   sameAs: [
     COMPANY.facebook,
     "https://www.homeadvisor.com/rated.Allstatepaving.137694223.html",

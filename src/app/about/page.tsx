@@ -22,9 +22,29 @@ export default function AboutPage() {
     ],
   };
 
+  const aboutPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About All State Paving",
+    description:
+      "Family-owned asphalt paving company serving Central Ohio since 1979. Over 40 years of experience and 2,500+ completed projects.",
+    url: `${SITE_URL}/about`,
+    mainEntity: {
+      "@type": "HomeAndConstructionBusiness",
+      name: COMPANY.name,
+      foundingDate: "1979",
+      description: COMPANY.description,
+      areaServed: COMPANY.areas.map((area) => ({
+        "@type": "City",
+        name: `${area}, Ohio`,
+      })),
+    },
+  };
+
   return (
     <>
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={aboutPageSchema} />
       <PageHero
         title="About Us"
         breadcrumbs={[
