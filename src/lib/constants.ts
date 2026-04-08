@@ -1,4 +1,4 @@
-export const SITE_URL = "https://www.allstatepavingohio.com";
+export const SITE_URL = "https://www.allstatepavenow.com";
 
 export const COMPANY = {
   name: "All State Paving",

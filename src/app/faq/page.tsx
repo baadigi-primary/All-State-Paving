@@ -69,9 +69,19 @@ export default function FAQPage() {
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "FAQ", item: `${SITE_URL}/faq` },
+    ],
+  };
+
   return (
     <>
       <JsonLd data={faqSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <PageHero
         title="Frequently Asked Questions"
         breadcrumbs={[

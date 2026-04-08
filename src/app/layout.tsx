@@ -81,7 +81,7 @@ const organizationSchema = {
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "PavingContractor",
+  "@type": "HomeAndConstructionBusiness",
   name: COMPANY.name,
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
@@ -116,13 +116,6 @@ const localBusinessSchema = {
   sameAs: [COMPANY.facebook],
   foundingDate: "1979",
   description: COMPANY.description,
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    reviewCount: "1800",
-    bestRating: "5",
-    worstRating: "1",
-  },
 };
 
 const websiteSchema = {
@@ -139,7 +132,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
-      <head>
+      <body className="min-h-screen flex flex-col">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-206Y1QGMS5"
           strategy="afterInteractive"
@@ -152,8 +145,6 @@ export default function RootLayout({
             gtag('config', 'G-206Y1QGMS5');
           `}
         </Script>
-      </head>
-      <body className="min-h-screen flex flex-col">
         <JsonLd data={organizationSchema} />
         <JsonLd data={localBusinessSchema} />
         <JsonLd data={websiteSchema} />

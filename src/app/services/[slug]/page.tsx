@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SERVICES, COMPANY, SITE_URL } from "@/lib/constants";
@@ -45,7 +46,7 @@ export default async function ServicePage({
     name: `${service.title} Services`,
     description: service.description,
     provider: {
-      "@type": "PavingContractor",
+      "@type": "HomeAndConstructionBusiness",
       name: COMPANY.name,
       url: SITE_URL,
       telephone: COMPANY.phone,
@@ -58,10 +59,10 @@ export default async function ServicePage({
         addressCountry: "US",
       },
     },
-    areaServed: {
-      "@type": "State",
-      name: "Ohio",
-    },
+    areaServed: COMPANY.areas.map((area) => ({
+      "@type": "City",
+      name: `${area}, Ohio`,
+    })),
     url: `${SITE_URL}/services/${slug}`,
   };
 
@@ -93,11 +94,15 @@ export default async function ServicePage({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <img
-                src={SERVICE_IMAGES[service.slug]}
-                alt={service.title}
-                className="w-full h-80 object-cover rounded-lg mb-8"
-              />
+              <div className="relative h-80 rounded-lg overflow-hidden mb-8">
+                <Image
+                  src={SERVICE_IMAGES[service.slug]}
+                  alt={service.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="object-cover"
+                />
+              </div>
               <h2 className="text-3xl font-black text-navy mb-4">
                 {service.title} in Central Ohio
               </h2>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Areas Served",
@@ -54,8 +55,30 @@ const areas = [
 ];
 
 export default function AreasServedPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Areas Served", item: `${SITE_URL}/areas-served` },
+    ],
+  };
+
+  const serviceAreaSchema = {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    name: COMPANY.name,
+    url: SITE_URL,
+    areaServed: areas.map((area) => ({
+      "@type": "City",
+      name: `${area.name}, Ohio`,
+    })),
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={serviceAreaSchema} />
       <PageHero
         title="Areas We Serve"
         breadcrumbs={[

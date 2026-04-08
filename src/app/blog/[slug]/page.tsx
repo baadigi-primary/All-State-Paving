@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BLOG_POSTS } from "@/lib/blog-posts";
@@ -90,6 +91,7 @@ export default async function BlogPostPage({
     description: post.excerpt,
     image: `${SITE_URL}${post.img}`,
     datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
     author: {
       "@type": "Organization",
       name: COMPANY.name,
@@ -137,11 +139,15 @@ export default async function BlogPostPage({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <img
-                src={post.img}
-                alt={post.title}
-                className="w-full h-80 object-cover rounded-lg mb-8"
-              />
+              <div className="relative h-80 rounded-lg overflow-hidden mb-8">
+                <Image
+                  src={post.img}
+                  alt={post.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="object-cover"
+                />
+              </div>
 
               <div className="flex items-center gap-4 mb-6 text-sm">
                 <span className="bg-gold text-navy font-bold px-3 py-1 rounded">
@@ -258,10 +264,12 @@ export default async function BlogPostPage({
                     className="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow"
                   >
                     <div className="h-44 overflow-hidden relative">
-                      <img
+                      <Image
                         src={p.img}
                         alt={p.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <span className="absolute top-3 left-3 bg-gold text-navy text-xs font-bold px-2 py-0.5 rounded">
                         {p.category}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
@@ -53,9 +54,11 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="relative">
-              <img
+              <Image
                 src="/images/paving-work-1.jpg"
                 alt="All State Paving team at work"
+                width={800}
+                height={600}
                 className="rounded-lg shadow-xl"
               />
               <div className="absolute -bottom-6 -right-6 bg-gold text-navy p-6 rounded-lg shadow-xl hidden lg:block">

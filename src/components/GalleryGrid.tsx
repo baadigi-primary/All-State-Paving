@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 type GalleryItem = {
@@ -84,7 +85,7 @@ export default function GalleryGrid() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((item, i) => (
-          <div key={i} className="group relative overflow-hidden rounded-lg shadow-sm">
+          <div key={i} className="group relative overflow-hidden rounded-lg shadow-sm h-72">
             {item.type === "video" ? (
               <video
                 src={item.src}
@@ -93,10 +94,12 @@ export default function GalleryGrid() {
                 className="w-full h-72 object-cover bg-black"
               />
             ) : (
-              <img
+              <Image
                 src={item.src}
                 alt={item.title}
-                className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
             )}
             <div

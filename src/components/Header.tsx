@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -83,9 +84,12 @@ export default function Header() {
         <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? "h-20" : "h-36"}`}>
           {/* Logo */}
           <Link href="/" className="shrink-0">
-            <img
+            <Image
               src="/images/All State Paving logo n.png"
               alt="All State Paving"
+              width={200}
+              height={128}
+              priority
               className={`w-auto transition-all duration-300 ${scrolled ? "h-16" : "h-32"}`}
             />
           </Link>

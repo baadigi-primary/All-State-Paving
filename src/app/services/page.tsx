@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { SERVICES, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
@@ -41,11 +42,13 @@ export default function ServicesPage() {
                 href={`/services/${service.slug}`}
                 className="group bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
               >
-                <div className="h-48 overflow-hidden">
-                  <img
+                <div className="h-48 overflow-hidden relative">
+                  <Image
                     src={serviceImages[i]}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <div className="p-6">

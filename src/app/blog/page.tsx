@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 import PageHero from "@/components/PageHero";
@@ -32,10 +33,12 @@ export default function BlogPage() {
                 className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden group hover:shadow-lg transition-shadow"
               >
                 <div className="h-48 overflow-hidden relative">
-                  <img
+                  <Image
                     src={post.img}
                     alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <span className="absolute top-4 left-4 bg-gold text-navy text-xs font-bold px-3 py-1 rounded">
                     {post.category}
