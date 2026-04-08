@@ -69,7 +69,11 @@ const organizationSchema = {
   name: COMPANY.name,
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
-  sameAs: [COMPANY.facebook],
+  sameAs: [
+    COMPANY.facebook,
+    "https://www.homeadvisor.com/rated.Allstatepaving.137694223.html",
+    "https://www.angi.com/companylist/us/de/bear/allstate-paving-reviews-1.htm",
+  ],
   contactPoint: {
     "@type": "ContactPoint",
     telephone: COMPANY.phoneTel,
@@ -113,8 +117,23 @@ const localBusinessSchema = {
     "@type": "City",
     name: `${area}, Ohio`,
   })),
-  sameAs: [COMPANY.facebook],
+  sameAs: [
+    COMPANY.facebook,
+    "https://www.homeadvisor.com/rated.Allstatepaving.137694223.html",
+    "https://www.angi.com/companylist/us/de/bear/allstate-paving-reviews-1.htm",
+  ],
   foundingDate: "1979",
+  numberOfEmployees: {
+    "@type": "QuantitativeValue",
+    minValue: 10,
+    maxValue: 50,
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "1800",
+    bestRating: "5",
+  },
   description: COMPANY.description,
 };
 

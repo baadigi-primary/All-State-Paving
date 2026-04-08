@@ -75,10 +75,23 @@ export default async function AreaPage({
     },
   };
 
+  const faqSchema = area.faqs.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: area.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
+
   return (
     <>
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={localBusinessSchema} />
+      {faqSchema && <JsonLd data={faqSchema} />}
       <PageHero
         title={`Asphalt Paving in ${area.name}, OH`}
         breadcrumbs={[
@@ -139,6 +152,28 @@ export default async function AreaPage({
                   ))}
                 </div>
               </div>
+
+              {/* FAQ */}
+              {area.faqs.length > 0 && (
+                <div className="mt-12">
+                  <h3 className="text-2xl font-bold text-navy mb-6">
+                    Asphalt Paving FAQ for {area.name}, OH
+                  </h3>
+                  <div className="space-y-4">
+                    {area.faqs.map((item) => (
+                      <div
+                        key={item.q}
+                        className="border border-gray-200 rounded-lg p-6"
+                      >
+                        <h4 className="font-bold text-navy mb-2">{item.q}</h4>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          {item.a}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* CTA */}
               <div className="bg-navy rounded-lg p-8 text-center mt-12">
