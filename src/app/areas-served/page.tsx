@@ -5,9 +5,9 @@ import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Areas Served",
+  title: "Areas Served | Asphalt Paving Across Central Ohio",
   description:
-    "All State Paving serves Delaware, Sunbury, London, Marion, Columbus, and all of Central Ohio with professional asphalt paving services.",
+    "All State Paving serves Delaware, Columbus, Sunbury, Marion, London, and all of Central Ohio. 40+ years of trusted paving. Free estimates.",
   alternates: { canonical: `${SITE_URL}/areas-served` },
 };
 

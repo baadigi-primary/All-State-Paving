@@ -93,9 +93,10 @@ export default async function BlogPostPage({
     datePublished: new Date(post.date).toISOString(),
     dateModified: new Date(post.date).toISOString(),
     author: {
-      "@type": "Organization",
-      name: COMPANY.name,
-      url: SITE_URL,
+      "@type": "Person",
+      name: "All State Paving Team",
+      url: `${SITE_URL}/about`,
+      description: "The All State Paving team has been serving Central Ohio with professional asphalt paving services since 1979.",
     },
     publisher: {
       "@type": "Organization",
@@ -154,6 +155,10 @@ export default async function BlogPostPage({
                   {post.category}
                 </span>
                 <time className="text-gray-400">{post.date}</time>
+                <span className="text-gray-400">|</span>
+                <Link href="/about" className="text-gray-500 hover:text-navy transition-colors">
+                  By All State Paving Team
+                </Link>
               </div>
 
               <div

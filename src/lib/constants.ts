@@ -38,7 +38,7 @@ export const SERVICES = [
     shortDesc:
       "Professional asphalt paving using top-notch materials for lasting results on any surface.",
     description:
-      "Our team of skilled and experienced professionals uses only top-notch materials to ensure the perfect balance of longevity and aesthetics for your surfaces. Whether it's a commercial parking lot or a residential driveway, you can trust us to deliver superior results.",
+      "Professional asphalt paving for driveways, roads, and lots in Central Ohio. Premium materials, 40+ years experience. Call for a free estimate.",
   },
   {
     title: "Commercial Paving",
@@ -47,7 +47,7 @@ export const SERVICES = [
     shortDesc:
       "Large-scale paving solutions for businesses, shopping centers, and commercial properties.",
     description:
-      "We understand the unique demands of commercial paving projects. From parking lots to access roads, our team delivers durable, professional results that withstand heavy traffic and harsh weather conditions.",
+      "Commercial paving for parking lots, access roads, and business properties in Central Ohio. Durable results built for heavy traffic. Free estimates.",
   },
   {
     title: "Residential Paving",
@@ -56,7 +56,7 @@ export const SERVICES = [
     shortDesc:
       "Beautiful, durable paving solutions for homeowners across Central Ohio.",
     description:
-      "Transform your home's curb appeal with our residential paving services. We specialize in driveways, walkways, and other residential surfaces that combine beauty with durability.",
+      "Residential asphalt paving for driveways and walkways in Central Ohio. Boost curb appeal with durable, beautiful results. Get a free quote today.",
   },
   {
     title: "Asphalt Repair",
@@ -65,7 +65,7 @@ export const SERVICES = [
     shortDesc:
       "Expert repair services to restore and extend the life of your asphalt surfaces.",
     description:
-      "Don't let cracks and potholes compromise your pavement. Our expert repair services address damage quickly and effectively, extending the life of your asphalt and saving you money on costly replacements.",
+      "Asphalt crack filling, pothole repair, and patching in Central Ohio. Extend your pavement's life and save on costly replacements. Free estimates.",
   },
   {
     title: "Driveway Paving",
@@ -74,7 +74,7 @@ export const SERVICES = [
     shortDesc:
       "Custom driveway installations and resurfacing for a smooth, lasting finish.",
     description:
-      "A well-paved driveway enhances your property's appearance and value. We provide custom driveway solutions tailored to your needs, using premium materials and proven techniques for a smooth, lasting finish.",
+      "Custom driveway paving and resurfacing in Central Ohio. Premium materials, smooth finish, lasting results. Call for a free estimate.",
   },
   {
     title: "Private Roads",
@@ -83,7 +83,7 @@ export const SERVICES = [
     shortDesc:
       "Durable private road construction built to handle daily traffic with ease.",
     description:
-      "Private roads require the same quality and attention as public ones. We build and maintain private roads that are smooth, durable, and designed to handle daily traffic with ease.",
+      "Private road paving and maintenance in Central Ohio. Smooth, durable surfaces built to handle daily traffic. Get a free quote today.",
   },
   {
     title: "Farm Lane Paving",
@@ -92,7 +92,7 @@ export const SERVICES = [
     shortDesc:
       "Rugged farm lane surfaces built to withstand heavy equipment and all weather.",
     description:
-      "Farm lanes need to withstand heavy equipment and all weather conditions. Our farm lane paving services deliver rugged, reliable surfaces that keep your agricultural operations running smoothly.",
+      "Farm lane paving in Central Ohio built for heavy equipment and all-weather use. Rugged, reliable surfaces. Call for a free estimate.",
   },
   {
     title: "Parking Lot Paving",
@@ -101,7 +101,7 @@ export const SERVICES = [
     shortDesc:
       "Professional parking lot construction with proper drainage and striping.",
     description:
-      "A well-maintained parking lot is essential for any business. We provide comprehensive parking lot services including new construction, resurfacing, seal coating, and striping to keep your lot safe and professional.",
+      "Parking lot paving, resurfacing, sealcoating, and striping in Central Ohio. Keep your lot safe and professional. Free estimates available.",
   },
 ] as const;
 

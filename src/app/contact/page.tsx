@@ -2,17 +2,28 @@ import type { Metadata } from "next";
 import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
 import QuoteForm from "@/components/QuoteForm";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact All State Paving | Free Estimate in Central Ohio",
   description:
-    "Contact All State Paving for a free estimate on your asphalt paving project. Call 1-800-568-9954 or fill out our online form.",
+    "Get a free asphalt paving estimate in Central Ohio. Call 1-800-568-9954 or fill out our form. Response within 24 hours.",
   alternates: { canonical: `${SITE_URL}/contact` },
 };
 
 export default function ContactPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Contact", item: `${SITE_URL}/contact` },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
       <PageHero
         title="Contact Us"
         breadcrumbs={[

@@ -3,17 +3,28 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import GalleryGrid from "@/components/GalleryGrid";
 import { SITE_URL } from "@/lib/constants";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Project Gallery",
+  title: "Paving Project Gallery | All State Paving Central Ohio",
   description:
-    "Browse our portfolio of completed asphalt paving projects across Central Ohio — driveways, parking lots, commercial paving, and more.",
+    "See our completed asphalt paving projects across Central Ohio — driveways, parking lots, farm lanes, and more. Quality you can see.",
   alternates: { canonical: `${SITE_URL}/gallery` },
 };
 
 export default function GalleryPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Gallery", item: `${SITE_URL}/gallery` },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
       <PageHero
         title="Project Gallery"
         breadcrumbs={[

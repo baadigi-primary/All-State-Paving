@@ -6,9 +6,9 @@ import PageHero from "@/components/PageHero";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Asphalt Paving Tips & Guides | All State Paving Blog",
   description:
-    "Tips, guides, and news about asphalt paving, maintenance, and more from All State Paving in Central Ohio.",
+    "Expert tips on asphalt paving, maintenance, and repair from Central Ohio's trusted contractor. Guides for homeowners and businesses. Read now.",
   alternates: { canonical: `${SITE_URL}/blog` },
 };
 
@@ -46,9 +46,9 @@ export default function BlogPage() {
                 </div>
                 <div className="p-6">
                   <time className="text-gray-400 text-xs">{post.date}</time>
-                  <h3 className="text-lg font-bold text-navy mt-1 mb-2 group-hover:text-gold transition-colors">
+                  <h2 className="text-lg font-bold text-navy mt-1 mb-2 group-hover:text-gold transition-colors">
                     {post.title}
-                  </h3>
+                  </h2>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     {post.excerpt}
                   </p>

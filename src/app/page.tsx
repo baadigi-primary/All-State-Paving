@@ -84,9 +84,9 @@ export default function HomePage() {
             Welcome to All State Paving
           </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight max-w-3xl mb-6">
-            YOUR TRUSTED
+            CENTRAL OHIO&apos;S TRUSTED
             <br />
-            <span className="text-gold">PAVING</span> EXPERTS
+            <span className="text-gold">ASPHALT PAVING</span> EXPERTS
           </h1>
           <p className="text-gray-300 text-lg max-w-xl mb-8 leading-relaxed">
             {COMPANY.tagline}. Professional asphalt paving, repair, and

@@ -5,9 +5,9 @@ import { SERVICES, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
 
 export const metadata: Metadata = {
-  title: "Our Services",
+  title: "Asphalt Paving Services in Central Ohio | All State Paving",
   description:
-    "Comprehensive asphalt paving services including commercial paving, residential paving, driveway paving, parking lots, farm lanes, and more in Central Ohio.",
+    "Full-service asphalt paving: driveways, parking lots, commercial, residential, farm lanes, and repair in Central Ohio. Free estimates available.",
   alternates: { canonical: `${SITE_URL}/services` },
 };
 

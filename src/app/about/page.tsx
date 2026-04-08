@@ -3,17 +3,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { COMPANY, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About All State Paving | Central Ohio Asphalt Contractor",
   description:
-    "Learn about All State Paving — family-owned and operated since 1979, serving Central Ohio with quality asphalt paving solutions for over 40 years.",
+    "Family-owned asphalt paving company serving Central Ohio since 1979. 40+ years of quality driveways, parking lots, and roads. Meet our team.",
   alternates: { canonical: `${SITE_URL}/about` },
 };
 
 export default function AboutPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "About", item: `${SITE_URL}/about` },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
       <PageHero
         title="About Us"
         breadcrumbs={[
