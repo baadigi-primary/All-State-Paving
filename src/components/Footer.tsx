@@ -125,11 +125,10 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
           <p>&copy; {new Date().getFullYear()} All State Paving. All rights reserved.</p>
           <p>
-            Powered by{" "}
-            <a href="https://baadigi.com" className="text-gold hover:underline" target="_blank" rel="noopener noreferrer">
+            Marketing by{" "}
+            <a href="https://www.baadigi.com" className="text-gold hover:underline" target="_blank" rel="noopener noreferrer">
               BaaDigi
-            </a>{" "}
-            — Digital Marketing Solutions
+            </a>
           </p>
         </div>
       </div>
