@@ -4,9 +4,26 @@ import Link from "next/link";
 import { COMPANY, SERVICES, SITE_URL } from "@/lib/constants";
 import { IMG } from "@/lib/images";
 import QuoteForm from "@/components/QuoteForm";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
+};
+
+const servicesItemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Asphalt Paving Services Offered by All State Paving",
+  description:
+    "Full-service asphalt paving in Central Ohio including driveways, parking lots, commercial paving, repair, sealcoating, and line striping.",
+  numberOfItems: SERVICES.length,
+  itemListElement: SERVICES.map((s, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${SITE_URL}/services/${s.slug}`,
+    name: s.title,
+    description: s.shortDesc,
+  })),
 };
 
 /* ── Service Icons ────────────────────────────────────── */
@@ -77,6 +94,7 @@ const projects = [
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={servicesItemListSchema} />
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-[600px] flex items-center overflow-hidden">
         <div

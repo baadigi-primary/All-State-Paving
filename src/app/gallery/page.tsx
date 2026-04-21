@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import GalleryGrid from "@/components/GalleryGrid";
-import { SITE_URL } from "@/lib/constants";
+import { COMPANY, SITE_URL } from "@/lib/constants";
+import { GALLERY_ITEMS } from "@/lib/gallery-data";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
@@ -22,9 +23,32 @@ export default function GalleryPage() {
     ],
   };
 
+  const imageGallerySchema = {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    name: "All State Paving Project Gallery",
+    description:
+      "Completed asphalt paving projects across Central Ohio — driveways, parking lots, farm lanes, and private roads.",
+    url: `${SITE_URL}/gallery`,
+    author: {
+      "@type": "Organization",
+      name: COMPANY.name,
+      url: SITE_URL,
+    },
+    image: GALLERY_ITEMS.filter((item) => item.type === "image").map((item) => ({
+      "@type": "ImageObject",
+      contentUrl: `${SITE_URL}${item.src}`,
+      url: `${SITE_URL}${item.src}`,
+      name: item.title,
+      caption: item.title,
+      description: `${item.category} paving project by All State Paving: ${item.title}`,
+    })),
+  };
+
   return (
     <>
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={imageGallerySchema} />
       <PageHero
         title="Project Gallery"
         breadcrumbs={[

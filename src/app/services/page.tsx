@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SERVICES, SITE_URL } from "@/lib/constants";
 import PageHero from "@/components/PageHero";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Asphalt Paving Services in Central Ohio | All State Paving",
@@ -11,9 +12,36 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/services` },
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
+  ],
+};
+
+const servicesItemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Asphalt Paving Services",
+  description:
+    "Full-service asphalt paving in Central Ohio including driveways, parking lots, commercial paving, repair, sealcoating, and line striping.",
+  numberOfItems: SERVICES.length,
+  itemListElement: SERVICES.map((s, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${SITE_URL}/services/${s.slug}`,
+    name: s.title,
+    description: s.shortDesc,
+  })),
+};
+
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={servicesItemListSchema} />
       <PageHero
         title="Our Services"
         breadcrumbs={[

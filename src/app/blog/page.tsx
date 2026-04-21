@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPublishedPosts } from "@/lib/supabase";
 import PageHero from "@/components/PageHero";
-import { SITE_URL } from "@/lib/constants";
+import JsonLd from "@/components/JsonLd";
+import { COMPANY, SITE_URL } from "@/lib/constants";
 
 export const revalidate = 300; // Revalidate every 5 minutes
 
@@ -25,8 +26,53 @@ function formatDate(dateStr: string): string {
 export default async function BlogPage() {
   const posts = await getPublishedPosts();
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+    ],
+  };
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "All State Paving Blog",
+    description:
+      "Expert tips on asphalt paving, maintenance, and repair from Central Ohio's trusted contractor.",
+    url: `${SITE_URL}/blog`,
+    publisher: {
+      "@type": "Organization",
+      name: COMPANY.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/logo.png`,
+      },
+    },
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.excerpt ?? undefined,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      image: post.cover_image_url
+        ? `${SITE_URL}${post.cover_image_url}`
+        : undefined,
+      datePublished: post.published_at
+        ? new Date(post.published_at).toISOString()
+        : new Date(post.created_at).toISOString(),
+      dateModified: new Date(post.updated_at).toISOString(),
+      author: {
+        "@type": "Organization",
+        name: COMPANY.name,
+      },
+    })),
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={blogSchema} />
       <PageHero
         title="Blog"
         breadcrumbs={[

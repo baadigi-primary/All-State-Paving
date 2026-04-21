@@ -5,29 +5,30 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// The organization ID for All State Paving in the BaaDigi dashboard
-export const ORG_ID = process.env.SUPABASE_ORG_ID!;
+export const SITE_SLUG = "all-state-paving";
 
 export interface BlogPostRow {
   id: string;
-  title: string;
+  site_slug: string;
   slug: string;
-  content: string | null;
+  title: string;
   excerpt: string | null;
+  body: string | null;
   cover_image_url: string | null;
+  meta_title: string | null;
+  meta_description: string | null;
   status: string;
-  category: string | null;
-  seo_title: string | null;
-  seo_description: string | null;
   published_at: string | null;
+  category: string | null;
   created_at: string;
+  updated_at: string;
 }
 
 export async function getPublishedPosts(): Promise<BlogPostRow[]> {
   const { data, error } = await supabase
-    .from("blog_posts")
+    .from("site_blog_posts")
     .select("*")
-    .eq("organization_id", ORG_ID)
+    .eq("site_slug", SITE_SLUG)
     .eq("status", "published")
     .order("published_at", { ascending: false });
 
@@ -43,9 +44,9 @@ export async function getPostBySlug(
   slug: string
 ): Promise<BlogPostRow | null> {
   const { data, error } = await supabase
-    .from("blog_posts")
+    .from("site_blog_posts")
     .select("*")
-    .eq("organization_id", ORG_ID)
+    .eq("site_slug", SITE_SLUG)
     .eq("slug", slug)
     .eq("status", "published")
     .single();
@@ -60,9 +61,9 @@ export async function getPostBySlug(
 
 export async function getAllPostSlugs(): Promise<string[]> {
   const { data, error } = await supabase
-    .from("blog_posts")
+    .from("site_blog_posts")
     .select("slug")
-    .eq("organization_id", ORG_ID)
+    .eq("site_slug", SITE_SLUG)
     .eq("status", "published");
 
   if (error) {

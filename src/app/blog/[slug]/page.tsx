@@ -23,8 +23,8 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Post Not Found" };
   return {
-    title: post.seo_title || post.title,
-    description: post.seo_description || post.excerpt || "",
+    title: post.meta_title || post.title,
+    description: post.meta_description || post.excerpt || "",
     alternates: { canonical: `${SITE_URL}/blog/${slug}` },
     openGraph: {
       type: "article",
@@ -114,10 +114,8 @@ export default async function BlogPostPage({
       : undefined,
     datePublished: post.published_at
       ? new Date(post.published_at).toISOString()
-      : post.created_at,
-    dateModified: post.published_at
-      ? new Date(post.published_at).toISOString()
-      : post.created_at,
+      : new Date(post.created_at).toISOString(),
+    dateModified: new Date(post.updated_at).toISOString(),
     author: {
       "@type": "Person",
       name: "All State Paving Team",
@@ -209,10 +207,10 @@ export default async function BlogPostPage({
                 </Link>
               </div>
 
-              {post.content && (
+              {post.body && (
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: markdownToHtml(post.content),
+                    __html: markdownToHtml(post.body),
                   }}
                 />
               )}
