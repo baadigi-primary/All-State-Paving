@@ -4,7 +4,7 @@ import { AREAS } from "@/lib/areas-data";
 import { getPublishedPosts } from "@/lib/supabase";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteLastModified = new Date("2026-04-08");
+  const siteLastModified = new Date("2026-06-15");
 
   const staticPages = [
     { url: SITE_URL, lastModified: siteLastModified, changeFrequency: "weekly" as const, priority: 1.0 },

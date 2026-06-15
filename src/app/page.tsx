@@ -97,14 +97,13 @@ export default function HomePage() {
       <JsonLd data={servicesItemListSchema} />
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-[600px] flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              `url('${IMG.heroMain}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
+        <Image
+          src={IMG.heroMain}
+          alt="Freshly paved asphalt by All State Paving in Central Ohio"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-navy/70" />
         <div className="relative max-w-7xl mx-auto px-4 py-24">
