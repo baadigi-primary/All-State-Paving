@@ -4,6 +4,18 @@ export interface ServiceContent {
   benefits: { title: string; description: string }[];
   process: { step: number; title: string; description: string }[];
   faq: { q: string; a: string }[];
+  /** Optional comparison table — highly citable for AI Overviews / GEO. */
+  comparisonTable?: {
+    heading: string;
+    columns: string[];
+    rows: string[][];
+  };
+  /** Optional embedded video (file in /public/videos) + VideoObject schema. */
+  video?: {
+    src: string;
+    name: string;
+    description: string;
+  };
 }
 
 export const SERVICE_CONTENT: ServiceContent[] = [
@@ -96,6 +108,24 @@ Central Ohio's freeze-thaw cycles are particularly hard on pavement. Water seeps
         a: "The terms are often used interchangeably by homeowners across Central Ohio, but there is a technical difference in the material composition. Blacktop uses a higher proportion of crushed stone aggregate and is typically mixed at higher temperatures, around 300 to 350 degrees Fahrenheit, producing a surface well suited for lower-traffic applications like residential driveways, playgrounds, and walking paths. Hot-mix asphalt uses a higher concentration of bitumen binder, which makes the finished surface more flexible and durable under heavier traffic loads, making it the preferred choice for roads, commercial parking lots, and high-traffic areas. All State Paving selects the appropriate mix design for each Central Ohio project based on the expected traffic volume, vehicle weight, and soil conditions. With over 40 years of experience, our team knows which specification delivers the best long-term performance for your particular application. Contact us for a free estimate and we will recommend the right material for your needs.",
       },
     ],
+    comparisonTable: {
+      heading: "Asphalt vs. Concrete: How They Compare",
+      columns: ["Factor", "Asphalt", "Concrete"],
+      rows: [
+        ["Upfront cost", "$3–$7 per sq ft", "$6–$12 per sq ft"],
+        ["Installation time", "1–2 days, usable in 24–48 hrs", "5–7 days, cures over a week"],
+        ["Lifespan", "20–30 years with maintenance", "30–40 years"],
+        ["Repairs", "Easy, low-cost patch & sealcoat", "Harder, full slab replacement common"],
+        ["Cold-climate performance", "Flexes with freeze-thaw", "Prone to cracking & heaving"],
+        ["Best for", "Driveways, lots, roads in Ohio", "Decorative or high-heat areas"],
+      ],
+    },
+    video: {
+      src: "/videos/allstatepavenow.mp4",
+      name: "Asphalt Paving in Action — All State Paving, Central Ohio",
+      description:
+        "All State Paving crew laying and compacting hot-mix asphalt on a Central Ohio paving project.",
+    },
   },
 
   {
@@ -348,6 +378,17 @@ We offer a full range of asphalt repair services including hot-pour crack sealin
         a: "A pothole repaired with the right method and materials can absolutely be a permanent fix that lasts the remaining life of the surrounding pavement. The key is diagnosing and addressing the root cause rather than just treating the symptom. Most potholes form because water has infiltrated through surface cracks, softened the aggregate base underneath, and caused the asphalt to collapse under traffic loads. If the base has failed beneath the pothole, All State Paving removes all damaged asphalt around the area with clean saw-cut edges, excavates and replaces the compromised base material with fresh compacted aggregate, and installs new hot-mix asphalt with proper compaction to match the surrounding surface. Simply filling the hole with cold patch without fixing the failed base underneath is exactly why most pothole repairs come back within a season or two. Our team has been permanently repairing potholes across Central Ohio for over 40 years, and we stand behind the quality of our work. Schedule a free inspection and we will recommend the right repair approach for your situation.",
       },
     ],
+    comparisonTable: {
+      heading: "Repair vs. Replace: Which Does Your Asphalt Need?",
+      columns: ["Condition", "Recommended action", "Typical cost range"],
+      rows: [
+        ["Hairline & narrow cracks", "Crack sealing", "$ — lowest cost"],
+        ["Isolated potholes, sound base", "Patching / infrared repair", "$$"],
+        ["Surface faded, base solid", "Resurfacing (overlay)", "$$$"],
+        ["Widespread cracking / failed base", "Full removal & replacement", "$$$$ — highest cost"],
+        ["Surface dry & gray, no cracks yet", "Sealcoating (prevention)", "$ — lowest cost"],
+      ],
+    },
   },
 
   {
@@ -682,6 +723,17 @@ We build parking lots for retail centers, office buildings, medical facilities, 
         a: "Yes. All State Paving regularly expands existing parking lots, reconfigures layouts to add more spaces, and converts underused areas like excess landscaping or abandoned drive-through lanes into additional functional parking for Central Ohio commercial properties. Expansion projects often cost significantly less than building an entirely new lot from scratch because existing infrastructure like drainage, curbing, and access points can often be extended rather than rebuilt. We match the new asphalt to the existing surface as closely as possible in both elevation and appearance, creating clean joints at the connection points to prevent water infiltration. Once the new paving is complete, we can re-stripe the entire lot with an optimized layout for a unified, professional appearance that maximizes your total space count. Common reconfiguration improvements include switching from perpendicular to angled parking in certain areas and converting two-way lanes to one-way traffic flow. With over 40 years of parking lot construction experience across Central Ohio, our team can help you get the most out of your existing property. Contact us for a free evaluation and expansion design.",
       },
     ],
+    comparisonTable: {
+      heading: "Parking Lot Options: New Build, Resurface, or Maintain",
+      columns: ["Service", "When it's right", "Lifespan added"],
+      rows: [
+        ["New construction", "No lot, or failed base throughout", "20–30 years"],
+        ["Resurfacing (overlay)", "Surface worn but base is solid", "8–15 years"],
+        ["Sealcoating", "Surface still sound, due every 2–3 yrs", "2–3 years per coat"],
+        ["Patching & crack sealing", "Isolated potholes or cracks", "Extends current surface"],
+        ["Line striping", "Faded markings, ADA compliance", "1–2 years"],
+      ],
+    },
   },
 
   {
@@ -769,6 +821,16 @@ Whether you call it sealcoating or seal coating, this routine maintenance is the
         a: "Freshly applied sealcoat can be slightly slick when wet for the first few days until it fully cures and develops natural surface texture from normal foot and vehicle traffic. This is a common concern for Central Ohio homeowners, especially those with sloped driveways. All State Paving addresses this by using commercial sealcoat products that contain fine sand or aggregate additives blended into the sealer to provide traction immediately upon application, particularly on slopes, walkways, and high-traffic areas where slip resistance is most important. Within a few weeks of normal use, the surface develops a textured, non-slip finish comparable to standard unsealed asphalt as the top layer wears in under regular traffic. We have been applying professional sealcoat across Central Ohio for over 40 years and our material choices are specifically selected for safety and durability in our local conditions. If you have a particularly steep driveway, let us know during the estimate and we will use an enhanced traction additive formula. Contact us to schedule your sealcoating appointment.",
       },
     ],
+    comparisonTable: {
+      heading: "How Often to Seal Coat by Surface Type (Central Ohio)",
+      columns: ["Surface", "Recommended interval", "Why"],
+      rows: [
+        ["New asphalt", "First coat at 6–12 months", "Let binder oils cure first"],
+        ["Residential driveway", "Every 2–3 years", "Freeze-thaw & UV protection"],
+        ["Commercial parking lot", "Every 18–24 months", "Heavy daily traffic wear"],
+        ["Low-traffic / private road", "Every 3 years", "Less surface abrasion"],
+      ],
+    },
   },
 
   {

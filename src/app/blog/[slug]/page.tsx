@@ -117,11 +117,13 @@ export default async function BlogPostPage({
       : new Date(post.created_at).toISOString(),
     dateModified: new Date(post.updated_at).toISOString(),
     author: {
-      "@type": "Person",
-      name: "All State Paving Team",
+      "@type": "Organization",
+      name: "All State Paving",
       url: `${SITE_URL}/about`,
+      foundingDate: "1979",
+      sameAs: [COMPANY.facebook],
       description:
-        "The All State Paving team has been serving Central Ohio with professional asphalt paving services since 1979.",
+        "Family-owned asphalt paving contractor serving Delaware and Central Ohio since 1979, with 2,500+ completed projects.",
     },
     publisher: {
       "@type": "Organization",

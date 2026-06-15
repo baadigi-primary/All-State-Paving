@@ -92,11 +92,24 @@ export default async function ServicePage({
       }
     : null;
 
+  const videoSchema = content?.video
+    ? {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        name: content.video.name,
+        description: content.video.description,
+        contentUrl: `${SITE_URL}${content.video.src}`,
+        thumbnailUrl: `${SITE_URL}${SERVICE_IMAGES[service.slug]}`,
+        uploadDate: "2026-06-15",
+      }
+    : null;
+
   return (
     <>
       <JsonLd data={serviceSchema} />
       <JsonLd data={breadcrumbSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
+      {videoSchema && <JsonLd data={videoSchema} />}
       <PageHero
         title={service.title}
         breadcrumbs={[
@@ -120,9 +133,12 @@ export default async function ServicePage({
                   className="object-cover"
                 />
               </div>
-              <h2 className="text-3xl font-black text-navy mb-6">
+              <h2 className="text-3xl font-black text-navy mb-2">
                 {service.title} in Central Ohio
               </h2>
+              <p className="text-sm text-gray-400 mb-6">
+                Last updated: June 2026
+              </p>
 
               {/* Expanded hero content */}
               {content ? (
@@ -135,6 +151,21 @@ export default async function ServicePage({
                 <p className="text-gray-600 leading-relaxed mb-6">
                   {service.description}
                 </p>
+              )}
+
+              {/* Video (multi-modal — boosts AI/GEO selection) */}
+              {content?.video && (
+                <div className="mt-8 rounded-lg overflow-hidden bg-black">
+                  <video
+                    controls
+                    preload="none"
+                    poster={SERVICE_IMAGES[service.slug]}
+                    className="w-full h-auto"
+                    aria-label={content.video.name}
+                  >
+                    <source src={content.video.src} type="video/mp4" />
+                  </video>
+                </div>
               )}
 
               {/* Benefits */}
@@ -198,6 +229,45 @@ export default async function ServicePage({
                         </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Comparison table (highly citable for AI Overviews / GEO) */}
+              {content?.comparisonTable && (
+                <div className="mt-12">
+                  <h3 className="text-2xl font-bold text-navy mb-6">
+                    {content.comparisonTable.heading}
+                  </h3>
+                  <div className="overflow-x-auto rounded-lg border border-gray-200">
+                    <table className="w-full text-sm text-left">
+                      <thead className="bg-navy text-white">
+                        <tr>
+                          {content.comparisonTable.columns.map((col) => (
+                            <th key={col} className="px-4 py-3 font-bold">
+                              {col}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {content.comparisonTable.rows.map((row, ri) => (
+                          <tr
+                            key={ri}
+                            className={ri % 2 ? "bg-gray-50" : "bg-white"}
+                          >
+                            {row.map((cell, ci) => (
+                              <td
+                                key={ci}
+                                className={`px-4 py-3 text-gray-600 ${ci === 0 ? "font-semibold text-navy" : ""}`}
+                              >
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               )}
