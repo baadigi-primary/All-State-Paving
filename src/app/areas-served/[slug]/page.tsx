@@ -22,7 +22,7 @@ export function generateMetadata({
     const area = AREAS.find((a) => a.slug === slug);
     if (!area) return { title: "Area Not Found" };
     return {
-      title: `Asphalt Paving in ${area.name}, OH | All State Paving`,
+      title: `Asphalt Paving in ${area.name}, OH`,
       description: `Professional asphalt paving services in ${area.name}, ${area.county}, Ohio. Driveways, parking lots, repairs, and sealcoating. Family-owned since 1979. Free estimates.`,
       alternates: { canonical: `${SITE_URL}/areas-served/${slug}` },
     };

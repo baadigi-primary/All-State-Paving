@@ -59,7 +59,10 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
   },
   verification: {
-    google: "3pT6QgjoFindQT9MkWPRc98vGsvavQWP5IZCeXZd1jo",
+    google: [
+      "3pT6QgjoFindQT9MkWPRc98vGsvavQWP5IZCeXZd1jo",
+      "JzClMCK3VRdfniOWd84bdR7CldhDM_36O2y8p-goMsE",
+    ],
   },
 };
 

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SERVICES, COMPANY, SITE_URL } from "@/lib/constants";
+import { AREAS } from "@/lib/areas-data";
 import { SERVICE_CONTENT } from "@/lib/service-content";
 import PageHero from "@/components/PageHero";
 import QuoteForm from "@/components/QuoteForm";
@@ -280,6 +281,31 @@ export default async function ServicePage({
                   Get a Free Quote
                 </h3>
                 <QuoteForm />
+              </div>
+
+              {/* Service Areas */}
+              <div className="bg-gray-50 rounded-lg p-6">
+                <h3 className="text-lg font-bold text-navy mb-4 border-b border-gray-200 pb-3">
+                  Areas We Serve
+                </h3>
+                <ul className="grid grid-cols-2 gap-x-2 gap-y-1">
+                  {AREAS.map((a) => (
+                    <li key={a.slug}>
+                      <Link
+                        href={`/areas-served/${a.slug}`}
+                        className="block px-2 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100 hover:text-navy transition-colors"
+                      >
+                        {a.name}, OH
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/areas-served"
+                  className="text-gold font-semibold text-sm mt-4 inline-block hover:underline"
+                >
+                  View All Areas →
+                </Link>
               </div>
 
               {/* Contact Card */}
