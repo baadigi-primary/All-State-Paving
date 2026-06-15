@@ -30,6 +30,7 @@ export async function getPublishedPosts(): Promise<BlogPostRow[]> {
     .select("*")
     .eq("site_slug", SITE_SLUG)
     .eq("status", "published")
+    .lte("published_at", new Date().toISOString())
     .order("published_at", { ascending: false });
 
   if (error) {
@@ -49,6 +50,7 @@ export async function getPostBySlug(
     .eq("site_slug", SITE_SLUG)
     .eq("slug", slug)
     .eq("status", "published")
+    .lte("published_at", new Date().toISOString())
     .single();
 
   if (error) {
@@ -64,7 +66,8 @@ export async function getAllPostSlugs(): Promise<string[]> {
     .from("site_blog_posts")
     .select("slug")
     .eq("site_slug", SITE_SLUG)
-    .eq("status", "published");
+    .eq("status", "published")
+    .lte("published_at", new Date().toISOString());
 
   if (error) {
     console.error("Error fetching slugs:", error);
