@@ -137,12 +137,6 @@ const localBusinessSchema = {
     minValue: 10,
     maxValue: 50,
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "1800",
-    bestRating: "5",
-  },
   description: COMPANY.description,
 };
 
