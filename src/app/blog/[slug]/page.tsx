@@ -205,7 +205,7 @@ export default async function BlogPostPage({
                   href="/about"
                   className="text-gray-500 hover:text-navy transition-colors"
                 >
-                  By All State Paving Team
+                  By All State Paving
                 </Link>
               </div>
 
