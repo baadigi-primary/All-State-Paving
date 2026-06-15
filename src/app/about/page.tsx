@@ -70,18 +70,51 @@ export default function AboutPage() {
                 combine quality, durability, and affordability.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Proudly serving Delaware, Sunbury, London, and Marion in Ohio and
-                nearby areas, we take pride in being your local experts. Our team
-                is dedicated to providing exceptional service and craftsmanship
-                that you can depend on for years to come.
+                We provide professional{" "}
+                <Link href="/areas-served/delaware-oh" className="text-navy font-semibold hover:text-red transition-colors">
+                  asphalt paving in Delaware
+                </Link>
+                , and proudly serve{" "}
+                <Link href="/areas-served/sunbury-oh" className="text-navy font-semibold hover:text-red transition-colors">
+                  Sunbury
+                </Link>
+                ,{" "}
+                <Link href="/areas-served/london-oh" className="text-navy font-semibold hover:text-red transition-colors">
+                  London
+                </Link>
+                ,{" "}
+                <Link href="/areas-served/marion-oh" className="text-navy font-semibold hover:text-red transition-colors">
+                  Marion
+                </Link>
+                , and communities across Central Ohio. We take pride in being
+                your local experts, dedicated to craftsmanship you can depend on
+                for years to come.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 As a full-service asphalt paving company, we offer a
                 comprehensive range of residential and commercial services
-                designed to meet your specific needs. From driveway paving and
-                asphalt repair to parking lots, farm lanes, and large-scale
-                commercial projects, our experienced professionals handle every
-                job with care, precision, and efficiency.
+                designed to meet your specific needs. From{" "}
+                <Link href="/services/driveway-paving-services" className="text-navy font-semibold hover:text-red transition-colors">
+                  driveway paving
+                </Link>{" "}
+                and{" "}
+                <Link href="/services/asphalt-repair-services" className="text-navy font-semibold hover:text-red transition-colors">
+                  asphalt repair and patching
+                </Link>{" "}
+                to{" "}
+                <Link href="/services/parking-lot-paving-services" className="text-navy font-semibold hover:text-red transition-colors">
+                  parking lot paving
+                </Link>
+                ,{" "}
+                <Link href="/services/private-roads-paving-services" className="text-navy font-semibold hover:text-red transition-colors">
+                  private road paving
+                </Link>
+                , and protective{" "}
+                <Link href="/services/sealcoating-services" className="text-navy font-semibold hover:text-red transition-colors">
+                  Central Ohio seal coating
+                </Link>
+                , our experienced professionals handle every job with care,
+                precision, and efficiency.
               </p>
             </div>
             <div className="relative">

@@ -690,7 +690,9 @@ We build parking lots for retail centers, office buildings, medical facilities, 
 
 Fresh asphalt is flexible, water-resistant, and resilient. Over time, exposure to sunlight and air causes the asphalt binder to oxidize and harden. The surface fades from black to gray, becomes brittle, and develops cracks that allow water to penetrate the base. This is not a cosmetic issue; it is the beginning of structural failure. Sealcoating reverses this process by replenishing the surface with a protective coating that blocks UV rays, seals out moisture, and restores flexibility to the top layer of the pavement.
 
-We use commercial-grade coal tar or asphalt emulsion sealers applied at the manufacturer-specified rate with professional spray equipment. We do not dilute our materials or cut corners on application thickness. Before any sealcoat goes down, we clean the surface thoroughly, repair any cracks, and ensure proper conditions for adhesion. The result is a rich black finish that looks new and protects the surface for 2 to 3 years until the next application.`,
+We use commercial-grade coal tar or asphalt emulsion sealers applied at the manufacturer-specified rate with professional spray equipment. We do not dilute our materials or cut corners on application thickness. Before any sealcoat goes down, we clean the surface thoroughly, repair any cracks, and ensure proper conditions for adhesion. The result is a rich black finish that looks new and protects the surface for 2 to 3 years until the next application.
+
+Whether you call it sealcoating or seal coating, this routine maintenance is the most affordable way to protect your asphalt investment. As one of the most experienced Central Ohio seal coating contractors, we help homeowners, businesses, and property managers across Delaware, Columbus, Sunbury, and the surrounding counties get the longest possible life out of their pavement.`,
     benefits: [
       {
         title: "Doubles the Life of Your Pavement",
