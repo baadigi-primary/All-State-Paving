@@ -133,6 +133,9 @@ export default function Footer() {
           </p>
         </div>
       </div>
+      <div className="text-center py-3 text-[11px] text-gray-400">
+        <a href="https://baadigi.com/services/digital-marketing/paving" className="text-gray-400 hover:text-gray-500" target="_blank" rel="noopener">Paving Contractor Marketing</a> · <a href="https://app.predictableworkengine.com" className="text-gray-400 hover:text-gray-500" target="_blank" rel="noopener">Client Login</a>
+      </div>
     </footer>
   );
 }
