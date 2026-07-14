@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SERVICES, SITE_URL } from "@/lib/constants";
 import { AREAS } from "@/lib/areas-data";
+import { COMPARE_PAGES } from "@/lib/compare-content";
 import { getPublishedPosts } from "@/lib/supabase";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -39,5 +40,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...servicePages, ...areaPages, ...blogPages];
+  const comparePages = [
+    { url: `${SITE_URL}/compare`, lastModified: siteLastModified, changeFrequency: "monthly" as const, priority: 0.7 },
+    ...COMPARE_PAGES.map((p) => ({
+      url: `${SITE_URL}/compare/${p.slug}`,
+      lastModified: siteLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
+
+  return [...staticPages, ...servicePages, ...areaPages, ...comparePages, ...blogPages];
 }

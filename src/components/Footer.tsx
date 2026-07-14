@@ -98,6 +98,7 @@ export default function Footer() {
                 { label: "Home", href: "/" },
                 { label: "About Us", href: "/about" },
                 { label: "Services", href: "/services" },
+                { label: "Compare Options", href: "/compare" },
                 { label: "Areas Served", href: "/areas-served" },
                 { label: "Gallery", href: "/gallery" },
                 { label: "Blog", href: "/blog" },
