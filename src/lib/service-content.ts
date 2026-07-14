@@ -1,5 +1,7 @@
 export interface ServiceContent {
   slug: string;
+  /** Optional self-contained answer passage (40-60 words) — the AI-search / snippet lever. Rendered as an emphasized block above heroContent. */
+  answerPassage?: string;
   heroContent: string;
   benefits: { title: string; description: string }[];
   process: { step: number; title: string; description: string }[];
@@ -302,6 +304,7 @@ Central Ohio homeowners face a specific challenge that many paving companies ove
 
   {
     slug: "asphalt-repair-services",
+    answerPassage: `Most asphalt damage in Central Ohio — cracks, potholes, and crumbling edges — can be repaired instead of replaced, as long as the base underneath is still sound. Early asphalt repair costs far less than full replacement and stops small cracks from spreading into structural failure through Ohio's freeze-thaw winters.`,
     heroContent: `Every asphalt surface eventually shows signs of wear. Cracks develop from freeze-thaw cycles, potholes form from water infiltration, and edges crumble under repeated traffic stress. The question is not whether your pavement will need repair, but how soon you address problems before they multiply. At All State Paving, we have spent over 40 years repairing asphalt surfaces across Central Ohio, and the single most important lesson we have learned is this: small repairs done early save thousands compared to full replacement later.
 
 Asphalt deterioration follows a predictable pattern in Ohio. Water enters through small surface cracks, freezes during our cold winters, expands, and widens the crack. The next thaw allows more water in, and the cycle repeats. Within a few seasons, a hairline crack becomes a pothole. That pothole allows water to reach the base material, which softens and fails, causing the surrounding asphalt to sink and break apart. What started as a five-dollar crack seal becomes a five-thousand-dollar base repair. Timely maintenance breaks this cycle.
@@ -479,6 +482,7 @@ Every driveway we install is custom-designed for the property. We account for th
 
   {
     slug: "private-roads-paving-services",
+    answerPassage: `Private road paving in Central Ohio is the property owner's responsibility, not the county's — so the material and base you choose decide how long the road lasts. Asphalt is the most common choice because it flexes with freeze-thaw ground movement, handles daily traffic, and is faster and lower-cost to repair than concrete.`,
     heroContent: `Private roads serve residential communities, housing developments, estates, and rural properties throughout Central Ohio. Unlike public roads maintained by the county or township, private roads are the responsibility of the property owners they serve. When these roads deteriorate, there is no government crew coming to fix them. All State Paving has been building and maintaining private roads across Delaware County and the surrounding region since 1979, and we understand the unique challenges these roads present.
 
 Private road paving requires a balance between durability and budget. These roads need to handle daily passenger vehicle traffic, occasional delivery trucks, emergency vehicles, and service equipment, but they do not have the budget of a public highway project. We design private road surfaces to meet realistic traffic demands without overbuilding or overspending. The result is a road that holds up for decades at a cost that property owners or HOAs can manage.
@@ -738,6 +742,7 @@ We build parking lots for retail centers, office buildings, medical facilities, 
 
   {
     slug: "sealcoating-services",
+    answerPassage: `Sealcoating — also spelled seal coating — protects asphalt by sealing out water, UV, and oil before they cause cracks. In Central Ohio it should be reapplied every few years to keep pavement flexible through freeze-thaw winters. It's the lowest-cost way to extend the life of a driveway or parking lot and delay costly resurfacing.`,
     heroContent: `Sealcoating is the single most cost-effective maintenance step you can take to protect an asphalt surface and extend its lifespan. A quality sealcoat application creates a protective barrier against water penetration, UV radiation, automotive fluids, and the oxidation that turns flexible black asphalt into brittle gray pavement. All State Paving has been providing professional sealcoating services across Central Ohio since 1979, and we have seen the dramatic difference it makes in pavement longevity.
 
 Fresh asphalt is flexible, water-resistant, and resilient. Over time, exposure to sunlight and air causes the asphalt binder to oxidize and harden. The surface fades from black to gray, becomes brittle, and develops cracks that allow water to penetrate the base. This is not a cosmetic issue; it is the beginning of structural failure. Sealcoating reverses this process by replenishing the surface with a protective coating that blocks UV rays, seals out moisture, and restores flexibility to the top layer of the pavement.

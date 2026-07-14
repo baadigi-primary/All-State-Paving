@@ -65,7 +65,7 @@ export const SERVICES = [
     shortDesc:
       "Expert repair services to restore and extend the life of your asphalt surfaces.",
     description:
-      "Asphalt crack filling, pothole repair, and patching in Central Ohio. Extend your pavement's life and save on costly replacements. Free estimates.",
+      "Most cracked or potholed asphalt can be repaired instead of replaced when the base is sound — early repair saves Central Ohio property owners from costly full replacement. Crack filling, patching, and pothole repair with free on-site estimates.",
   },
   {
     title: "Driveway Paving",
@@ -83,7 +83,7 @@ export const SERVICES = [
     shortDesc:
       "Durable private road construction built to handle daily traffic with ease.",
     description:
-      "Private road paving and maintenance in Central Ohio. Smooth, durable surfaces built to handle daily traffic. Get a free quote today.",
+      "Private road paving is the owner's responsibility, and asphalt is the go-to in Central Ohio because it flexes with freeze-thaw and handles daily traffic. Durable private road construction and maintenance across Delaware County with free on-site quotes.",
   },
   {
     title: "Farm Lane Paving",
@@ -110,7 +110,7 @@ export const SERVICES = [
     shortDesc:
       "Protect your asphalt with professional sealcoating that extends pavement life by years.",
     description:
-      "Professional asphalt sealcoating in Central Ohio. Protect against water, UV, and chemicals. Extends pavement life 10+ years. Free estimates.",
+      "Sealcoating seals out water, UV, and oil to keep asphalt flexible, and Central Ohio pavement should be resealed every few years through freeze-thaw winters. The lowest-cost way to extend driveway and parking lot life. Free on-site estimates.",
   },
   {
     title: "Line Striping",

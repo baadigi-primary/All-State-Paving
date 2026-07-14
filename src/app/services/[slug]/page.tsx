@@ -140,6 +140,15 @@ export default async function ServicePage({
                 Last updated: June 2026
               </p>
 
+              {/* Answer passage — self-contained, quotable-first (AI-search / snippet lever) */}
+              {content?.answerPassage && (
+                <div className="border-l-4 border-gold bg-gray-50 rounded-r-lg p-6 mb-6">
+                  <p className="text-lg text-navy leading-relaxed font-medium">
+                    {content.answerPassage}
+                  </p>
+                </div>
+              )}
+
               {/* Expanded hero content */}
               {content ? (
                 content.heroContent.split("\n\n").map((p, i) => (
