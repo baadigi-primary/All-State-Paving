@@ -24,7 +24,10 @@ export function generateMetadata({
     const service = SERVICES.find((s) => s.slug === slug);
     if (!service) return { title: "Service Not Found" };
     return {
-      title: `${service.title} Services in Central Ohio`,
+      title:
+        "metaTitle" in service && service.metaTitle
+          ? service.metaTitle
+          : `${service.title} Services in Central Ohio`,
       description: service.description,
       alternates: { canonical: `${SITE_URL}/services/${slug}` },
     };
