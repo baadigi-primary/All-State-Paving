@@ -100,8 +100,11 @@ export const SERVICES = [
     icon: "parking",
     shortDesc:
       "Professional parking lot construction with proper drainage and striping.",
+    // ponytail: metaTitle override lets this one page target "parking lot paving ohio" (pos ~11, 118 impr, 0 clicks)
+    // without touching the generic title template every other service page still uses.
+    metaTitle: "Need Parking Lot Paving in Ohio? Here's What to Expect",
     description:
-      "Parking lot paving, resurfacing, sealcoating, and striping in Central Ohio. Keep your lot safe and professional. Free estimates available.",
+      "Need parking lot paving in Ohio? All State Paving builds, resurfaces, and stripes commercial lots throughout Delaware, Columbus, and Central Ohio with proper drainage and code-compliant layouts. Serving the region since 1979 — request a free estimate.",
   },
   {
     title: "Sealcoating",
