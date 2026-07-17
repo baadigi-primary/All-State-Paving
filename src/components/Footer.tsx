@@ -128,14 +128,14 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} All State Paving. All rights reserved.</p>
           <p>
             Marketing by{" "}
-            <a href="https://www.baadigi.com" className="text-gold hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.baadigi.com/services/seo/paving" className="text-gold hover:underline" target="_blank" rel="noopener noreferrer">
               BaaDigi
             </a>
           </p>
         </div>
       </div>
       <div className="text-center py-3 text-[11px] text-gray-400">
-        <a href="https://baadigi.com/services/digital-marketing/paving" className="text-gray-400 hover:text-gray-500" target="_blank" rel="noopener">Paving Contractor Marketing</a> · <a href="https://app.predictableworkengine.com" className="text-gray-400 hover:text-gray-500" target="_blank" rel="noopener">Client Login</a>
+        <a href="https://www.baadigi.com/services/seo/paving" className="text-gray-400 hover:text-gray-500" target="_blank" rel="noopener">Paving SEO</a> · <a href="https://app.predictableworkengine.com" className="text-gray-400 hover:text-gray-500" target="_blank" rel="noopener">Client Login</a>
       </div>
     </footer>
   );
