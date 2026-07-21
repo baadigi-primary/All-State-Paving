@@ -48,10 +48,11 @@ export default function QuoteForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="full_name" className="block text-sm font-medium text-gray-700 mb-1">
             Your Name <span className="text-red-500">*</span>
           </label>
           <input
+            id="full_name"
             name="full_name"
             type="text"
             required
@@ -60,10 +61,11 @@ export default function QuoteForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
             Phone Number <span className="text-red-500">*</span>
           </label>
           <input
+            id="phone"
             name="phone"
             type="tel"
             required
@@ -72,10 +74,11 @@ export default function QuoteForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
             Email Address <span className="text-red-500">*</span>
           </label>
           <input
+            id="email"
             name="email"
             type="email"
             required
@@ -84,10 +87,10 @@ export default function QuoteForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="service_type" className="block text-sm font-medium text-gray-700 mb-1">
             Type of Service
           </label>
-          <select name="service_type" className="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none transition bg-white">
+          <select id="service_type" name="service_type" className="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none transition bg-white">
             <option value="">Select a service...</option>
             <option>Asphalt Paving</option>
             <option>Commercial Paving</option>
@@ -101,10 +104,11 @@ export default function QuoteForm() {
         </div>
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
           Project Details
         </label>
         <textarea
+          id="message"
           name="message"
           rows={4}
           className="w-full border border-gray-300 rounded px-4 py-2.5 text-sm focus:ring-2 focus:ring-gold focus:border-gold outline-none transition resize-none"
