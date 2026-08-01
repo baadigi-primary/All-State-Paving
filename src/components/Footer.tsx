@@ -128,7 +128,7 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} All State Paving. All rights reserved.</p>
           <p>
             Marketing by{" "}
-            <a href="https://www.baadigi.com/services/seo/paving" className="text-gold hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.baadigi.com/services/seo/paving" className="text-gold underline" target="_blank" rel="noopener noreferrer">
               BaaDigi
             </a>
           </p>
