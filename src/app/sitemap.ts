@@ -4,6 +4,10 @@ import { AREAS } from "@/lib/areas-data";
 import { COMPARE_PAGES } from "@/lib/compare-content";
 import { getPublishedPosts } from "@/lib/supabase";
 
+// Without this the sitemap is built once and frozen, so posts that publish on a
+// schedule after the last deploy never reach it. Matches the blog pages' 300s.
+export const revalidate = 300;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteLastModified = new Date("2026-06-15");
 
