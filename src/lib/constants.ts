@@ -118,8 +118,11 @@ export const SERVICES = [
     icon: "lines",
     shortDesc:
       "Crisp, visible parking lot striping for safety, compliance, and a professional look.",
+    // ponytail: metaTitle override for this page only (1762 impr/28d, 1 click — CTR 0.06%,
+    // the worst on the site) targeting "parking lot striping" + area queries.
+    metaTitle: "Need Parking Lot Striping in Ohio?",
     description:
-      "Parking lot line striping and pavement marking in Central Ohio. ADA-compliant layouts, traffic flow, and fresh markings. Free estimates.",
+      "Need parking lot striping in Ohio? All State Paving delivers ADA-compliant striping and pavement marking across Delaware, Columbus, and Central Ohio. Free estimates, serving the region since 1979.",
   },
 ] as const;
 
