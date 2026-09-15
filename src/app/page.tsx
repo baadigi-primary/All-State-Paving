@@ -140,7 +140,7 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="relative mb-14">
-            <span className="ghost-text">PROVIDING</span>
+            <span className="ghost-text" aria-hidden="true">PROVIDING</span>
             <h2 className="text-3xl md:text-5xl font-black text-navy">
               OUR <span className="section-heading">PROMISE</span>
             </h2>
@@ -185,7 +185,7 @@ export default function HomePage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="relative mb-14">
-            <span className="ghost-text">OUR BEST</span>
+            <span className="ghost-text" aria-hidden="true">OUR BEST</span>
             <h2 className="text-3xl md:text-5xl font-black text-navy">
               <span className="section-heading">SPECIALIZATION</span>
             </h2>
@@ -217,7 +217,7 @@ export default function HomePage() {
       <section className="py-20 bg-navy">
         <div className="max-w-7xl mx-auto px-4">
           <div className="relative mb-14">
-            <span className="ghost-text ghost-text-light">OUR LATEST</span>
+            <span className="ghost-text ghost-text-light" aria-hidden="true">OUR LATEST</span>
             <h2 className="text-3xl md:text-5xl font-black text-white">
               <span className="section-heading">PROJECTS</span>
             </h2>
@@ -252,7 +252,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="relative mb-8">
-                <span className="ghost-text">PREMIUM</span>
+                <span className="ghost-text" aria-hidden="true">PREMIUM</span>
                 <h2 className="text-3xl md:text-5xl font-black text-navy">
                   <span className="section-heading">ASPHALT</span> PAVING
                 </h2>
@@ -321,7 +321,7 @@ export default function HomePage() {
       <section className="py-20 bg-navy">
         <div className="max-w-7xl mx-auto px-4">
           <div className="relative mb-14">
-            <span className="ghost-text ghost-text-light">INTERESTING</span>
+            <span className="ghost-text ghost-text-light" aria-hidden="true">INTERESTING</span>
             <h2 className="text-3xl md:text-5xl font-black text-white">
               <span className="section-heading">NUMBERS</span>
             </h2>
@@ -348,7 +348,7 @@ export default function HomePage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="relative mb-14">
-            <span className="ghost-text">CLIENTS</span>
+            <span className="ghost-text" aria-hidden="true">CLIENTS</span>
             <h2 className="text-3xl md:text-5xl font-black text-navy">
               <span className="section-heading">TESTIMONIALS</span>
             </h2>
@@ -398,7 +398,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <div className="relative mb-8">
-                <span className="ghost-text">QUOTE</span>
+                <span className="ghost-text" aria-hidden="true">QUOTE</span>
                 <h2 className="text-3xl md:text-5xl font-black text-navy">
                   GET A <span className="section-heading">QUOTE</span>
                 </h2>
