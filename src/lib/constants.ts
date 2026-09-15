@@ -66,6 +66,9 @@ export const SERVICES = [
       "Expert repair services to restore and extend the life of your asphalt surfaces.",
     description:
       "Most cracked or potholed asphalt can be repaired instead of replaced when the base is sound — early repair saves Central Ohio property owners from costly full replacement. Crack filling, patching, and pothole repair with free on-site estimates.",
+    metaTitle: "Need Asphalt Repair in Ohio?",
+    metaDescription:
+      "Cracked or potholed asphalt? Patching and crack filling cost less than replacement when the base is sound. All State Paving repairs driveways and lots across Central Ohio with free on-site estimates.",
   },
   {
     title: "Driveway Paving",
