@@ -1,5 +1,11 @@
+import { isBlockedSender } from '@/lib/blocked-sender'
+
 export async function POST(request: Request) {
   const { full_name, phone, email, service_type, message } = await request.json();
+
+  if (await isBlockedSender(email)) {
+    return Response.json({ success: true });
+  }
 
   const htmlBody = `<!DOCTYPE html>
 <html lang="en">
