@@ -45,6 +45,8 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Agent discovery (RFC 8288 Link) on the homepage. Keep LAST: for the same header key the later rule wins.
+      { source: "/", headers: [{ key: "Link", value: "</.well-known/api-catalog>; rel=\"api-catalog\", </.well-known/ai-plugin.json>; rel=\"service-desc\", </ai-bot.md>; rel=\"service-doc\", </llms.txt>; rel=\"describedby\", </auth.md>; rel=\"https://auth.md/rel\", </.well-known/mcp/server-card.json>; rel=\"https://modelcontextprotocol.io/rel/server-card\", </.well-known/oauth-protected-resource>; rel=\"oauth-protected-resource\"" }] },
     ];
   },
 };

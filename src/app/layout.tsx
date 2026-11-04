@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { COMPANY, SITE_URL } from "@/lib/constants";
 
+import WebMcp from "@/components/WebMcp";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -173,6 +174,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WebMcp />
       </body>
     </html>
   );
