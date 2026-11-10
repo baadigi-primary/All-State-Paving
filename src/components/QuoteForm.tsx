@@ -1,12 +1,73 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { TURNSTILE_ACTION, TURNSTILE_SITE_KEY } from "@/lib/turnstile";
+
+type TurnstileApi = {
+  render: (el: HTMLElement, options: { sitekey: string; action: string }) => string;
+  reset: (id: string) => void;
+  remove: (id: string) => void;
+  getResponse: (id: string) => string | undefined;
+};
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileApi;
+  }
+}
+
+const TURNSTILE_SCRIPT_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+
+function loadTurnstile(): Promise<TurnstileApi> {
+  if (window.turnstile) return Promise.resolve(window.turnstile);
+  return new Promise((resolve, reject) => {
+    let script = document.querySelector<HTMLScriptElement>(`script[src="${TURNSTILE_SCRIPT_SRC}"]`);
+    if (!script) {
+      script = document.createElement("script");
+      script.src = TURNSTILE_SCRIPT_SRC;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+    script.addEventListener("load", () => (window.turnstile ? resolve(window.turnstile) : reject()));
+    script.addEventListener("error", () => reject());
+  });
+}
 
 export default function QuoteForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) return;
+    let cancelled = false;
+    loadTurnstile()
+      .then((turnstile) => {
+        if (cancelled || !turnstileRef.current || widgetIdRef.current) return;
+        widgetIdRef.current = turnstile.render(turnstileRef.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          action: TURNSTILE_ACTION,
+        });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+      if (widgetIdRef.current) window.turnstile?.remove(widgetIdRef.current);
+      widgetIdRef.current = null;
+    };
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    const token = widgetIdRef.current ? window.turnstile?.getResponse(widgetIdRef.current) : undefined;
+    if (widgetIdRef.current && !token) {
+      setErrorMessage("Please complete the verification check.");
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
 
     const form = e.currentTarget;
@@ -16,6 +77,8 @@ export default function QuoteForm() {
       email: (form.elements.namedItem("email") as HTMLInputElement).value,
       service_type: (form.elements.namedItem("service_type") as HTMLSelectElement).value,
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+      company: (form.elements.namedItem("company") as HTMLInputElement).value,
+      "cf-turnstile-response": token ?? "",
     };
 
     try {
@@ -25,10 +88,15 @@ export default function QuoteForm() {
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error("Failed");
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.error || "");
+      }
       setStatus("sent");
-    } catch {
+    } catch (err) {
+      setErrorMessage((err instanceof Error && err.message) || "");
       setStatus("error");
+      if (widgetIdRef.current) window.turnstile?.reset(widgetIdRef.current);
     }
   }
 
@@ -115,8 +183,15 @@ export default function QuoteForm() {
           placeholder="Tell us about your project..."
         />
       </div>
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor="company">Company</label>
+        <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+      <div ref={turnstileRef} />
       {status === "error" && (
-        <p className="text-red-600 text-sm">Something went wrong. Please try again or call us directly.</p>
+        <p className="text-red-600 text-sm">
+          {errorMessage || "Something went wrong. Please try again or call us directly."}
+        </p>
       )}
       <button
         type="submit"

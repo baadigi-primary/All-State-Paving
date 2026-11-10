@@ -1,10 +1,95 @@
 import { isBlockedSender } from '@/lib/blocked-sender'
+import { verifyTurnstileToken } from '@/lib/turnstile'
+
+const CLIENT_EMAIL = "Allstatepavenow@gmail.com";
+const BCC_EMAIL = "webform@baadigi.com";
+const FROM_ADDRESS = process.env.CONTACT_FROM?.match(/<([^>]+)>/)?.[1] || process.env.CONTACT_FROM || "notifications@leads.baadigi.com";
+const DEFAULT_ORG_ID = "abb35dae-87b8-4217-bce9-35faf3a4b90d";
+const DEFAULT_DASHBOARD_URL = "https://app.predictableworkengine.com";
+
+function field(value: unknown, max: number): string {
+  return typeof value === "string" ? value.trim().slice(0, max) : "";
+}
+
+function getClientIp(request: Request): string {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) return forwardedFor.split(",")[0].trim();
+  return request.headers.get("x-real-ip") ?? "";
+}
+
+async function sendEmail(payload: Record<string, unknown>): Promise<boolean> {
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!res.ok) console.error("Resend error:", res.status, await res.text());
+    return res.ok;
+  } catch (err) {
+    console.error("Resend request failed:", err);
+    return false;
+  }
+}
+
+async function forwardToDashboard(
+  lead: { name: string; phone: string; email: string; service: string; message: string },
+  referer: string,
+) {
+  const base = process.env.BAADIGI_DASHBOARD_URL || DEFAULT_DASHBOARD_URL;
+  try {
+    const res = await fetch(`${base}/api/sites/contact`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(process.env.CMS_SECRET ? { Authorization: `Bearer ${process.env.CMS_SECRET}` } : {}),
+        ...(referer ? { Referer: referer } : {}),
+      },
+      body: JSON.stringify({ organization_id: process.env.BAADIGI_ORG_ID || DEFAULT_ORG_ID, ...lead }),
+      signal: AbortSignal.timeout(5_000),
+    });
+    if (!res.ok) console.error("Dashboard lead sync failed:", res.status, await res.text());
+  } catch (err) {
+    console.error("Dashboard lead sync error:", err);
+  }
+}
 
 export async function POST(request: Request) {
-  const { full_name, phone, email, service_type, message } = await request.json();
+  const body = await request.json().catch(() => null);
+  if (!body || typeof body !== "object") {
+    return Response.json({ error: "Invalid request." }, { status: 400 });
+  }
+
+  // Honeypot: real visitors never fill the hidden "company" field.
+  if (field(body.company, 200)) {
+    return Response.json({ success: true });
+  }
+
+  const full_name = field(body.full_name, 120);
+  const phone = field(body.phone, 40);
+  const email = field(body.email, 200);
+  const service_type = field(body.service_type, 120);
+  const message = field(body.message, 5000);
+
+  if (!full_name || !phone || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return Response.json({ error: "Please fill in your name, phone and a valid email." }, { status: 400 });
+  }
 
   if (await isBlockedSender(email)) {
     return Response.json({ success: true });
+  }
+
+  if (!(await verifyTurnstileToken(body["cf-turnstile-response"], getClientIp(request)))) {
+    return Response.json({ error: "Verification failed. Please try again." }, { status: 403 });
+  }
+
+  if (!process.env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY is not set");
+    return Response.json({ error: "Form temporarily unavailable. Please call us." }, { status: 503 });
   }
 
   const htmlBody = `<!DOCTYPE html>
@@ -152,53 +237,32 @@ export async function POST(request: Request) {
 </body>
 </html>`;
 
-  // Send both emails in parallel
-  const mandrillPayloads = [
-    {
-      key: process.env.MANDRILL_API_KEY,
-      message: {
-        html: htmlBody,
-        subject: `New Project Inquiry: ${full_name}`,
-        from_email: "websites@baadigi.com",
-        from_name: "All State Paving Website",
-        to: [
-          { email: "Allstatepavenow@gmail.com", type: "to" },
-          { email: "webform@baadigi.com", type: "bcc" },
-        ],
-        reply_to: email,
-      },
-    },
-    {
-      key: process.env.MANDRILL_API_KEY,
-      message: {
-        html: autoResponderHtml,
-        subject: "We've received your quote request - All State Paving",
-        from_email: "websites@baadigi.com",
-        from_name: "All State Paving",
-        to: [
-          { email, type: "to" },
-          { email: "Allstatepavenow@gmail.com", type: "bcc" },
-          { email: "webform@baadigi.com", type: "bcc" },
-        ],
-      },
-    },
-  ];
+  const [notificationSent] = await Promise.all([
+    sendEmail({
+      from: `All State Paving Website <${FROM_ADDRESS}>`,
+      to: [CLIENT_EMAIL],
+      bcc: [BCC_EMAIL],
+      reply_to: email,
+      subject: `New Project Inquiry: ${full_name}`,
+      html: htmlBody,
+    }),
+    // Auto-reply is best-effort; it never fails the request.
+    sendEmail({
+      from: `All State Paving <${FROM_ADDRESS}>`,
+      to: [email],
+      bcc: [BCC_EMAIL],
+      reply_to: CLIENT_EMAIL,
+      subject: "We've received your quote request - All State Paving",
+      html: autoResponderHtml,
+    }),
+    forwardToDashboard(
+      { name: full_name, phone, email, service: service_type, message },
+      request.headers.get("referer") ?? "",
+    ),
+  ]);
 
-  const results = await Promise.all(
-    mandrillPayloads.map((payload) =>
-      fetch("https://mandrillapp.com/api/1.0/messages/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      })
-    )
-  );
-
-  const failed = results.find((r) => !r.ok);
-  if (failed) {
-    const error = await failed.text();
-    console.error("Mandrill error:", error);
-    return Response.json({ error: "Failed to send email" }, { status: 500 });
+  if (!notificationSent) {
+    return Response.json({ error: "Something went wrong. Please call us directly." }, { status: 502 });
   }
 
   return Response.json({ success: true });
