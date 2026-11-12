@@ -22,8 +22,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Post Not Found" };
+  const seoTitle = (post.meta_title || post.title).replace(
+    /\s*\|\s*All State Paving\s*$/i,
+    ""
+  );
   return {
-    title: post.meta_title || post.title,
+    title: seoTitle,
     description: post.meta_description || post.excerpt || "",
     alternates: { canonical: `${SITE_URL}/blog/${slug}` },
     openGraph: {
@@ -218,7 +222,7 @@ export default async function BlogPostPage({
               )}
 
               {/* CTA */}
-              <div className="bg-navy rounded-lg p-8 text-center mt-12">
+              <div data-nosnippet className="bg-navy rounded-lg p-8 text-center mt-12">
                 <h3 className="text-2xl font-bold text-white mb-3">
                   Need Paving Services?
                 </h3>
@@ -244,7 +248,7 @@ export default async function BlogPostPage({
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-8">
+            <div data-nosnippet className="space-y-8">
               {/* Recent Posts */}
               <div className="bg-gray-50 rounded-lg p-6">
                 <h3 className="text-lg font-bold text-navy mb-4 border-b border-gray-200 pb-3">
@@ -323,7 +327,7 @@ export default async function BlogPostPage({
 
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
-            <div className="mt-20">
+            <div data-nosnippet className="mt-20">
               <h2 className="text-2xl font-black text-navy mb-8">
                 Related <span className="section-heading">Articles</span>
               </h2>
