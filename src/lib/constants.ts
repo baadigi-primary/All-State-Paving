@@ -1,5 +1,9 @@
 export const SITE_URL = "https://www.allstatepavenow.com";
 
+// Which location the homepage hero leads with. Flip to "OH" once Richard
+// confirms the crew is back in Ohio.
+export const PRIMARY_LOCATION: "OH" | "FL" = "FL";
+
 export const COMPANY = {
   name: "All State Paving",
   phone: "1-800-568-9954",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { COMPANY, SERVICES, SITE_URL } from "@/lib/constants";
+import { COMPANY, SERVICES, SITE_URL, PRIMARY_LOCATION } from "@/lib/constants";
 import { IMG } from "@/lib/images";
 import QuoteForm from "@/components/QuoteForm";
 import JsonLd from "@/components/JsonLd";
@@ -92,6 +92,10 @@ const projects = [
 ];
 
 export default function HomePage() {
+  const heroIsFL = PRIMARY_LOCATION === "FL";
+  const heroLocationName = heroIsFL ? "GAINESVILLE, FL" : "CENTRAL OHIO";
+  const heroTagline = heroIsFL ? COMPANY.gainesville.tagline : COMPANY.tagline;
+
   return (
     <>
       <JsonLd data={servicesItemListSchema} />
@@ -99,7 +103,7 @@ export default function HomePage() {
       <section className="relative min-h-[600px] flex items-center overflow-hidden">
         <Image
           src={IMG.heroMain}
-          alt="Freshly paved asphalt by All State Paving in Central Ohio"
+          alt={`Freshly paved asphalt by All State Paving in ${heroIsFL ? "Gainesville, FL" : "Central Ohio"}`}
           fill
           priority
           sizes="100vw"
@@ -111,12 +115,12 @@ export default function HomePage() {
             Welcome to All State Paving
           </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight max-w-3xl mb-6">
-            CENTRAL OHIO&apos;S TRUSTED
+            {heroLocationName}&apos;S TRUSTED
             <br />
             <span className="text-gold">ASPHALT PAVING</span> EXPERTS
           </h1>
           <p className="text-gray-300 text-lg max-w-xl mb-8 leading-relaxed">
-            {COMPANY.tagline}. Professional asphalt paving, repair, and
+            {heroTagline}. Professional asphalt paving, repair, and
             resurfacing for residential and commercial properties.
           </p>
           <div className="flex flex-wrap gap-4">
