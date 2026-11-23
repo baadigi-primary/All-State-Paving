@@ -9,8 +9,8 @@ export const BOT = { name: "All State Paving Bot", version: "1.0.0" };
 export const META = {
   name: C.name,
   slug: "all-state-paving",
-  summary: `family-owned asphalt paving in Gainesville, FL. ${C.tagline}.`,
-  queries: ["asphalt paving Gainesville FL", "driveway paving Gainesville FL", "commercial paving Gainesville FL", "parking lot sealcoating Gainesville FL"],
+  summary: `family-owned asphalt paving in Gainesville, FL and Central Ohio. ${C.tagline}.`,
+  queries: ["asphalt paving Gainesville FL", "driveway paving Gainesville FL", "asphalt paving Delaware OH", "commercial paving Central Ohio"],
   humans: `Call ${C.phone} for a free estimate or use ${SITE}/contact.`,
   contactUrl: `${SITE}/contact`,
   email: undefined as string | undefined,
@@ -31,7 +31,7 @@ export const TOOLS: Tool[] = [
     inputSchema: { type: "object", properties: {} },
     run: () => ({
       name: C.name, tagline: C.tagline, description: C.description, address: C.address, phone: C.phone, phoneAlt: C.phoneAlt,
-      hours: C.hours, serviceAreas: ["Gainesville, FL and surrounding areas"], pricing: "Free estimates. No price list is published.", contact: META.contactUrl,
+      hours: C.hours, serviceAreas: ["Gainesville, FL and surrounding areas", ...C.areas.map((a) => `${a}, OH`)], ohioOffice: C.ohio, pricing: "Free estimates. No price list is published.", contact: META.contactUrl,
     }),
   },
   {
@@ -66,9 +66,10 @@ You answer questions about ${C.name}. Use only the facts below.
 
 ## Business
 - ${C.description} ${C.tagline}.
-- ${C.address} · ${C.phone} (alt ${C.phoneAlt})
+- Gainesville, FL office: ${C.address} · ${C.phone} (alt ${C.phoneAlt})
+- Delaware, OH office: ${C.ohio.address} · ${C.ohio.phone}
 - Hours: Mon–Fri ${C.hours.weekdays}; Sat ${C.hours.saturday}; Sun ${C.hours.sunday.toLowerCase()}
-- Service areas: Gainesville, FL and surrounding areas
+- Service areas: Gainesville, FL and surrounding areas; in Ohio: ${C.areas.join(", ")}
 
 ## Services
 ${SERVICES.map((s) => `- **${s.title}**: ${s.shortDesc} ${SITE}/services/${s.slug}`).join("\n")}

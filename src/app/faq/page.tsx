@@ -8,18 +8,18 @@ import JsonLd from "@/components/JsonLd";
 export const metadata: Metadata = {
   title: "Asphalt Paving FAQ | Gainesville, FL",
   description:
-    "Answers to common questions about asphalt paving costs, timelines, maintenance, and repair in Gainesville, FL. Get a free estimate today.",
+    "Answers to common questions about asphalt paving costs, timelines, maintenance, and repair in Gainesville, FL and Central Ohio. Get a free estimate today.",
   alternates: { canonical: `${SITE_URL}/faq` },
 };
 
 const faqs = [
   {
     q: "How long has All State Paving been in business?",
-    a: 'All State Paving is a family-owned and operated company that has been in business since 1979 — that\'s over 40 years of trusted paving expertise. We have served Gainesville, Florida and surrounding areas for 25 years. <a href="/about" class="text-gold hover:underline">Learn more about our story</a>.',
+    a: 'All State Paving is a family-owned and operated company that has been in business since 1979 — that\'s over 40 years of trusted paving expertise. We have served Gainesville, Florida and surrounding areas for 25 years, and Central Ohio since 1979. <a href="/about" class="text-gold hover:underline">Learn more about our story</a>.',
   },
   {
     q: "What areas do you serve?",
-    a: 'We serve Gainesville, Florida and surrounding areas. Our office is at 2603 NW 13th St, Gainesville, FL 32609. <a href="/areas-served" class="text-gold hover:underline">See all areas we serve</a>.',
+    a: 'We serve Gainesville, Florida and surrounding areas from our office at 2603 NW 13th St, Gainesville, FL 32609. In Ohio we serve Delaware, Sunbury, London, Marion, Columbus, Westerville, Powell, Dublin, Marysville, Mount Vernon, and surrounding communities across Central Ohio. <a href="/areas-served" class="text-gold hover:underline">See all areas we serve</a>.',
   },
   {
     q: "Do you offer free estimates?",

@@ -72,10 +72,10 @@ export default async function AreaPage({
     },
     address: {
       "@type": "PostalAddress",
-      streetAddress: area.office?.street ?? COMPANY.street,
-      addressLocality: area.office?.city ?? COMPANY.city,
-      addressRegion: area.office?.region ?? COMPANY.region,
-      postalCode: area.office?.postalCode ?? COMPANY.postalCode,
+      streetAddress: area.office?.street ?? COMPANY.ohio.street,
+      addressLocality: area.office?.city ?? COMPANY.ohio.city,
+      addressRegion: area.office?.region ?? COMPANY.ohio.region,
+      postalCode: area.office?.postalCode ?? COMPANY.ohio.postalCode,
       addressCountry: "US",
     },
   };

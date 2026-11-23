@@ -27,7 +27,7 @@ export function generateMetadata({
       title:
         "metaTitle" in service && service.metaTitle
           ? service.metaTitle
-          : `${service.title} Services in Gainesville, FL`,
+          : `${service.title} Services in Gainesville, FL & Central Ohio`,
       description: service.description,
       alternates: { canonical: `${SITE_URL}/services/${slug}` },
     };
@@ -65,7 +65,13 @@ export default async function ServicePage({
         addressCountry: "US",
       },
     },
-    areaServed: [{ "@type": "City", name: "Gainesville, Florida" }],
+    areaServed: [
+      { "@type": "City", name: "Gainesville, Florida" },
+      ...COMPANY.areas.map((area) => ({
+        "@type": "City",
+        name: `${area}, Ohio`,
+      })),
+    ],
     url: `${SITE_URL}/services/${slug}`,
   };
 
@@ -134,7 +140,7 @@ export default async function ServicePage({
                 />
               </div>
               <h2 className="text-3xl font-black text-navy mb-2">
-                {service.title} in Gainesville, FL
+                {service.title} in Gainesville, FL & Central Ohio
               </h2>
               <p className="text-sm text-gray-400 mb-6">
                 Last updated: June 2026

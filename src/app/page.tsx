@@ -15,7 +15,7 @@ const servicesItemListSchema = {
   "@type": "ItemList",
   name: "Asphalt Paving Services Offered by All State Paving",
   description:
-    "Full-service asphalt paving in Gainesville, FL including driveways, parking lots, commercial paving, repair, sealcoating, and line striping.",
+    "Full-service asphalt paving in Gainesville, FL and Central Ohio including driveways, parking lots, commercial paving, repair, sealcoating, and line striping.",
   numberOfItems: SERVICES.length,
   itemListElement: SERVICES.map((s, i) => ({
     "@type": "ListItem",
@@ -271,8 +271,10 @@ export default function HomePage() {
                   asphalt paving in Gainesville, Florida
                 </Link>{" "}
                 and surrounding areas, where we have served customers for 25
-                years. Our team is dedicated to providing exceptional service
-                and craftsmanship that you can depend on for years to come.
+                years. We also proudly serve Delaware, Sunbury, London, and
+                Marion in Ohio and nearby areas. Our team is dedicated to
+                providing exceptional service and craftsmanship that you can
+                depend on for years to come.
               </p>
               <Link
                 href="/about"

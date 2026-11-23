@@ -16,11 +16,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "All State Paving | Asphalt Paving Services in Gainesville, FL",
+    default: "All State Paving | Asphalt Paving in Gainesville, FL & Central Ohio",
     template: "%s | All State Paving",
   },
   description:
-    "Asphalt paving services for Gainesville, FL homes and businesses. New installation, repair, resurfacing, and sealcoating. Serving Gainesville and surrounding areas for 25 years.",
+    "Asphalt paving services for Gainesville, FL and Central Ohio homes and businesses. New installation, repair, resurfacing, and sealcoating. Serving Gainesville and surrounding areas for 25 years.",
   robots: {
     index: true,
     follow: true,
@@ -37,23 +37,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "All State Paving",
     url: SITE_URL,
-    title: "All State Paving | Asphalt Paving Services in Gainesville, FL",
+    title: "All State Paving | Asphalt Paving in Gainesville, FL & Central Ohio",
     description:
-      "Professional asphalt paving, repair, and resurfacing for residential and commercial properties. Family-owned since 1979, serving Gainesville, FL and surrounding areas.",
+      "Professional asphalt paving, repair, and resurfacing for residential and commercial properties. Family-owned since 1979, serving Gainesville, FL and Central Ohio.",
     images: [
       {
         url: "/images/og-default.jpg",
         width: 1200,
         height: 630,
-        alt: "All State Paving — Gainesville, FL Asphalt Paving Services",
+        alt: "All State Paving — Asphalt Paving in Gainesville, FL and Central Ohio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "All State Paving | Asphalt Paving Services in Gainesville, FL",
+    title: "All State Paving | Asphalt Paving in Gainesville, FL & Central Ohio",
     description:
-      "Professional asphalt paving, repair, and resurfacing for residential and commercial properties. Serving Gainesville and surrounding areas for 25 years.",
+      "Professional asphalt paving, repair, and resurfacing for residential and commercial properties. Serving Gainesville, FL and Central Ohio.",
     images: ["/images/og-default.jpg"],
   },
   alternates: {
@@ -73,7 +73,8 @@ const organizationSchema = {
   name: COMPANY.name,
   alternateName: [
     "All State Paving Gainesville",
-    "All State Paving Gainesville FL",
+    "All State Paving Ohio",
+    "All State Paving Central Ohio",
   ],
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
@@ -95,7 +96,14 @@ const organizationSchema = {
       "@type": "ContactPoint",
       telephone: COMPANY.phoneAltTel,
       contactType: "customer service",
-      areaServed: "US",
+      areaServed: "US-FL",
+      availableLanguage: "English",
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: COMPANY.ohio.phoneTel,
+      contactType: "customer service",
+      areaServed: "US-OH",
       availableLanguage: "English",
     },
   ],
@@ -108,7 +116,7 @@ const localBusinessSchema = {
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
   image: `${SITE_URL}/images/og-default.jpg`,
-  telephone: [COMPANY.phoneTel, COMPANY.phoneAltTel],
+  telephone: [COMPANY.phoneTel, COMPANY.phoneAltTel, COMPANY.ohio.phoneTel],
   address: {
     "@type": "PostalAddress",
     streetAddress: COMPANY.street,
@@ -126,7 +134,13 @@ const localBusinessSchema = {
     },
   ],
   priceRange: "$$",
-  areaServed: [{ "@type": "City", name: "Gainesville, Florida" }],
+  areaServed: [
+    { "@type": "City", name: "Gainesville, Florida" },
+    ...COMPANY.areas.map((area) => ({
+      "@type": "City",
+      name: `${area}, Ohio`,
+    })),
+  ],
   sameAs: [
     COMPANY.facebook,
     "https://www.homeadvisor.com/rated.Allstatepaving.137694223.html",

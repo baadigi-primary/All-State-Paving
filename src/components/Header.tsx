@@ -67,7 +67,14 @@ export default function Header() {
             <span className="text-white/40">|</span>
             <a href={`tel:${COMPANY.phoneAltTel}`} className="flex items-center gap-2 hover:text-gold transition-colors">
               <PhoneIcon />
+              <span className="hidden md:inline text-white/50 text-xs uppercase tracking-wide">Gainesville, FL:</span>
               {COMPANY.phoneAlt}
+            </a>
+            <span className="text-white/40 hidden lg:inline">|</span>
+            <a href={`tel:${COMPANY.ohio.phoneTel}`} className="hidden lg:flex items-center gap-2 hover:text-gold transition-colors">
+              <PhoneIcon />
+              <span className="text-white/50 text-xs uppercase tracking-wide">Delaware, OH:</span>
+              {COMPANY.ohio.phone}
             </a>
             <span className="text-white/40">|</span>
             <a href={COMPANY.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors" aria-label="Facebook">

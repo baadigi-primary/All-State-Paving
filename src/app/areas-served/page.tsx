@@ -6,9 +6,9 @@ import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Areas Served | Asphalt Paving in Gainesville, FL",
+  title: "Areas Served | Gainesville, FL & Central Ohio",
   description:
-    "All State Paving serves Gainesville, Florida and surrounding areas. 40+ years of trusted paving. Free estimates.",
+    "All State Paving serves Gainesville, Florida and surrounding areas, plus Delaware, Columbus, Sunbury, Marion, London, and all of Central Ohio. 40+ years of trusted paving. Free estimates.",
   alternates: { canonical: `${SITE_URL}/areas-served` },
 };
 
@@ -49,11 +49,11 @@ export default function AreasServedPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-black text-navy mb-4">
-              Serving <span className="section-heading">Gainesville, FL</span>
+              Serving <span className="section-heading">Gainesville, FL &amp; Central Ohio</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               All State Paving proudly serves Gainesville, Florida and
-              surrounding areas. With over 40 years
+              surrounding areas, and communities across Central Ohio. With over 40 years
               of experience, we bring quality paving solutions right to your
               neighborhood.
             </p>

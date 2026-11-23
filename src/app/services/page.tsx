@@ -6,9 +6,9 @@ import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Asphalt Paving Services in Gainesville, FL",
+  title: "Asphalt Paving Services in Gainesville, FL & Central Ohio",
   description:
-    "Full-service asphalt paving: driveways, parking lots, commercial, residential, farm lanes, and repair in Gainesville, FL. Free estimates available.",
+    "Full-service asphalt paving: driveways, parking lots, commercial, residential, farm lanes, and repair in Gainesville, FL and Central Ohio. Free estimates available.",
   alternates: { canonical: `${SITE_URL}/services` },
 };
 
@@ -26,7 +26,7 @@ const servicesItemListSchema = {
   "@type": "ItemList",
   name: "Asphalt Paving Services",
   description:
-    "Full-service asphalt paving in Gainesville, FL including driveways, parking lots, commercial paving, repair, sealcoating, and line striping.",
+    "Full-service asphalt paving in Gainesville, FL and Central Ohio including driveways, parking lots, commercial paving, repair, sealcoating, and line striping.",
   numberOfItems: SERVICES.length,
   itemListElement: SERVICES.map((s, i) => ({
     "@type": "ListItem",
