@@ -5,9 +5,9 @@ import QuoteForm from "@/components/QuoteForm";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Contact All State Paving | Free Estimate in Central Ohio",
+  title: "Contact All State Paving | Free Estimate in Gainesville, FL",
   description:
-    "Get a free asphalt paving estimate in Central Ohio. Call 1-800-568-9954 or fill out our form. Response within 24 hours.",
+    "Get a free asphalt paving estimate in Gainesville, FL. Call 1-800-568-9954 or fill out our form. Response within 24 hours.",
   alternates: { canonical: `${SITE_URL}/contact` },
 };
 
@@ -26,20 +26,20 @@ export default function ContactPage() {
     "@type": "ContactPage",
     name: "Contact All State Paving",
     description:
-      "Request a free estimate for asphalt paving services in Central Ohio. Call 1-800-568-9954 or submit our online form.",
+      "Request a free estimate for asphalt paving services in Gainesville, FL. Call 1-800-568-9954 or 352-581-5301, or submit our online form.",
     url: `${SITE_URL}/contact`,
     mainEntity: {
       "@type": "HomeAndConstructionBusiness",
       name: COMPANY.name,
-      telephone: COMPANY.phone,
+      telephone: [COMPANY.phoneTel, COMPANY.phoneAltTel],
       address: {
-        "@type": "PostalAddress",
-        streetAddress: "175 South Sandusky St, Suite 398",
-        addressLocality: "Delaware",
-        addressRegion: "OH",
-        postalCode: "43015",
-        addressCountry: "US",
-      },
+          "@type": "PostalAddress",
+          streetAddress: COMPANY.street,
+          addressLocality: COMPANY.city,
+          addressRegion: COMPANY.region,
+          postalCode: COMPANY.postalCode,
+          addressCountry: "US",
+        },
     },
   };
 
@@ -82,8 +82,6 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-bold text-navy">Our Office</h3>
                     <p className="text-gray-600 text-sm">{COMPANY.address}</p>
-                    <h3 className="font-bold text-navy mt-3">Gainesville, FL Office</h3>
-                    <p className="text-gray-600 text-sm">{COMPANY.gainesville.address}</p>
                   </div>
                 </div>
 
@@ -104,12 +102,6 @@ export default function ContactPage() {
                       <a href={`tel:${COMPANY.phoneAltTel}`} className="hover:text-gold transition-colors">
                         {COMPANY.phoneAlt}
                       </a>
-                    </p>
-                    <p className="text-gray-600 text-sm">
-                      <a href={`tel:${COMPANY.gainesville.phoneTel}`} className="hover:text-gold transition-colors">
-                        {COMPANY.gainesville.phone}
-                      </a>{" "}
-                      (Gainesville, FL)
                     </p>
                   </div>
                 </div>
@@ -146,22 +138,6 @@ export default function ContactPage() {
 
               {/* Google Maps */}
               <div>
-                <h3 className="font-bold text-navy mb-2">Delaware, OH Office</h3>
-                <div className="rounded-lg overflow-hidden h-64">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.0!2d-83.068!3d40.2987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88388a4e943c9e3b%3A0x2e3b4a0c8f1d5e7a!2s175+S+Sandusky+St%2C+Delaware%2C+OH+43015!5e0!3m2!1sen!2sus!4v1700000000000"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="All State Paving Delaware, OH office location"
-                />
-                </div>
-              </div>
-              <div>
-                <h3 className="font-bold text-navy mb-2">Gainesville, FL Office</h3>
                 <div className="rounded-lg overflow-hidden h-64">
                 <iframe
                   src="https://www.google.com/maps?q=2603+NW+13th+St%2C+Gainesville%2C+FL+32609&z=15&output=embed"

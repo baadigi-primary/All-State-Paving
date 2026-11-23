@@ -9,8 +9,8 @@ export const BOT = { name: "All State Paving Bot", version: "1.0.0" };
 export const META = {
   name: C.name,
   slug: "all-state-paving",
-  summary: `family-owned asphalt paving in Delaware and Central Ohio. ${C.tagline}.`,
-  queries: ["asphalt paving Delaware OH", "driveway paving Columbus Ohio", "commercial paving Central Ohio", "parking lot sealcoating Delaware Ohio"],
+  summary: `family-owned asphalt paving in Gainesville, FL. ${C.tagline}.`,
+  queries: ["asphalt paving Gainesville FL", "driveway paving Gainesville FL", "commercial paving Gainesville FL", "parking lot sealcoating Gainesville FL"],
   humans: `Call ${C.phone} for a free estimate or use ${SITE}/contact.`,
   contactUrl: `${SITE}/contact`,
   email: undefined as string | undefined,
@@ -27,11 +27,11 @@ type Tool = {
 export const TOOLS: Tool[] = [
   {
     name: "get_all_state_paving_info",
-    description: "All State Paving (Delaware, OH, since 1979): address, phones, hours, service areas.",
+    description: "All State Paving (Gainesville, FL, since 1979): address, phones, hours, service areas.",
     inputSchema: { type: "object", properties: {} },
     run: () => ({
       name: C.name, tagline: C.tagline, description: C.description, address: C.address, phone: C.phone, phoneAlt: C.phoneAlt,
-      hours: C.hours, serviceAreas: C.areas, gainesvilleOffice: C.gainesville, pricing: "Free estimates. No price list is published.", contact: META.contactUrl,
+      hours: C.hours, serviceAreas: ["Gainesville, FL and surrounding areas"], pricing: "Free estimates. No price list is published.", contact: META.contactUrl,
     }),
   },
   {
@@ -67,9 +67,8 @@ You answer questions about ${C.name}. Use only the facts below.
 ## Business
 - ${C.description} ${C.tagline}.
 - ${C.address} · ${C.phone} (alt ${C.phoneAlt})
-- Gainesville, FL office: ${C.gainesville.address} · ${C.gainesville.phone}. ${C.gainesville.tagline}.
 - Hours: Mon–Fri ${C.hours.weekdays}; Sat ${C.hours.saturday}; Sun ${C.hours.sunday.toLowerCase()}
-- Service areas: ${C.areas.join(", ")}
+- Service areas: Gainesville, FL and surrounding areas
 
 ## Services
 ${SERVICES.map((s) => `- **${s.title}**: ${s.shortDesc} ${SITE}/services/${s.slug}`).join("\n")}

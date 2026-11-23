@@ -127,7 +127,7 @@ export default async function BlogPostPage({
       foundingDate: "1979",
       sameAs: [COMPANY.facebook],
       description:
-        "Family-owned asphalt paving contractor serving Delaware and Central Ohio since 1979, with 2,500+ completed projects.",
+        "Family-owned asphalt paving contractor based in Gainesville, FL, in business since 1979, with 2,500+ completed projects.",
     },
     publisher: {
       "@type": "Organization",

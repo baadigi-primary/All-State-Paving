@@ -6,9 +6,9 @@ import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Areas Served | Asphalt Paving Across Central Ohio",
+  title: "Areas Served | Asphalt Paving in Gainesville, FL",
   description:
-    "All State Paving serves Delaware, Columbus, Sunbury, Marion, London, and all of Central Ohio, plus Gainesville, Florida. 40+ years of trusted paving. Free estimates.",
+    "All State Paving serves Gainesville, Florida and surrounding areas. 40+ years of trusted paving. Free estimates.",
   alternates: { canonical: `${SITE_URL}/areas-served` },
 };
 
@@ -49,18 +49,18 @@ export default function AreasServedPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-black text-navy mb-4">
-              Serving <span className="section-heading">Central Ohio</span>
+              Serving <span className="section-heading">Gainesville, FL</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              All State Paving proudly serves communities across Central Ohio,
-              and Gainesville, Florida and surrounding areas. With over 40 years
+              All State Paving proudly serves Gainesville, Florida and
+              surrounding areas. With over 40 years
               of experience, we bring quality paving solutions right to your
               neighborhood.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {AREAS.map((area) => (
+            {[...AREAS.filter((a) => a.state === "FL"), ...AREAS.filter((a) => a.state !== "FL")].map((area) => (
               <Link
                 key={area.name}
                 href={`/areas-served/${area.slug}`}

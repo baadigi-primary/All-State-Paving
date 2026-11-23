@@ -16,11 +16,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "All State Paving | Asphalt Paving Services in Central Ohio",
+    default: "All State Paving | Asphalt Paving Services in Gainesville, FL",
     template: "%s | All State Paving",
   },
   description:
-    "Asphalt paving services for Central Ohio homes and businesses. New installation, repair, resurfacing, and sealcoating. Serving Delaware and Central Ohio since 1979.",
+    "Asphalt paving services for Gainesville, FL homes and businesses. New installation, repair, resurfacing, and sealcoating. Serving Gainesville and surrounding areas for 25 years.",
   robots: {
     index: true,
     follow: true,
@@ -73,7 +73,7 @@ const organizationSchema = {
   name: COMPANY.name,
   alternateName: [
     "All State Paving Ohio",
-    "Allstate Paving Delaware Ohio",
+    "All State Paving Gainesville",
     "All State Paving Central Ohio",
   ],
   url: SITE_URL,
@@ -94,9 +94,9 @@ const organizationSchema = {
     },
     {
       "@type": "ContactPoint",
-      telephone: COMPANY.gainesville.phoneTel,
+      telephone: COMPANY.phoneAltTel,
       contactType: "customer service",
-      areaServed: "US-FL",
+      areaServed: "US",
       availableLanguage: "English",
     },
   ],
@@ -109,19 +109,14 @@ const localBusinessSchema = {
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
   image: `${SITE_URL}/images/og-default.jpg`,
-  telephone: COMPANY.phone,
+  telephone: [COMPANY.phoneTel, COMPANY.phoneAltTel],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "175 South Sandusky St, Suite 398",
-    addressLocality: "Delaware",
-    addressRegion: "OH",
-    postalCode: "43015",
+    streetAddress: COMPANY.street,
+    addressLocality: COMPANY.city,
+    addressRegion: COMPANY.region,
+    postalCode: COMPANY.postalCode,
     addressCountry: "US",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 40.2987,
-    longitude: -83.068,
   },
   openingHoursSpecification: [
     {
@@ -133,11 +128,11 @@ const localBusinessSchema = {
   ],
   priceRange: "$$",
   areaServed: [
+    { "@type": "City", name: "Gainesville, Florida" },
     ...COMPANY.areas.map((area) => ({
       "@type": "City",
       name: `${area}, Ohio`,
     })),
-    { "@type": "City", name: "Gainesville, Florida" },
   ],
   sameAs: [
     COMPANY.facebook,

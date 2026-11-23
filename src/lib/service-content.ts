@@ -57,7 +57,7 @@ Central Ohio's freeze-thaw cycles are particularly hard on pavement. Water seeps
       {
         title: "40+ Years of Local Expertise",
         description:
-          "All State Paving has been a family-owned business in Delaware, Ohio since 1979. We have paved thousands of projects across Central Ohio and understand the soil types, drainage patterns, and climate challenges specific to this region. That experience shows in every job we complete.",
+          "All State Paving has been a family-owned business since 1979. We have paved thousands of projects across Central Ohio and understand the soil types, drainage patterns, and climate challenges specific to this region. That experience shows in every job we complete.",
       },
     ],
     process: [

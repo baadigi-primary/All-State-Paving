@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { COMPANY, NAV_LINKS, PRIMARY_LOCATION } from "@/lib/constants";
+import { COMPANY, NAV_LINKS } from "@/lib/constants";
 
 function PhoneIcon() {
   return (
@@ -36,9 +36,6 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const primaryIsFL = PRIMARY_LOCATION === "FL";
-  const topBarAddress = primaryIsFL ? COMPANY.gainesville.address : COMPANY.address;
-  const topBarAddressShort = primaryIsFL ? "Gainesville, FL" : "Delaware, OH";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -54,8 +51,8 @@ export default function Header() {
           <div className="flex items-center gap-6 flex-wrap">
             <span className="flex items-center gap-2">
               <MapIcon />
-              <span className="hidden sm:inline">{topBarAddress}</span>
-              <span className="sm:hidden">{topBarAddressShort}</span>
+              <span className="hidden sm:inline">{COMPANY.address}</span>
+              <span className="sm:hidden">{COMPANY.city}, {COMPANY.region}</span>
             </span>
             <span className="flex items-center gap-2">
               <ClockIcon />
@@ -65,20 +62,12 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <a href={`tel:${COMPANY.phoneTel}`} className="flex items-center gap-2 hover:text-gold transition-colors">
               <PhoneIcon />
-              <span className="hidden md:inline text-white/50 text-xs uppercase tracking-wide">Delaware, OH:</span>
               {COMPANY.phone}
             </a>
             <span className="text-white/40">|</span>
             <a href={`tel:${COMPANY.phoneAltTel}`} className="flex items-center gap-2 hover:text-gold transition-colors">
               <PhoneIcon />
-              <span className="hidden md:inline text-white/50 text-xs uppercase tracking-wide">Delaware, OH:</span>
               {COMPANY.phoneAlt}
-            </a>
-            <span className="text-white/40 hidden lg:inline">|</span>
-            <a href={`tel:${COMPANY.gainesville.phoneTel}`} className="hidden lg:flex items-center gap-2 hover:text-gold transition-colors">
-              <PhoneIcon />
-              <span className="text-white/50 text-xs uppercase tracking-wide">Gainesville, FL:</span>
-              {COMPANY.gainesville.phone}
             </a>
             <span className="text-white/40">|</span>
             <a href={COMPANY.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors" aria-label="Facebook">

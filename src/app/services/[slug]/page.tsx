@@ -27,7 +27,7 @@ export function generateMetadata({
       title:
         "metaTitle" in service && service.metaTitle
           ? service.metaTitle
-          : `${service.title} Services in Central Ohio & Gainesville, FL`,
+          : `${service.title} Services in Gainesville, FL`,
       description: service.description,
       alternates: { canonical: `${SITE_URL}/services/${slug}` },
     };
@@ -55,22 +55,22 @@ export default async function ServicePage({
       "@type": "HomeAndConstructionBusiness",
       name: COMPANY.name,
       url: SITE_URL,
-      telephone: COMPANY.phone,
+      telephone: [COMPANY.phoneTel, COMPANY.phoneAltTel],
       address: {
         "@type": "PostalAddress",
-        streetAddress: "175 South Sandusky St, Suite 398",
-        addressLocality: "Delaware",
-        addressRegion: "OH",
-        postalCode: "43015",
+        streetAddress: COMPANY.street,
+        addressLocality: COMPANY.city,
+        addressRegion: COMPANY.region,
+        postalCode: COMPANY.postalCode,
         addressCountry: "US",
       },
     },
     areaServed: [
+      { "@type": "City", name: "Gainesville, Florida" },
       ...COMPANY.areas.map((area) => ({
         "@type": "City",
         name: `${area}, Ohio`,
       })),
-      { "@type": "City", name: "Gainesville, Florida" },
     ],
     url: `${SITE_URL}/services/${slug}`,
   };
@@ -140,7 +140,7 @@ export default async function ServicePage({
                 />
               </div>
               <h2 className="text-3xl font-black text-navy mb-2">
-                {service.title} in Central Ohio & Gainesville, FL
+                {service.title} in Gainesville, FL
               </h2>
               <p className="text-sm text-gray-400 mb-6">
                 Last updated: June 2026

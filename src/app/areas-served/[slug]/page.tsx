@@ -72,10 +72,10 @@ export default async function AreaPage({
     },
     address: {
       "@type": "PostalAddress",
-      streetAddress: area.office?.street ?? "175 South Sandusky St, Suite 398",
-      addressLocality: area.office?.city ?? "Delaware",
-      addressRegion: area.office?.region ?? "OH",
-      postalCode: area.office?.postalCode ?? "43015",
+      streetAddress: area.office?.street ?? COMPANY.street,
+      addressLocality: area.office?.city ?? COMPANY.city,
+      addressRegion: area.office?.region ?? COMPANY.region,
+      postalCode: area.office?.postalCode ?? COMPANY.postalCode,
       addressCountry: "US",
     },
   };

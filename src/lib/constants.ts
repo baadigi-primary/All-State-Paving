@@ -1,19 +1,19 @@
 export const SITE_URL = "https://www.allstatepavenow.com";
 
-// Which location the homepage hero leads with. Flip to "OH" once Richard
-// confirms the crew is back in Ohio.
-export const PRIMARY_LOCATION: "OH" | "FL" = "FL";
-
 export const COMPANY = {
   name: "All State Paving",
   phone: "1-800-568-9954",
-  phoneAlt: "740-892-1647",
+  phoneAlt: "352-581-5301",
   phoneTel: "+18005689954",
-  phoneAltTel: "+17408921647",
-  address: "175 South Sandusky St, Suite 398, Delaware, OH 43015",
-  tagline: "Serving Delaware and Central Ohio Since 1979",
+  phoneAltTel: "+13525815301",
+  address: "2603 NW 13th St, Gainesville, FL 32609",
+  street: "2603 NW 13th St",
+  city: "Gainesville",
+  region: "FL",
+  postalCode: "32609",
+  tagline: "Serving Gainesville and surrounding areas for 25 years",
   description:
-    "Your premier choice for high-quality asphalt paving services across Central Ohio. Family-owned and operated for over 40 years.",
+    "Your premier choice for high-quality asphalt paving in Gainesville, Florida and surrounding areas. Family-owned and operated for over 40 years.",
   hours: {
     weekdays: "7:30 AM – 7:30 PM",
     saturday: "7:30 AM – 7:30 PM",
