@@ -27,7 +27,7 @@ export function generateMetadata({
       title:
         "metaTitle" in service && service.metaTitle
           ? service.metaTitle
-          : `${service.title} Services in Central Ohio`,
+          : `${service.title} Services in Central Ohio & Gainesville, FL`,
       description: service.description,
       alternates: { canonical: `${SITE_URL}/services/${slug}` },
     };
@@ -65,10 +65,13 @@ export default async function ServicePage({
         addressCountry: "US",
       },
     },
-    areaServed: COMPANY.areas.map((area) => ({
-      "@type": "City",
-      name: `${area}, Ohio`,
-    })),
+    areaServed: [
+      ...COMPANY.areas.map((area) => ({
+        "@type": "City",
+        name: `${area}, Ohio`,
+      })),
+      { "@type": "City", name: "Gainesville, Florida" },
+    ],
     url: `${SITE_URL}/services/${slug}`,
   };
 
@@ -137,7 +140,7 @@ export default async function ServicePage({
                 />
               </div>
               <h2 className="text-3xl font-black text-navy mb-2">
-                {service.title} in Central Ohio
+                {service.title} in Central Ohio & Gainesville, FL
               </h2>
               <p className="text-sm text-gray-400 mb-6">
                 Last updated: June 2026
@@ -377,7 +380,7 @@ export default async function ServicePage({
                         href={`/areas-served/${a.slug}`}
                         className="block px-2 py-1.5 rounded text-sm text-gray-600 hover:bg-gray-100 hover:text-navy transition-colors"
                       >
-                        {a.name}, OH
+                        {a.name}, {a.state ?? "OH"}
                       </Link>
                     </li>
                   ))}

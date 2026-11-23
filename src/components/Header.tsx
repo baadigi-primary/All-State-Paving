@@ -65,16 +65,19 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <a href={`tel:${COMPANY.phoneTel}`} className="flex items-center gap-2 hover:text-gold transition-colors">
               <PhoneIcon />
+              <span className="hidden md:inline text-white/50 text-xs uppercase tracking-wide">Delaware, OH:</span>
               {COMPANY.phone}
             </a>
             <span className="text-white/40">|</span>
             <a href={`tel:${COMPANY.phoneAltTel}`} className="flex items-center gap-2 hover:text-gold transition-colors">
               <PhoneIcon />
+              <span className="hidden md:inline text-white/50 text-xs uppercase tracking-wide">Delaware, OH:</span>
               {COMPANY.phoneAlt}
             </a>
             <span className="text-white/40 hidden lg:inline">|</span>
             <a href={`tel:${COMPANY.gainesville.phoneTel}`} className="hidden lg:flex items-center gap-2 hover:text-gold transition-colors">
               <PhoneIcon />
+              <span className="text-white/50 text-xs uppercase tracking-wide">Gainesville, FL:</span>
               {COMPANY.gainesville.phone}
             </a>
             <span className="text-white/40">|</span>
