@@ -7,6 +7,20 @@ export interface AreaData {
   services: string[];
   nearbyAreas: string[];
   faqs: { q: string; a: string }[];
+  // Optional overrides for areas outside Ohio. Defaults: OH / Ohio, Delaware office, main phone.
+  state?: string;
+  stateName?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  updated?: string;
+  office?: {
+    street: string;
+    city: string;
+    region: string;
+    postalCode: string;
+    phone: string;
+    phoneTel: string;
+  };
 }
 
 export const AREAS: AreaData[] = [
@@ -337,6 +351,58 @@ export const AREAS: AreaData[] = [
       {
         q: "When is the best time for farm lane paving in Knox County?",
         a: "The best time for farm lane paving in Knox County is late spring through early fall — typically May through September — when ground conditions are dry and temperatures consistently support proper asphalt compaction. For Knox County agricultural properties, early to mid-summer is often ideal because the ground has dried out from spring rains and thaw, giving you a stable base for construction, and the project can be completed well before fall harvest season when you need the lane most for moving equipment and crops. Farm lanes require special attention to base preparation because they handle much heavier loads than residential driveways — combines, tractors, grain trucks, and delivery vehicles all put significant stress on the surface. All State Paving has built farm lanes across Central Ohio's agricultural communities for over 40 years and we understand the unique requirements of Knox County properties. Schedule your free estimate in early spring so we can plan your project for optimal timing."
+      },
+    ],
+  },
+  {
+    slug: "gainesville-fl",
+    name: "Gainesville",
+    county: "surrounding areas",
+    state: "FL",
+    stateName: "Florida",
+    headline: "Who Does Asphalt Paving in Gainesville, FL?",
+    metaTitle: "Need Asphalt Paving in Gainesville, FL?",
+    metaDescription:
+      "Need asphalt paving in Gainesville, FL? All State Paving has served Gainesville and surrounding areas for 25 years. Office at 2603 NW 13th St. Call 352-581-5301 for a free estimate.",
+    updated: "November 2026",
+    office: {
+      street: "2603 NW 13th St",
+      city: "Gainesville",
+      region: "FL",
+      postalCode: "32609",
+      phone: "352-581-5301",
+      phoneTel: "+13525815301",
+    },
+    intro: `All State Paving provides asphalt paving, repair, and sealcoating in Gainesville, Florida and surrounding areas. We have served Gainesville for 25 years. Our Gainesville office is at 2603 NW 13th St, Gainesville, FL 32609, and you can reach it at 352-581-5301 for a free estimate.\n\nWe are a family-owned paving company that has been in business since 1979. The same crew standards we built our name on carry over to every Gainesville job: we show up on time, we use quality materials, and we stand behind the work.\n\nFlorida pavement lives a different life than pavement up north. Strong sun, high heat, and heavy summer rain are hard on asphalt, so drainage and regular upkeep matter here. We look at every Gainesville property in person before we quote it, so the price you get matches the job you actually have.`,
+    services: [
+      "asphalt-paving",
+      "driveway-paving-services",
+      "commercial-paving-services",
+      "parking-lot-paving-services",
+      "asphalt-repair-services",
+      "sealcoating-services",
+    ],
+    nearbyAreas: [],
+    faqs: [
+      {
+        q: "Where is All State Paving's Gainesville office?",
+        a: "All State Paving's Gainesville office is at 2603 NW 13th St, Gainesville, FL 32609. The Gainesville phone number is 352-581-5301. You can also reach the company toll-free at 1-800-568-9954.",
+      },
+      {
+        q: "How long has All State Paving served Gainesville, FL?",
+        a: "All State Paving has served Gainesville and surrounding areas for 25 years. The company is family-owned and has been in the paving business since 1979.",
+      },
+      {
+        q: "What paving services does All State Paving offer in Gainesville?",
+        a: "All State Paving offers asphalt paving, driveway paving, commercial paving, parking lot paving, asphalt repair, and sealcoating in Gainesville, Florida. Every job starts with a free on-site estimate.",
+      },
+      {
+        q: "Does All State Paving serve areas around Gainesville?",
+        a: "Yes. All State Paving serves Gainesville and surrounding areas. If your property is outside the city, call 352-581-5301 and we will tell you whether we can get a crew to you.",
+      },
+      {
+        q: "How do I get a paving estimate in Gainesville, FL?",
+        a: "Call the Gainesville office at 352-581-5301 or fill out the quote form on this page. Estimates are free. We visit the property, measure the area, check the base and drainage, and give you a written quote.",
       },
     ],
   },

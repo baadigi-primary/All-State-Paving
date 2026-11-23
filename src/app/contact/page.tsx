@@ -82,6 +82,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-bold text-navy">Our Office</h3>
                     <p className="text-gray-600 text-sm">{COMPANY.address}</p>
+                    <h3 className="font-bold text-navy mt-3">Gainesville, FL Office</h3>
+                    <p className="text-gray-600 text-sm">{COMPANY.gainesville.address}</p>
                   </div>
                 </div>
 
@@ -102,6 +104,12 @@ export default function ContactPage() {
                       <a href={`tel:${COMPANY.phoneAltTel}`} className="hover:text-gold transition-colors">
                         {COMPANY.phoneAlt}
                       </a>
+                    </p>
+                    <p className="text-gray-600 text-sm">
+                      <a href={`tel:${COMPANY.gainesville.phoneTel}`} className="hover:text-gold transition-colors">
+                        {COMPANY.gainesville.phone}
+                      </a>{" "}
+                      (Gainesville, FL)
                     </p>
                   </div>
                 </div>

@@ -84,13 +84,22 @@ const organizationSchema = {
     "https://www.homeadvisor.com/rated.Allstatepaving.137694223.html",
     "https://www.angi.com/companylist/us/de/bear/allstate-paving-reviews-1.htm",
   ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: COMPANY.phoneTel,
-    contactType: "customer service",
-    areaServed: "US",
-    availableLanguage: "English",
-  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: COMPANY.phoneTel,
+      contactType: "customer service",
+      areaServed: "US",
+      availableLanguage: "English",
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: COMPANY.gainesville.phoneTel,
+      contactType: "customer service",
+      areaServed: "US-FL",
+      availableLanguage: "English",
+    },
+  ],
 };
 
 const localBusinessSchema = {
@@ -123,10 +132,13 @@ const localBusinessSchema = {
     },
   ],
   priceRange: "$$",
-  areaServed: COMPANY.areas.map((area) => ({
-    "@type": "City",
-    name: `${area}, Ohio`,
-  })),
+  areaServed: [
+    ...COMPANY.areas.map((area) => ({
+      "@type": "City",
+      name: `${area}, Ohio`,
+    })),
+    { "@type": "City", name: "Gainesville, Florida" },
+  ],
   sameAs: [
     COMPANY.facebook,
     "https://www.homeadvisor.com/rated.Allstatepaving.137694223.html",

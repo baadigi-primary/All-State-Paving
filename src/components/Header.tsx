@@ -69,6 +69,11 @@ export default function Header() {
               <PhoneIcon />
               {COMPANY.phoneAlt}
             </a>
+            <span className="text-white/40 hidden lg:inline">|</span>
+            <a href={`tel:${COMPANY.gainesville.phoneTel}`} className="hidden lg:flex items-center gap-2 hover:text-gold transition-colors">
+              <PhoneIcon />
+              {COMPANY.gainesville.phone}
+            </a>
             <span className="text-white/40">|</span>
             <a href={COMPANY.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors" aria-label="Facebook">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

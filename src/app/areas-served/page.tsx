@@ -8,52 +8,9 @@ import JsonLd from "@/components/JsonLd";
 export const metadata: Metadata = {
   title: "Areas Served | Asphalt Paving Across Central Ohio",
   description:
-    "All State Paving serves Delaware, Columbus, Sunbury, Marion, London, and all of Central Ohio. 40+ years of trusted paving. Free estimates.",
+    "All State Paving serves Delaware, Columbus, Sunbury, Marion, London, and all of Central Ohio, plus Gainesville, Florida. 40+ years of trusted paving. Free estimates.",
   alternates: { canonical: `${SITE_URL}/areas-served` },
 };
-
-const areas = [
-  {
-    name: "Delaware",
-    desc: "Our home base. We've been proudly serving the Delaware community since 1979 with top-quality paving solutions.",
-  },
-  {
-    name: "Sunbury",
-    desc: "Providing residential and commercial paving services to Sunbury homeowners and businesses.",
-  },
-  {
-    name: "London",
-    desc: "Serving London and Madison County with professional asphalt paving, repair, and sealcoating.",
-  },
-  {
-    name: "Marion",
-    desc: "Delivering quality paving solutions to Marion and surrounding communities for over four decades.",
-  },
-  {
-    name: "Columbus",
-    desc: "Extending our services to the greater Columbus area for commercial and residential paving projects.",
-  },
-  {
-    name: "Westerville",
-    desc: "Trusted paving services for Westerville properties, from driveways to commercial parking lots.",
-  },
-  {
-    name: "Powell",
-    desc: "Quality asphalt paving for Powell's growing residential and commercial developments.",
-  },
-  {
-    name: "Dublin",
-    desc: "Serving Dublin businesses and homeowners with reliable, long-lasting paving solutions.",
-  },
-  {
-    name: "Marysville",
-    desc: "Professional paving services for the Marysville and Union County community.",
-  },
-  {
-    name: "Mount Vernon",
-    desc: "Extending our 40+ years of expertise to Mount Vernon and Knox County.",
-  },
-];
 
 export default function AreasServedPage() {
   const breadcrumbSchema = {
@@ -70,9 +27,9 @@ export default function AreasServedPage() {
     "@type": "HomeAndConstructionBusiness",
     name: COMPANY.name,
     url: SITE_URL,
-    areaServed: areas.map((area) => ({
+    areaServed: AREAS.map((area) => ({
       "@type": "City",
-      name: `${area.name}, Ohio`,
+      name: `${area.name}, ${area.stateName ?? "Ohio"}`,
     })),
   };
 
@@ -95,9 +52,10 @@ export default function AreasServedPage() {
               Serving <span className="section-heading">Central Ohio</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              All State Paving proudly serves communities across Central Ohio.
-              With over 40 years of experience, we bring quality paving solutions
-              right to your neighborhood.
+              All State Paving proudly serves communities across Central Ohio,
+              and Gainesville, Florida and surrounding areas. With over 40 years
+              of experience, we bring quality paving solutions right to your
+              neighborhood.
             </p>
           </div>
 
@@ -113,7 +71,7 @@ export default function AreasServedPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <h3 className="text-xl font-bold text-navy group-hover:text-gold transition-colors">{area.name}, OH</h3>
+                  <h3 className="text-xl font-bold text-navy group-hover:text-gold transition-colors">{area.name}, {area.state ?? "OH"}</h3>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed mb-3">{area.intro.split("\n\n")[0].slice(0, 150)}...</p>
                 <span className="text-gold font-semibold text-sm">Learn More →</span>

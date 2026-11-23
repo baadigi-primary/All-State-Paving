@@ -28,6 +28,17 @@ export const COMPANY = {
     "Mount Vernon",
   ],
   facebook: "https://www.facebook.com/AllStatePavingOhio",
+  gainesville: {
+    address: "2603 NW 13th St, Gainesville, FL 32609",
+    street: "2603 NW 13th St",
+    city: "Gainesville",
+    region: "FL",
+    postalCode: "32609",
+    phone: "352-581-5301",
+    phoneTel: "+13525815301",
+    tagline: "Serving Gainesville and surrounding areas for 25 years",
+    href: "/areas-served/gainesville-fl",
+  },
 } as const;
 
 export const SERVICES = [

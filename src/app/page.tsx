@@ -266,7 +266,12 @@ export default function HomePage() {
                 Proudly serving Delaware, Sunbury, London, and Marion in Ohio and
                 nearby areas, we take pride in being your local experts. Our team
                 is dedicated to providing exceptional service and craftsmanship
-                that you can depend on for years to come.
+                that you can depend on for years to come. We also offer{" "}
+                <Link href={COMPANY.gainesville.href} className="text-navy font-semibold hover:text-red transition-colors">
+                  asphalt paving in Gainesville, Florida
+                </Link>{" "}
+                and surrounding areas, where we have served customers for 25
+                years.
               </p>
               <Link
                 href="/about"

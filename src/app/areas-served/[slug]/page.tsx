@@ -22,8 +22,8 @@ export function generateMetadata({
     const area = AREAS.find((a) => a.slug === slug);
     if (!area) return { title: "Area Not Found" };
     return {
-      title: `Asphalt Paving in ${area.name}, OH`,
-      description: `Professional asphalt paving services in ${area.name}, ${area.county}, Ohio. Driveways, parking lots, repairs, and sealcoating. Family-owned since 1979. Free estimates.`,
+      title: area.metaTitle ?? `Asphalt Paving in ${area.name}, OH`,
+      description: area.metaDescription ?? `Professional asphalt paving services in ${area.name}, ${area.county}, Ohio. Driveways, parking lots, repairs, and sealcoating. Family-owned since 1979. Free estimates.`,
       alternates: { canonical: `${SITE_URL}/areas-served/${slug}` },
     };
   });
@@ -38,6 +38,11 @@ export default async function AreaPage({
   const area = AREAS.find((a) => a.slug === slug);
   if (!area) notFound();
 
+  const st = area.state ?? "OH";
+  const stateName = area.stateName ?? "Ohio";
+  const phone = area.office?.phone ?? COMPANY.phone;
+  const phoneTel = area.office?.phoneTel ?? COMPANY.phoneTel;
+
   const areaServices = SERVICES.filter((s) =>
     area.services.includes(s.slug)
   );
@@ -51,7 +56,7 @@ export default async function AreaPage({
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Areas Served", item: `${SITE_URL}/areas-served` },
-      { "@type": "ListItem", position: 3, name: `${area.name}, OH`, item: `${SITE_URL}/areas-served/${slug}` },
+      { "@type": "ListItem", position: 3, name: `${area.name}, ${st}`, item: `${SITE_URL}/areas-served/${slug}` },
     ],
   };
 
@@ -60,17 +65,17 @@ export default async function AreaPage({
     "@type": "HomeAndConstructionBusiness",
     name: COMPANY.name,
     url: SITE_URL,
-    telephone: COMPANY.phone,
+    telephone: phone,
     areaServed: {
       "@type": "City",
-      name: `${area.name}, Ohio`,
+      name: `${area.name}, ${stateName}`,
     },
     address: {
       "@type": "PostalAddress",
-      streetAddress: "175 South Sandusky St, Suite 398",
-      addressLocality: "Delaware",
-      addressRegion: "OH",
-      postalCode: "43015",
+      streetAddress: area.office?.street ?? "175 South Sandusky St, Suite 398",
+      addressLocality: area.office?.city ?? "Delaware",
+      addressRegion: area.office?.region ?? "OH",
+      postalCode: area.office?.postalCode ?? "43015",
       addressCountry: "US",
     },
   };
@@ -93,11 +98,11 @@ export default async function AreaPage({
       <JsonLd data={localBusinessSchema} />
       {faqSchema && <JsonLd data={faqSchema} />}
       <PageHero
-        title={`Asphalt Paving in ${area.name}, OH`}
+        title={`Asphalt Paving in ${area.name}, ${st}`}
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Areas Served", href: "/areas-served" },
-          { label: `${area.name}, OH` },
+          { label: `${area.name}, ${st}` },
         ]}
       />
 
@@ -110,7 +115,7 @@ export default async function AreaPage({
                 {area.headline}
               </h2>
               <p className="text-sm text-gray-400 mb-6">
-                Last updated: June 2026
+                Last updated: {area.updated ?? "June 2026"}
               </p>
 
               {area.intro.split("\n\n").map((paragraph, i) => (
@@ -160,7 +165,7 @@ export default async function AreaPage({
               {area.faqs.length > 0 && (
                 <div className="mt-12">
                   <h3 className="text-2xl font-bold text-navy mb-6">
-                    Asphalt Paving FAQ for {area.name}, OH
+                    Asphalt Paving FAQ for {area.name}, {st}
                   </h3>
                   <div className="space-y-4">
                     {area.faqs.map((item) => (
@@ -189,10 +194,10 @@ export default async function AreaPage({
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <a
-                    href={`tel:${COMPANY.phoneTel}`}
+                    href={`tel:${phoneTel}`}
                     className="bg-red hover:bg-red-dark text-white font-bold px-8 py-3 rounded transition-colors"
                   >
-                    CALL {COMPANY.phone}
+                    CALL {phone}
                   </a>
                   <Link
                     href="/contact"
@@ -246,7 +251,7 @@ export default async function AreaPage({
                               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                             />
                           </svg>
-                          {nearby.name}, OH
+                          {nearby.name}, {nearby.state ?? "OH"}
                         </Link>
                       </li>
                     ))}
@@ -268,7 +273,7 @@ export default async function AreaPage({
                   projects in {area.name}.
                 </p>
                 <a
-                  href={`tel:${COMPANY.phoneTel}`}
+                  href={`tel:${phoneTel}`}
                   className="flex items-center gap-2 text-gold font-bold"
                 >
                   <svg
@@ -284,7 +289,7 @@ export default async function AreaPage({
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                     />
                   </svg>
-                  {COMPANY.phone}
+                  {phone}
                 </a>
               </div>
             </div>
