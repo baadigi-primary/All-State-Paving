@@ -65,13 +65,7 @@ export default async function ServicePage({
         addressCountry: "US",
       },
     },
-    areaServed: [
-      { "@type": "City", name: "Gainesville, Florida" },
-      ...COMPANY.areas.map((area) => ({
-        "@type": "City",
-        name: `${area}, Ohio`,
-      })),
-    ],
+    areaServed: [{ "@type": "City", name: "Gainesville, Florida" }],
     url: `${SITE_URL}/services/${slug}`,
   };
 

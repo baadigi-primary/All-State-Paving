@@ -6,20 +6,20 @@ import FAQAccordion from "./FAQAccordion";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Asphalt Paving FAQ | All State Paving Central Ohio",
+  title: "Asphalt Paving FAQ | Gainesville, FL",
   description:
-    "Answers to common questions about asphalt paving costs, timelines, maintenance, and repair in Central Ohio. Get a free estimate today.",
+    "Answers to common questions about asphalt paving costs, timelines, maintenance, and repair in Gainesville, FL. Get a free estimate today.",
   alternates: { canonical: `${SITE_URL}/faq` },
 };
 
 const faqs = [
   {
     q: "How long has All State Paving been in business?",
-    a: 'All State Paving is a family-owned and operated company that has been serving Central Ohio since 1979 — that\'s over 40 years of trusted paving expertise. <a href="/about" class="text-gold hover:underline">Learn more about our story</a>.',
+    a: 'All State Paving is a family-owned and operated company that has been in business since 1979 — that\'s over 40 years of trusted paving expertise. We have served Gainesville, Florida and surrounding areas for 25 years. <a href="/about" class="text-gold hover:underline">Learn more about our story</a>.',
   },
   {
     q: "What areas do you serve?",
-    a: 'We proudly serve Delaware, Sunbury, London, Marion, Columbus, Westerville, Powell, Dublin, Marysville, Mount Vernon, and surrounding communities across Central Ohio. <a href="/areas-served" class="text-gold hover:underline">See all areas we serve</a>.',
+    a: 'We serve Gainesville, Florida and surrounding areas. Our office is at 2603 NW 13th St, Gainesville, FL 32609. <a href="/areas-served" class="text-gold hover:underline">See all areas we serve</a>.',
   },
   {
     q: "Do you offer free estimates?",
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: "What is the best time of year to pave?",
-    a: "The ideal paving season in Ohio runs from late spring through early fall when temperatures are consistently above 50°F. However, we can work on projects as conditions allow throughout the season.",
+    a: "Asphalt paves best when temperatures are consistently above 50°F. We schedule projects as conditions allow and confirm timing with your estimate.",
   },
   {
     q: "How do I maintain my new asphalt?",

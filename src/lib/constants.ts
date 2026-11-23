@@ -53,7 +53,7 @@ export const SERVICES = [
     shortDesc:
       "Professional asphalt paving using top-notch materials for lasting results on any surface.",
     description:
-      "Professional asphalt paving for driveways, roads, and lots in Central Ohio. Premium materials, 40+ years experience. Call for a free estimate.",
+      "Professional asphalt paving for driveways, roads, and lots in Gainesville, FL. Premium materials, 40+ years experience. Call for a free estimate.",
   },
   {
     title: "Commercial Paving",
@@ -62,16 +62,16 @@ export const SERVICES = [
     shortDesc:
       "Large-scale paving solutions for businesses, shopping centers, and commercial properties.",
     description:
-      "Commercial paving for parking lots, access roads, and business properties in Central Ohio. Durable results built for heavy traffic. Free estimates.",
+      "Commercial paving for parking lots, access roads, and business properties in Gainesville, FL. Durable results built for heavy traffic. Free estimates.",
   },
   {
     title: "Residential Paving",
     slug: "residential-paving-services",
     icon: "home",
     shortDesc:
-      "Beautiful, durable paving solutions for homeowners across Central Ohio.",
+      "Beautiful, durable paving solutions for homeowners in Gainesville, FL.",
     description:
-      "Residential asphalt paving for driveways and walkways in Central Ohio. Boost curb appeal with durable, beautiful results. Get a free quote today.",
+      "Residential asphalt paving for driveways and walkways in Gainesville, FL. Boost curb appeal with durable, beautiful results. Get a free quote today.",
   },
   {
     title: "Asphalt Repair",
@@ -80,7 +80,7 @@ export const SERVICES = [
     shortDesc:
       "Expert repair services to restore and extend the life of your asphalt surfaces.",
     description:
-      "Most cracked or potholed asphalt can be repaired instead of replaced when the base is sound — early repair saves Central Ohio property owners from costly full replacement. Crack filling, patching, and pothole repair with free on-site estimates.",
+      "Most cracked or potholed asphalt can be repaired instead of replaced when the base is sound — early repair saves Gainesville, FL property owners from costly full replacement. Crack filling, patching, and pothole repair with free on-site estimates.",
   },
   {
     title: "Driveway Paving",
@@ -89,7 +89,7 @@ export const SERVICES = [
     shortDesc:
       "Custom driveway installations and resurfacing for a smooth, lasting finish.",
     description:
-      "Custom driveway paving and resurfacing in Central Ohio. Premium materials, smooth finish, lasting results. Call for a free estimate.",
+      "Custom driveway paving and resurfacing in Gainesville, FL. Premium materials, smooth finish, lasting results. Call for a free estimate.",
   },
   {
     title: "Private Roads",
@@ -98,7 +98,7 @@ export const SERVICES = [
     shortDesc:
       "Durable private road construction built to handle daily traffic with ease.",
     description:
-      "Private road paving is the owner's responsibility, and asphalt is the go-to in Central Ohio because it flexes with freeze-thaw and handles daily traffic. Durable private road construction and maintenance across Delaware County with free on-site quotes.",
+      "Private road paving is the owner's responsibility, and asphalt handles daily traffic well. Durable private road construction and maintenance in Gainesville, FL and surrounding areas with free on-site quotes.",
   },
   {
     title: "Farm Lane Paving",
@@ -107,7 +107,7 @@ export const SERVICES = [
     shortDesc:
       "Rugged farm lane surfaces built to withstand heavy equipment and all weather.",
     description:
-      "Farm lane paving in Central Ohio built for heavy equipment and all-weather use. Rugged, reliable surfaces. Call for a free estimate.",
+      "Farm lane paving in Gainesville, FL built for heavy equipment and all-weather use. Rugged, reliable surfaces. Call for a free estimate.",
   },
   {
     title: "Parking Lot Paving",
@@ -117,9 +117,9 @@ export const SERVICES = [
       "Professional parking lot construction with proper drainage and striping.",
     // ponytail: metaTitle override lets this one page target "parking lot paving ohio" (pos ~11, 118 impr, 0 clicks)
     // without touching the generic title template every other service page still uses.
-    metaTitle: "Need Parking Lot Paving in Ohio? Here's What to Expect",
+    metaTitle: "Need Parking Lot Paving in Gainesville, FL? Here's What to Expect",
     description:
-      "Need parking lot paving in Ohio? All State Paving builds, resurfaces, and stripes commercial lots throughout Delaware, Columbus, and Central Ohio with proper drainage and code-compliant layouts. Serving the region since 1979 — request a free estimate.",
+      "Need parking lot paving in Gainesville, FL? All State Paving builds, resurfaces, and stripes commercial lots in Gainesville and surrounding areas with proper drainage and code-compliant layouts. In business since 1979 — request a free estimate.",
   },
   {
     title: "Sealcoating",
@@ -128,7 +128,7 @@ export const SERVICES = [
     shortDesc:
       "Protect your asphalt with professional sealcoating that extends pavement life by years.",
     description:
-      "Sealcoating seals out water, UV, and oil to keep asphalt flexible, and Central Ohio pavement should be resealed every few years through freeze-thaw winters. The lowest-cost way to extend driveway and parking lot life. Free on-site estimates.",
+      "Sealcoating seals out water, UV, and oil to keep asphalt flexible. The lowest-cost way to extend driveway and parking lot life in Gainesville, FL. Free on-site estimates.",
   },
   {
     title: "Line Striping",
@@ -138,9 +138,9 @@ export const SERVICES = [
       "Crisp, visible parking lot striping for safety, compliance, and a professional look.",
     // ponytail: metaTitle override for this page only (1762 impr/28d, 1 click — CTR 0.06%,
     // the worst on the site) targeting "parking lot striping" + area queries.
-    metaTitle: "Need Parking Lot Striping in Ohio?",
+    metaTitle: "Need Parking Lot Striping in Gainesville, FL?",
     description:
-      "Need parking lot striping in Ohio? All State Paving delivers ADA-compliant striping and pavement marking across Delaware, Columbus, and Central Ohio. Free estimates, serving the region since 1979.",
+      "Need parking lot striping in Gainesville, FL? All State Paving delivers ADA-compliant striping and pavement marking in Gainesville and surrounding areas. Free estimates, in business since 1979.",
   },
 ] as const;
 

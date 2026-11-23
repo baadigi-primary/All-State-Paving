@@ -42,6 +42,19 @@ export async function generateMetadata({
   };
 }
 
+const LINK_CLASS = "text-gold hover:text-gold/80 underline";
+
+function inlineMd(s: string): string {
+  return s
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="text-navy">$1</strong>')
+    .replace(/\[(.+?)\]\((.+?)\)/g, `<a href="$2" class="${LINK_CLASS}">$1</a>`)
+    .replace(/\*([^*\n]+?)\*/g, "<em>$1</em>");
+}
+
+function tableCells(line: string): string[] {
+  return line.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim());
+}
+
 function markdownToHtml(md: string): string {
   return md
     .trim()
@@ -55,37 +68,63 @@ function markdownToHtml(md: string): string {
       if (trimmed.startsWith("### ")) {
         return `<h3 class="text-xl font-bold text-navy mt-8 mb-3">${trimmed.slice(4)}</h3>`;
       }
-      // Handle list blocks
+      if (/^-{3,}$/.test(trimmed)) {
+        return `<hr class="my-10 border-gray-200" />`;
+      }
       const lines = trimmed.split("\n");
+      // Image, with an optional *caption* on the next line
+      const img = lines[0].match(/^!\[(.*?)\]\((.+?)\)$/);
+      if (img && lines.length <= 2) {
+        const caption = lines[1]?.trim().replace(/^\*(.+)\*$/, "$1");
+        return `<figure class="my-8"><img src="${img[2]}" alt="${img[1].replace(/"/g, "&quot;")}" loading="lazy" class="w-full rounded-lg" />${
+          caption ? `<figcaption class="text-sm text-gray-500 mt-2 text-center">${inlineMd(caption)}</figcaption>` : ""
+        }</figure>`;
+      }
+      // Table: header row, |---| divider, body rows
+      if (lines.length >= 2 && lines.every((l) => l.trim().startsWith("|")) && /^\|[\s:|-]+\|$/.test(lines[1].trim())) {
+        const head = tableCells(lines[0])
+          .map((c) => `<th class="text-left font-bold text-navy px-4 py-3 border-b-2 border-gold">${inlineMd(c)}</th>`)
+          .join("");
+        const rows = lines
+          .slice(2)
+          .map(
+            (l) =>
+              `<tr class="border-b border-gray-200">${tableCells(l)
+                .map((c) => `<td class="px-4 py-3 text-gray-600 align-top">${inlineMd(c)}</td>`)
+                .join("")}</tr>`
+          )
+          .join("");
+        return `<div class="overflow-x-auto my-6"><table class="w-full text-sm border-collapse"><thead><tr class="bg-gray-50">${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
+      }
+      if (lines.every((l) => /^\d+\.\s/.test(l.trimStart()))) {
+        const items = lines
+          .map((l) => `<li>${inlineMd(l.trimStart().replace(/^\d+\.\s+/, ""))}</li>`)
+          .join("");
+        return `<ol class="list-decimal pl-6 space-y-2 my-4 text-gray-600 leading-relaxed marker:text-gold marker:font-bold">${items}</ol>`;
+      }
       if (lines.every((l) => l.trimStart().startsWith("- "))) {
         const items = lines
-          .map((l) => {
-            const text = l.trimStart().slice(2);
-            const boldMatch = text.match(/^\*\*(.+?)\*\*(.*)$/);
-            const linkReplace = (s: string) =>
-              s.replace(
-                /\[(.+?)\]\((.+?)\)/g,
-                '<a href="$2" class="text-gold hover:text-gold/80 underline">$1</a>'
-              );
-            if (boldMatch) {
-              return `<li class="flex items-start gap-2"><span class="text-gold mt-1.5 shrink-0">•</span><span><strong class="text-navy">${boldMatch[1]}</strong>${linkReplace(boldMatch[2])}</span></li>`;
-            }
-            return `<li class="flex items-start gap-2"><span class="text-gold mt-1.5 shrink-0">•</span><span>${linkReplace(text)}</span></li>`;
-          })
+          .map(
+            (l) =>
+              `<li class="flex items-start gap-2"><span class="text-gold mt-1.5 shrink-0">•</span><span>${inlineMd(l.trimStart().slice(2))}</span></li>`
+          )
           .join("");
         return `<ul class="space-y-2 my-4">${items}</ul>`;
       }
-      // Regular paragraph — handle inline bold and links
-      const html = trimmed
-        .replace(/\*\*(.+?)\*\*/g, '<strong class="text-navy">$1</strong>')
-        .replace(
-          /\[(.+?)\]\((.+?)\)/g,
-          '<a href="$2" class="text-gold hover:text-gold/80 underline">$1</a>'
-        )
-        .replace(/\n/g, "<br />");
-      return `<p class="text-gray-600 leading-relaxed mb-4">${html}</p>`;
+      return `<p class="text-gray-600 leading-relaxed mb-4">${inlineMd(trimmed).replace(/\n/g, "<br />")}</p>`;
     })
     .join("\n");
+}
+
+// Question/answer pairs written as "**Question?**\nAnswer" (Quick Answers and FAQ sections).
+function extractFaqs(md: string): { q: string; a: string }[] {
+  const plain = (s: string) =>
+    s.replace(/\*\*(.+?)\*\*/g, "$1").replace(/\[(.+?)\]\(.+?\)/g, "$1").replace(/\s+/g, " ").trim();
+  return md
+    .split("\n\n")
+    .map((b) => b.trim().match(/^\*\*(.+?\?)\*\*\n([\s\S]+)$/))
+    .filter((m): m is RegExpMatchArray => !!m)
+    .map((m) => ({ q: plain(m[1]), a: plain(m[2]) }));
 }
 
 function formatDate(dateStr: string): string {
@@ -114,7 +153,7 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.excerpt,
     image: post.cover_image_url
-      ? `${SITE_URL}${post.cover_image_url}`
+      ? new URL(post.cover_image_url, SITE_URL).toString()
       : undefined,
     datePublished: post.published_at
       ? new Date(post.published_at).toISOString()
@@ -129,6 +168,10 @@ export default async function BlogPostPage({
       description:
         "Family-owned asphalt paving contractor based in Gainesville, FL, in business since 1979, with 2,500+ completed projects.",
     },
+    contentLocation: {
+      "@type": "City",
+      name: `${COMPANY.city}, ${COMPANY.region}`,
+    },
     publisher: {
       "@type": "Organization",
       name: COMPANY.name,
@@ -141,6 +184,17 @@ export default async function BlogPostPage({
       "@type": "WebPage",
       "@id": `${SITE_URL}/blog/${slug}`,
     },
+  };
+
+  const faqs = extractFaqs(post.body ?? "");
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
   };
 
   const breadcrumbSchema = {
@@ -167,6 +221,7 @@ export default async function BlogPostPage({
     <>
       <JsonLd data={blogPostSchema} />
       <JsonLd data={breadcrumbSchema} />
+      {faqs.length > 0 && <JsonLd data={faqSchema} />}
       <PageHero
         title={post.title}
         breadcrumbs={[

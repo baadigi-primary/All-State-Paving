@@ -11,7 +11,7 @@ export const revalidate = 300; // Revalidate every 5 minutes
 export const metadata: Metadata = {
   title: "Asphalt Paving Tips & Guides | All State Paving Blog",
   description:
-    "Expert tips on asphalt paving, maintenance, and repair from Central Ohio's trusted contractor. Guides for homeowners and businesses. Read now.",
+    "Expert tips on asphalt paving, maintenance, and repair from a Gainesville, FL paving contractor in business since 1979. Guides for homeowners and businesses. Read now.",
   alternates: { canonical: `${SITE_URL}/blog` },
 };
 
@@ -40,7 +40,7 @@ export default async function BlogPage() {
     "@type": "Blog",
     name: "All State Paving Blog",
     description:
-      "Expert tips on asphalt paving, maintenance, and repair from Central Ohio's trusted contractor.",
+      "Expert tips on asphalt paving, maintenance, and repair from a Gainesville, FL paving contractor in business since 1979.",
     url: `${SITE_URL}/blog`,
     publisher: {
       "@type": "Organization",

@@ -15,7 +15,7 @@ const servicesItemListSchema = {
   "@type": "ItemList",
   name: "Asphalt Paving Services Offered by All State Paving",
   description:
-    "Full-service asphalt paving in Central Ohio including driveways, parking lots, commercial paving, repair, sealcoating, and line striping.",
+    "Full-service asphalt paving in Gainesville, FL including driveways, parking lots, commercial paving, repair, sealcoating, and line striping.",
   numberOfItems: SERVICES.length,
   itemListElement: SERVICES.map((s, i) => ({
     "@type": "ListItem",

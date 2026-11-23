@@ -6,9 +6,9 @@ import PageHero from "@/components/PageHero";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "About All State Paving | Central Ohio Asphalt Contractor",
+  title: "About All State Paving | Gainesville, FL Asphalt Contractor",
   description:
-    "Family-owned asphalt paving company serving Central Ohio since 1979. 40+ years of quality driveways, parking lots, and roads. Meet our team.",
+    "Family-owned asphalt paving company in Gainesville, FL, in business since 1979. 40+ years of quality driveways, parking lots, and roads. Meet our team.",
   alternates: { canonical: `${SITE_URL}/about` },
 };
 
@@ -27,17 +27,14 @@ export default function AboutPage() {
     "@type": "AboutPage",
     name: "About All State Paving",
     description:
-      "Family-owned asphalt paving company serving Central Ohio since 1979. Over 40 years of experience and 2,500+ completed projects.",
+      "Family-owned asphalt paving company in Gainesville, FL, in business since 1979. Over 40 years of experience and 2,500+ completed projects.",
     url: `${SITE_URL}/about`,
     mainEntity: {
       "@type": "HomeAndConstructionBusiness",
       name: COMPANY.name,
       foundingDate: "1979",
       description: COMPANY.description,
-      areaServed: COMPANY.areas.map((area) => ({
-        "@type": "City",
-        name: `${area}, Ohio`,
-      })),
+      areaServed: [{ "@type": "City", name: "Gainesville, Florida" }],
     },
   };
 

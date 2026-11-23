@@ -37,23 +37,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "All State Paving",
     url: SITE_URL,
-    title: "All State Paving | Asphalt Paving Services in Central Ohio",
+    title: "All State Paving | Asphalt Paving Services in Gainesville, FL",
     description:
-      "Professional asphalt paving, repair, and resurfacing for residential and commercial properties. Family-owned since 1979, serving Central Ohio.",
+      "Professional asphalt paving, repair, and resurfacing for residential and commercial properties. Family-owned since 1979, serving Gainesville, FL and surrounding areas.",
     images: [
       {
         url: "/images/og-default.jpg",
         width: 1200,
         height: 630,
-        alt: "All State Paving — Central Ohio Asphalt Paving Services",
+        alt: "All State Paving — Gainesville, FL Asphalt Paving Services",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "All State Paving | Asphalt Paving Services in Central Ohio",
+    title: "All State Paving | Asphalt Paving Services in Gainesville, FL",
     description:
-      "Professional asphalt paving, repair, and resurfacing for residential and commercial properties. Serving Central Ohio since 1979.",
+      "Professional asphalt paving, repair, and resurfacing for residential and commercial properties. Serving Gainesville and surrounding areas for 25 years.",
     images: ["/images/og-default.jpg"],
   },
   alternates: {
@@ -72,9 +72,8 @@ const organizationSchema = {
   "@type": "Organization",
   name: COMPANY.name,
   alternateName: [
-    "All State Paving Ohio",
     "All State Paving Gainesville",
-    "All State Paving Central Ohio",
+    "All State Paving Gainesville FL",
   ],
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
@@ -127,13 +126,7 @@ const localBusinessSchema = {
     },
   ],
   priceRange: "$$",
-  areaServed: [
-    { "@type": "City", name: "Gainesville, Florida" },
-    ...COMPANY.areas.map((area) => ({
-      "@type": "City",
-      name: `${area}, Ohio`,
-    })),
-  ],
+  areaServed: [{ "@type": "City", name: "Gainesville, Florida" }],
   sameAs: [
     COMPANY.facebook,
     "https://www.homeadvisor.com/rated.Allstatepaving.137694223.html",

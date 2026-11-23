@@ -5,7 +5,7 @@ import QuoteForm from "@/components/QuoteForm";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Contact All State Paving | Free Estimate in Gainesville, FL",
+  title: "Contact Us | Free Estimate in Gainesville, FL",
   description:
     "Get a free asphalt paving estimate in Gainesville, FL. Call 1-800-568-9954 or fill out our form. Response within 24 hours.",
   alternates: { canonical: `${SITE_URL}/contact` },

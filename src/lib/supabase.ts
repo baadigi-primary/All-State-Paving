@@ -26,6 +26,16 @@ export interface BlogPostRow {
   updated_at: string;
 }
 
+// The dashboard sometimes saves covers as full https://www.allstatepavenow.com/images/... URLs.
+// next/image rejects those (host not allow-listed), so make own-site URLs relative.
+function localCover<T extends { cover_image_url: string | null }>(post: T): T {
+  return {
+    ...post,
+    cover_image_url:
+      post.cover_image_url?.replace(/^https?:\/\/(www\.)?allstatepavenow\.com(?=\/)/, "") ?? null,
+  };
+}
+
 export async function getPublishedPosts(): Promise<BlogPostRow[]> {
   const { data, error } = await supabase
     .from("site_blog_posts")
@@ -40,7 +50,7 @@ export async function getPublishedPosts(): Promise<BlogPostRow[]> {
     return [];
   }
 
-  return data ?? [];
+  return (data ?? []).map(localCover);
 }
 
 export async function getPostBySlug(
@@ -60,7 +70,7 @@ export async function getPostBySlug(
     return null;
   }
 
-  return data;
+  return data ? localCover(data) : null;
 }
 
 export async function getAllPostSlugs(): Promise<string[]> {

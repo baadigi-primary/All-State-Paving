@@ -7,7 +7,7 @@ import { GALLERY_ITEMS } from "@/lib/gallery-data";
 import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Paving Project Gallery | All State Paving Central Ohio",
+  title: "Paving Project Gallery",
   description:
     "See our completed asphalt paving projects across Central Ohio — driveways, parking lots, farm lanes, and more. Quality you can see.",
   alternates: { canonical: `${SITE_URL}/gallery` },
