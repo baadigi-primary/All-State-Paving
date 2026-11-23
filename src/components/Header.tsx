@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { COMPANY, NAV_LINKS } from "@/lib/constants";
+import { COMPANY, NAV_LINKS, PRIMARY_LOCATION } from "@/lib/constants";
 
 function PhoneIcon() {
   return (
@@ -36,6 +36,9 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const primaryIsFL = PRIMARY_LOCATION === "FL";
+  const topBarAddress = primaryIsFL ? COMPANY.gainesville.address : COMPANY.address;
+  const topBarAddressShort = primaryIsFL ? "Gainesville, FL" : "Delaware, OH";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -51,8 +54,8 @@ export default function Header() {
           <div className="flex items-center gap-6 flex-wrap">
             <span className="flex items-center gap-2">
               <MapIcon />
-              <span className="hidden sm:inline">{COMPANY.address}</span>
-              <span className="sm:hidden">Delaware, OH</span>
+              <span className="hidden sm:inline">{topBarAddress}</span>
+              <span className="sm:hidden">{topBarAddressShort}</span>
             </span>
             <span className="flex items-center gap-2">
               <ClockIcon />
