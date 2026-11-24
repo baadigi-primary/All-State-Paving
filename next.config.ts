@@ -1,6 +1,27 @@
 import type { NextConfig } from "next";
 
+// Ohio blog posts rewritten for Gainesville, FL (2026-11-23). Old slug -> new slug.
+const BLOG_REDIRECTS: [string, string][] = [
+  ["asphalt-patching-ohio", "asphalt-patching-gainesville-fl"],
+  ["asphalt-driveway-thickness-ohio", "asphalt-driveway-thickness-florida"],
+  ["asphalt-overlay-cost-central-ohio", "asphalt-overlay-gainesville-fl"],
+  ["asphalt-vs-concrete-driveway-ohio", "asphalt-vs-concrete-driveway-florida"],
+  ["parking-lot-paving-cost-central-ohio", "parking-lot-paving-cost-gainesville-fl"],
+  ["asphalt-paving-cost-delaware-ohio", "asphalt-paving-gainesville-fl"],
+  ["best-time-to-pave-asphalt-ohio", "best-time-to-pave-asphalt-florida"],
+  ["how-often-to-sealcoat-asphalt-ohio", "how-often-to-sealcoat-asphalt-florida"],
+  ["private-road-paving-guide-ohio", "private-road-paving-guide-florida"],
+  ["ada-parking-lot-striping-ohio", "ada-parking-lot-striping-florida"],
+];
+
 const nextConfig: NextConfig = {
+  async redirects() {
+    return BLOG_REDIRECTS.map(([from, to]) => ({
+      source: `/blog/${from}`,
+      destination: `/blog/${to}`,
+      statusCode: 301 as const,
+    }));
+  },
   async headers() {
     return [
       {
